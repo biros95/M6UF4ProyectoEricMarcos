@@ -5,17 +5,36 @@
  */
 package modelo;
 
+import java.io.Serializable;
 import java.util.ArrayList;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  *
  * @author MarcosPortatil
  */
-public class Cicle {
-
+@Entity
+@Table(name = "Cicles")
+public class Cicle implements Serializable{
+    
+    private static final long serialVersionUID = 1L;
+    
+    @Id
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
+    @Column(name = "cicleId", nullable = false, unique = true)
     private int id;
+    
+    @Column(name = "nomCicle", length = 50, nullable = false)
     private String nom;
+    
+    @Column(name = "grauCicle", length = 50)
     private String grau;
+    
     private ArrayList<Modul> llistaModuls;
     private ArrayList<Curs> llistaCursos;
 
@@ -66,5 +85,37 @@ public class Cicle {
     public void setLlistaCursos(ArrayList<Curs> llistaCursos) {
         this.llistaCursos = llistaCursos;
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 73 * hash + this.id;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Cicle other = (Cicle) obj;
+        if (this.id != other.id) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "Cicle{" + "id=" + id + ", nom=" + nom + ", grau=" + grau + ", llistaModuls=" + llistaModuls + ", llistaCursos=" + llistaCursos + '}';
+    }
+    
+    
 
 }
