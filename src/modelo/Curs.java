@@ -5,19 +5,35 @@
  */
 package modelo;
 
-import utilitats.NumeroDeCurs;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import utilitats.NombreDeCurs;
 
 /**
  *
  * @author Eric
  */
-public class Curs {
-    private int id;
-    private NumeroDeCurs numeroDeCurs;
 
-    public Curs(int id, NumeroDeCurs numeroDeCurs) {
+
+@Entity
+@Table(name = "Curs")
+public class Curs {
+    
+    private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Column(name = "cursId", unique = true, nullable = false)
+    private int id;
+    @Column(name = "nombreDeCurs", length = 5)
+    private String nombreDeCurs;
+
+    public Curs(int id, String nombreDeCurs) {
         this.id = id;
-        this.numeroDeCurs = numeroDeCurs;
+        this.nombreDeCurs = nombreDeCurs;
     }
 
     public int getId() {
@@ -28,11 +44,13 @@ public class Curs {
         this.id = id;
     }
 
-    public NumeroDeCurs getNumeroDeCurs() {
-        return numeroDeCurs;
+    public String getNombreDeCurs() {
+        return nombreDeCurs;
     }
 
-    public void setNumeroDeCurs(NumeroDeCurs numeroDeCurs) {
-        this.numeroDeCurs = numeroDeCurs;
+    public void setNombreDeCurs(String nombreDeCurs) {
+        this.nombreDeCurs = nombreDeCurs;
     }
+
+ 
 }
