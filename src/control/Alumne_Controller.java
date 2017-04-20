@@ -9,6 +9,6 @@ package control;
  *
  * @author Eric
  */
-public class CercaAlumne {
+public class Alumne_Controller {
     
 }
