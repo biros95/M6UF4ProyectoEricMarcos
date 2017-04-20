@@ -5,10 +5,34 @@
  */
 package modelo;
 
+import utilitats.NumeroDeCurs;
+
 /**
  *
  * @author Eric
  */
 public class Curs {
-    
+    private int id;
+    private NumeroDeCurs numeroDeCurs;
+
+    public Curs(int id, NumeroDeCurs numeroDeCurs) {
+        this.id = id;
+        this.numeroDeCurs = numeroDeCurs;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public NumeroDeCurs getNumeroDeCurs() {
+        return numeroDeCurs;
+    }
+
+    public void setNumeroDeCurs(NumeroDeCurs numeroDeCurs) {
+        this.numeroDeCurs = numeroDeCurs;
+    }
 }
