@@ -9,6 +9,6 @@ package utilitats;
  *
  * @author MarcosPortatil
  */
-public enum NumeroDeCurs {
+public enum NombreDeCurs {
     PRIMER, SEGON
 }
