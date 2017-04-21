@@ -6,6 +6,7 @@
 package modelo;
 
 import java.util.ArrayList;
+import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -25,23 +26,23 @@ public class FamiliaCicles {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "familiaId", unique = true, nullable = false)
-    private int id;
+    private Long id;
 
     @Column(name = "nom", nullable = false, length = 20 )
     private String nom;
     private ArrayList<Cicle> llistaCicles;
 
-    public FamiliaCicles(int id, String nom, ArrayList<Cicle> llistaCicles) {
+    public FamiliaCicles(Long id, String nom, ArrayList<Cicle> llistaCicles) {
         this.id = id;
         this.nom = nom;
         this.llistaCicles = llistaCicles;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -63,8 +64,8 @@ public class FamiliaCicles {
 
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 71 * hash + this.id;
+        int hash = 7;
+        hash = 53 * hash + Objects.hashCode(this.id);
         return hash;
     }
 
@@ -80,7 +81,7 @@ public class FamiliaCicles {
             return false;
         }
         final FamiliaCicles other = (FamiliaCicles) obj;
-        if (this.id != other.id) {
+        if (!Objects.equals(this.id, other.id)) {
             return false;
         }
         return true;
@@ -90,5 +91,7 @@ public class FamiliaCicles {
     public String toString() {
         return "FamiliaCicles{" + "id=" + id + ", nom=" + nom + ", llistaCicles=" + llistaCicles + '}';
     }
+
+    
 
 }
