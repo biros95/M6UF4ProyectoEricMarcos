@@ -28,8 +28,8 @@ public class Alumne implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "clientId", unique = true, nullable = false)
-    private Long id;
+    @Column(name = "alumneNif", unique = true, nullable = false)
+    private String nif;
 
     @Column(name = "nom", length = 20, nullable = false)
     private String nom;
@@ -46,8 +46,8 @@ public class Alumne implements Serializable {
     @OneToOne(mappedBy = "alumneId")
     private Matricula matriculaId;
 
-    public Alumne(Long id, String nom, String cognom, String correu, int telefon, Matricula matriculaId) {
-        this.id = id;
+    public Alumne(String nif, String nom, String cognom, String correu, int telefon, Matricula matriculaId) {
+        this.nif = nif;
         this.nom = nom;
         this.cognom = cognom;
         this.correu = correu;
@@ -55,12 +55,12 @@ public class Alumne implements Serializable {
         this.matriculaId = matriculaId;
     }
 
-    public Long getId() {
-        return id;
+    public String getNif() {
+        return nif;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setNif(String nif) {
+        this.nif = nif;
     }
 
     public String getNom() {
@@ -105,8 +105,8 @@ public class Alumne implements Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 97 * hash + Objects.hashCode(this.id);
+        int hash = 5;
+        hash = 83 * hash + Objects.hashCode(this.nif);
         return hash;
     }
 
@@ -122,7 +122,7 @@ public class Alumne implements Serializable {
             return false;
         }
         final Alumne other = (Alumne) obj;
-        if (!Objects.equals(this.id, other.id)) {
+        if (!Objects.equals(this.nif, other.nif)) {
             return false;
         }
         return true;
@@ -130,8 +130,9 @@ public class Alumne implements Serializable {
 
     @Override
     public String toString() {
-        return "Alumne{" + "id=" + id + ", nom=" + nom + ", cognom=" + cognom + ", correu=" + correu + ", telefon=" + telefon + ", matriculaId=" + matriculaId + '}';
+        return "Alumne{" + "nif=" + nif + ", nom=" + nom + ", cognom=" + cognom + ", correu=" + correu + ", telefon=" + telefon + ", matriculaId=" + matriculaId + '}';
     }
 
+    
     
 }

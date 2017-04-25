@@ -25,7 +25,7 @@ public class MainClass {
         Date date;
         Generic_Controller gc = new Generic_Controller();
         
-        Alumne al1 = new Alumne(0L, "Eric", "Dote", "f4fref", 0, null);
+        Alumne al1 = new Alumne("54545454X", "Eric", "Dote", "f4fref", 0, null);
         FamiliaCicles fa1 = new FamiliaCicles(0L, "Informatica");
         Cicle ci1 = new Cicle(0L, "DAM", "Superior", fa1);
         Curs cu1 = new Curs(0L, "Segon", ci1);
