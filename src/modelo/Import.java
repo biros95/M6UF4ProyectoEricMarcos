@@ -6,11 +6,14 @@
 package modelo;
 
 import java.io.Serializable;
+import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -26,14 +29,27 @@ public class Import implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "importId", unique = true, nullable = false)
-    private int matricula;
+    private Long id;
 
     @Column(name = "import", nullable = false)
     private double importe;
+    
+    @OneToOne
+    @JoinColumn(name = "matriculaId")
+    private Matricula matricula;
 
-    public Import(int matricula, double importe) {
-        this.matricula = matricula;
+    public Import(Long id, double importe, Matricula matricula) {
+        this.id = id;
         this.importe = importe;
+        this.matricula = matricula;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public double getImporte() {
@@ -44,18 +60,18 @@ public class Import implements Serializable {
         this.importe = importe;
     }
 
-    public int getMatricula() {
+    public Matricula getMatricula() {
         return matricula;
     }
 
-    public void setMatricula(int matricula) {
+    public void setMatricula(Matricula matricula) {
         this.matricula = matricula;
     }
 
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 43 * hash + this.matricula;
+        int hash = 7;
+        hash = 37 * hash + Objects.hashCode(this.id);
         return hash;
     }
 
@@ -71,7 +87,7 @@ public class Import implements Serializable {
             return false;
         }
         final Import other = (Import) obj;
-        if (this.matricula != other.matricula) {
+        if (!Objects.equals(this.id, other.id)) {
             return false;
         }
         return true;
@@ -79,9 +95,8 @@ public class Import implements Serializable {
 
     @Override
     public String toString() {
-        return "Import{" + "matricula=" + matricula + ", importe=" + importe + '}';
+        return "Import{" + "id=" + id + ", importe=" + importe + ", matricula=" + matricula + '}';
     }
 
-    
-
+        
 }

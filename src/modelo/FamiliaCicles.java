@@ -6,12 +6,14 @@
 package modelo;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -24,18 +26,19 @@ public class FamiliaCicles {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "familiaId", unique = true, nullable = false)
     private Long id;
 
     @Column(name = "nom", nullable = false, length = 20 )
     private String nom;
-    private ArrayList<Cicle> llistaCicles;
+    
+    @OneToMany(mappedBy = "familia")
+    private List<Cicle> llistaCicles;
 
-    public FamiliaCicles(Long id, String nom, ArrayList<Cicle> llistaCicles) {
+    public FamiliaCicles(Long id, String nom) {
         this.id = id;
         this.nom = nom;
-        this.llistaCicles = llistaCicles;
     }
 
     public Long getId() {
@@ -54,18 +57,18 @@ public class FamiliaCicles {
         this.nom = nom;
     }
 
-    public ArrayList<Cicle> getLlistaCicles() {
+    public List<Cicle> getLlistaCicles() {
         return llistaCicles;
     }
 
-    public void setLlistaCicles(ArrayList<Cicle> llistaCicles) {
+    public void setLlistaCicles(List<Cicle> llistaCicles) {
         this.llistaCicles = llistaCicles;
     }
 
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 53 * hash + Objects.hashCode(this.id);
+        hash = 31 * hash + Objects.hashCode(this.id);
         return hash;
     }
 
@@ -93,5 +96,4 @@ public class FamiliaCicles {
     }
 
     
-
 }

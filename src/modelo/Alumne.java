@@ -6,11 +6,14 @@
 package modelo;
 
 import java.io.Serializable;
+import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -18,41 +21,45 @@ import javax.persistence.Table;
  * @author MarcosPortatil
  */
 @Entity
-@Table(name ="Alumnes")
+@Table(name = "Alumnes")
 public class Alumne implements Serializable {
-    
+
     private static final long serialVersionUID = 1L;
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "clientId", unique = true, nullable = false)
-    private int id;
-    
+    private Long id;
+
     @Column(name = "nom", length = 20, nullable = false)
     private String nom;
-    
+
     @Column(name = "cognom", length = 50, nullable = false)
     private String cognom;
-    
+
     @Column(name = "correu", length = 100)
     private String correu;
-    
+
     @Column(name = "telefon", length = 11)
     private int telefon;
 
-    public Alumne(int id, String nom, String cognom, String correu, int telefon) {
+    @OneToOne(mappedBy = "alumneId")
+    private Matricula matriculaId;
+
+    public Alumne(Long id, String nom, String cognom, String correu, int telefon, Matricula matriculaId) {
         this.id = id;
         this.nom = nom;
         this.cognom = cognom;
         this.correu = correu;
         this.telefon = telefon;
+        this.matriculaId = matriculaId;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -88,10 +95,18 @@ public class Alumne implements Serializable {
         this.telefon = telefon;
     }
 
+    public Matricula getMatriculaId() {
+        return matriculaId;
+    }
+
+    public void setMatriculaId(Matricula matriculaId) {
+        this.matriculaId = matriculaId;
+    }
+
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 37 * hash + this.id;
+        hash = 97 * hash + Objects.hashCode(this.id);
         return hash;
     }
 
@@ -107,7 +122,7 @@ public class Alumne implements Serializable {
             return false;
         }
         final Alumne other = (Alumne) obj;
-        if (this.id != other.id) {
+        if (!Objects.equals(this.id, other.id)) {
             return false;
         }
         return true;
@@ -115,10 +130,8 @@ public class Alumne implements Serializable {
 
     @Override
     public String toString() {
-        return "Alumne{" + "id=" + id + ", nom=" + nom + ", cognom=" + cognom + ", correu=" + correu + ", telefon=" + telefon + '}';
+        return "Alumne{" + "id=" + id + ", nom=" + nom + ", cognom=" + cognom + ", correu=" + correu + ", telefon=" + telefon + ", matriculaId=" + matriculaId + '}';
     }
-    
-    
-    
+
     
 }

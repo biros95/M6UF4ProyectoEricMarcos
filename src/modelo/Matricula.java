@@ -5,57 +5,74 @@
  */
 package modelo;
 
-import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import utilitats.*;
 
 /**
  *
  * @author Eric
  */
-
-
 @Entity
 @Table(name = "Matricula")
 public class Matricula {
-    
-    
-    
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "matriculaId", unique = true, nullable = false)
-    private int id;
+    private Long id;
     
-    private Alumne alumne;
-    private Date data;
-    private ArrayList<UnitatFormativa> llistaUnitats;
-    
-    @Column(name = "modalitat",length = 50, nullable = false)
-        private String modalitat;
-    @Column(name = "descompte",length = 50, nullable = false)
-    private String descompte;
+    @OneToOne
+    @JoinColumn(name = "alumneId")
+    private Alumne alumneId;
 
-    public int getId() {
+    private Date data;
+
+    @Column(name = "modalitat", length = 50, nullable = false)
+    private String modalitat;
+
+    @Column(name = "descompte", length = 50, nullable = false)
+    private String descompte;
+    
+    @OneToOne(mappedBy = "matricula")
+    private Import importId;
+    
+    @ManyToMany(mappedBy = "listaMatriculas")
+    private List<UnitatFormativa> listaUF;
+
+    public Matricula(Long id, Alumne alumneId, Date data, String modalitat, String descompte, Import importId) {
+        this.id = id;
+        this.alumneId = alumneId;
+        this.data = data;
+        this.modalitat = modalitat;
+        this.descompte = descompte;
+        this.importId = importId;
+    }
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public Alumne getAlumne() {
-        return alumne;
+    public Alumne getAlumneId() {
+        return alumneId;
     }
 
-    public void setAlumne(Alumne alumne) {
-        this.alumne = alumne;
+    public void setAlumneId(Alumne alumneId) {
+        this.alumneId = alumneId;
     }
 
     public Date getData() {
@@ -64,14 +81,6 @@ public class Matricula {
 
     public void setData(Date data) {
         this.data = data;
-    }
-
-    public ArrayList<UnitatFormativa> getLlistaUnitats() {
-        return llistaUnitats;
-    }
-
-    public void setLlistaUnitats(ArrayList<UnitatFormativa> llistaUnitats) {
-        this.llistaUnitats = llistaUnitats;
     }
 
     public String getModalitat() {
@@ -90,12 +99,51 @@ public class Matricula {
         this.descompte = descompte;
     }
 
-    public Matricula(int id, Alumne alumne, Date data, ArrayList<UnitatFormativa> llistaUnitats, String modalitat, String descompte) {
-        this.id = id;
-        this.alumne = alumne;
-        this.data = data;
-        this.llistaUnitats = llistaUnitats;
-        this.modalitat = modalitat;
-        this.descompte = descompte;
+    public Import getImportId() {
+        return importId;
     }
+
+    public void setImportId(Import importId) {
+        this.importId = importId;
+    }
+
+    public List<UnitatFormativa> getListaUF() {
+        return listaUF;
+    }
+
+    public void setListaUF(List<UnitatFormativa> listaUF) {
+        this.listaUF = listaUF;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 47 * hash + Objects.hashCode(this.id);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Matricula other = (Matricula) obj;
+        if (!Objects.equals(this.id, other.id)) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "Matricula{" + "id=" + id + ", alumneId=" + alumneId + ", data=" + data + ", modalitat=" + modalitat + ", descompte=" + descompte + ", importId=" + importId + ", listaUF=" + listaUF + '}';
+    }
+
+    
 }
