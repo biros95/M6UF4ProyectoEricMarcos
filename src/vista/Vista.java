@@ -69,7 +69,7 @@ public class Vista extends javax.swing.JFrame {
         btnCrearAlumn = new javax.swing.JButton();
         btnModiAl = new javax.swing.JButton();
         btnEliminarAl = new javax.swing.JButton();
-        btnClearAl = new javax.swing.JButton();
+        btnClearAl3 = new javax.swing.JButton();
         jLabel37 = new javax.swing.JLabel();
         rbIdAl = new javax.swing.JRadioButton();
         rbCogAl = new javax.swing.JRadioButton();
@@ -168,10 +168,10 @@ public class Vista extends javax.swing.JFrame {
 
         btnEliminarAl.setText("Eliminar");
 
-        btnClearAl.setText("Neteja");
-        btnClearAl.addActionListener(new java.awt.event.ActionListener() {
+        btnClearAl3.setText("Neteja");
+        btnClearAl3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnClearAlActionPerformed(evt);
+                btnClearAl3ActionPerformed(evt);
             }
         });
 
@@ -215,7 +215,7 @@ public class Vista extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(btnModiAl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnClearAl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(btnClearAl3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(tfCognomAl, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -252,7 +252,7 @@ public class Vista extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(tfCorreuAl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnClearAl))
+                    .addComponent(btnClearAl3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
@@ -324,21 +324,19 @@ public class Vista extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGap(168, 168, 168)
-                                .addComponent(btnEliminarFamilia, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addComponent(tfIdFamilia, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(btnCrearFamilia, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(tfNomFamilia, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(btnBuscarFamilia, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(btnEliminarFamilia, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
+                                    .addComponent(tfNomFamilia, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(18, 18, 18)
                                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(btnBuscarFamilia, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(btnModificarFamilia, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(btnClearFamilia, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addGap(0, 616, Short.MAX_VALUE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 911, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -648,9 +646,9 @@ public class Vista extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnCercaAlActionPerformed
 
-    private void btnClearAlActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearAlActionPerformed
+    private void btnClearAl3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearAl3ActionPerformed
         
-    }//GEN-LAST:event_btnClearAlActionPerformed
+    }//GEN-LAST:event_btnClearAl3ActionPerformed
 
 
 
@@ -694,7 +692,7 @@ public class Vista extends javax.swing.JFrame {
     private javax.swing.JButton btnCercaAl;
     private javax.swing.JButton btnClear3;
     private javax.swing.JButton btnClear7;
-    private javax.swing.JButton btnClearAl;
+    private javax.swing.JButton btnClearAl3;
     private javax.swing.JButton btnClearFamilia;
     private javax.swing.JButton btnCrearAlumn;
     private javax.swing.JButton btnCrearAlumn3;

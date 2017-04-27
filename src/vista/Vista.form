@@ -139,7 +139,7 @@
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                   <Component id="btnModiAl" max="32767" attributes="0"/>
-                                  <Component id="btnClearAl" max="32767" attributes="0"/>
+                                  <Component id="btnClearAl3" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
@@ -187,7 +187,7 @@
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="tfCorreuAl" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="btnClearAl" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnClearAl3" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
@@ -264,12 +264,12 @@
                 <Property name="text" type="java.lang.String" value="Eliminar"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="btnClearAl">
+            <Component class="javax.swing.JButton" name="btnClearAl3">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Neteja"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnClearAlActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnClearAl3ActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel37">
@@ -326,27 +326,24 @@
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace min="-2" pref="168" max="-2" attributes="0"/>
-                                      <Component id="btnEliminarFamilia" min="-2" pref="85" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" alignment="0" attributes="0">
                                       <Component id="tfIdFamilia" min="-2" pref="150" max="-2" attributes="0"/>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Component id="btnCrearFamilia" max="32767" attributes="0"/>
                                   </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="tfNomFamilia" min="-2" pref="150" max="-2" attributes="0"/>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                          <Component id="btnBuscarFamilia" max="32767" attributes="0"/>
+                                  <Group type="103" alignment="0" groupAlignment="1" attributes="0">
+                                      <Component id="btnEliminarFamilia" alignment="1" min="-2" pref="75" max="-2" attributes="0"/>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Component id="tfNomFamilia" min="-2" pref="150" max="-2" attributes="0"/>
+                                          <EmptySpace type="separate" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                              <Component id="btnBuscarFamilia" max="32767" attributes="0"/>
                                               <Component id="btnModificarFamilia" alignment="0" max="32767" attributes="0"/>
                                               <Component id="btnClearFamilia" alignment="0" max="32767" attributes="0"/>
                                           </Group>
                                       </Group>
                                   </Group>
                               </Group>
-                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                              <EmptySpace min="0" pref="616" max="32767" attributes="0"/>
                           </Group>
                           <Component id="jScrollPane1" alignment="0" pref="911" max="32767" attributes="0"/>
                       </Group>
