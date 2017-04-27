@@ -15,6 +15,8 @@ import modelo.Alumne;
 public class Vista extends javax.swing.JFrame {
 
     Generic_Controller gc = new Generic_Controller();
+    Alumne al;
+
     /**
      * Creates new form Vista
      */
@@ -22,13 +24,17 @@ public class Vista extends javax.swing.JFrame {
         initComponents();
         BuidarCamps();
     }
-    
-    public void BuidarCamps(){
+
+    public void BuidarCamps() {
         tfNif.setText("");
         tfNomAl.setText("");
         tfCognomAl.setText("");
         tfCorreuAl.setText("");
         tfTlfAl.setText("");
+        tfCercaAl.setText("");
+        btnEliminarAl.setEnabled(false);
+        btnModiAl.setEnabled(false);
+        tfNif.setEnabled(true);
     }
 
     /**
@@ -165,8 +171,20 @@ public class Vista extends javax.swing.JFrame {
         });
 
         btnModiAl.setText("Modificar");
+        btnModiAl.setEnabled(false);
+        btnModiAl.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModiAlActionPerformed(evt);
+            }
+        });
 
         btnEliminarAl.setText("Eliminar");
+        btnEliminarAl.setEnabled(false);
+        btnEliminarAl.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarAlActionPerformed(evt);
+            }
+        });
 
         btnClearAl.setText("Neteja");
         btnClearAl.addActionListener(new java.awt.event.ActionListener() {
@@ -180,6 +198,7 @@ public class Vista extends javax.swing.JFrame {
         buttonGroup1.add(rbIdAl);
         rbIdAl.setText("NIF");
 
+        buttonGroup1.add(rbCogAl);
         rbCogAl.setText("Cognom");
 
         btnCercaAl.setText("Cerca");
@@ -610,7 +629,7 @@ public class Vista extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCrearAlumnActionPerformed
 
     private void btnCrearFamiliaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearFamiliaActionPerformed
-          Alumne al = new Alumne(tfNif.getText(), tfNomAl.getText(), tfCognomAl.getText(), tfCorreuAl.getText(), Integer.parseInt(tfTlfAl.getText()));
+        Alumne al = new Alumne(tfNif.getText(), tfNomAl.getText(), tfCognomAl.getText(), tfCorreuAl.getText(), Integer.parseInt(tfTlfAl.getText()));
         gc.Insertar(al);
     }//GEN-LAST:event_btnCrearFamiliaActionPerformed
 
@@ -635,21 +654,32 @@ public class Vista extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton19ActionPerformed
 
     private void btnCercaAlActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCercaAlActionPerformed
-        if(rbIdAl.isEnabled()){
-            Alumne al = (Alumne) gc.Buscar(tfCercaAl.getText(), Alumne.class);
+        if (rbIdAl.isEnabled()) {
+            al = (Alumne) gc.Buscar(tfCercaAl.getText(), Alumne.class);
             tfNomAl.setText(al.getNom());
             tfNif.setText(al.getNif());
             tfCognomAl.setText(al.getCognom());
             tfCorreuAl.setText(al.getCorreu());
             tfTlfAl.setText(String.valueOf(al.getTelefon()));
+            btnEliminarAl.setEnabled(true);
+            btnModiAl.setEnabled(true);
         }
+        tfNif.setEnabled(false);
     }//GEN-LAST:event_btnCercaAlActionPerformed
 
     private void btnClearAlActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearAlActionPerformed
-        
+        BuidarCamps();
     }//GEN-LAST:event_btnClearAlActionPerformed
 
+    private void btnEliminarAlActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarAlActionPerformed
+        gc.Eliminar(gc.Buscar(tfNif.getText(), Alumne.class));
+    }//GEN-LAST:event_btnEliminarAlActionPerformed
 
+    private void btnModiAlActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModiAlActionPerformed
+        al = (Alumne) gc.Buscar(tfNif.getText(), Alumne.class);
+        al = new Alumne(tfNif.getText(), tfNomAl.getText(), tfCognomAl.getText(), tfCorreuAl.getText(), Integer.parseInt(tfTlfAl.getText()));
+        gc.Modificar(al);
+    }//GEN-LAST:event_btnModiAlActionPerformed
 
     /**
      * @param args the command line arguments
