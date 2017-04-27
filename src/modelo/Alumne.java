@@ -56,6 +56,9 @@ public class Alumne implements Serializable {
         this.correu = correu;
         this.telefon = telefon;
     }
+    
+    public Alumne() {
+    }   
 
     public String getNif() {
         return nif;

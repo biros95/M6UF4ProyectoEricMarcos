@@ -24,7 +24,11 @@ public class Vista extends javax.swing.JFrame {
     }
     
     public void BuidarCamps(){
-        
+        tfNif.setText("");
+        tfNomAl.setText("");
+        tfCognomAl.setText("");
+        tfCorreuAl.setText("");
+        tfTlfAl.setText("");
     }
 
     /**
@@ -63,9 +67,9 @@ public class Vista extends javax.swing.JFrame {
         tfCorreuAl = new javax.swing.JTextField();
         tfTlfAl = new javax.swing.JTextField();
         btnCrearAlumn = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        btnClear = new javax.swing.JButton();
+        btnModiAl = new javax.swing.JButton();
+        btnEliminarAl = new javax.swing.JButton();
+        btnClearAl = new javax.swing.JButton();
         jLabel37 = new javax.swing.JLabel();
         rbIdAl = new javax.swing.JRadioButton();
         rbCogAl = new javax.swing.JRadioButton();
@@ -160,11 +164,16 @@ public class Vista extends javax.swing.JFrame {
             }
         });
 
-        jButton3.setText("Modificar");
+        btnModiAl.setText("Modificar");
 
-        jButton2.setText("Eliminar");
+        btnEliminarAl.setText("Eliminar");
 
-        btnClear.setText("Neteja");
+        btnClearAl.setText("Neteja");
+        btnClearAl.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnClearAlActionPerformed(evt);
+            }
+        });
 
         jLabel37.setText("Selecciona com vols cercar:");
 
@@ -205,12 +214,12 @@ public class Vista extends javax.swing.JFrame {
                             .addComponent(tfTlfAl, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnClear, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(btnModiAl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnClearAl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(tfCognomAl, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(btnEliminarAl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(tfNif, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -233,17 +242,17 @@ public class Vista extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(tfNomAl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3))
+                    .addComponent(btnModiAl))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(tfCognomAl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2))
+                    .addComponent(btnEliminarAl))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(tfCorreuAl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnClear))
+                    .addComponent(btnClearAl))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
@@ -320,7 +329,7 @@ public class Vista extends javax.swing.JFrame {
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addComponent(tfNif1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(btnCrearAlumn1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(btnCrearAlumn1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addComponent(tfNomAl1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
@@ -330,7 +339,7 @@ public class Vista extends javax.swing.JFrame {
                                         .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(btnClear1, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 891, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 895, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -354,7 +363,7 @@ public class Vista extends javax.swing.JFrame {
                 .addComponent(jButton1)
                 .addGap(144, 144, 144)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(245, Short.MAX_VALUE))
+                .addContainerGap(258, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Familia Cicles", jPanel3);
@@ -628,8 +637,19 @@ public class Vista extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton19ActionPerformed
 
     private void btnCercaAlActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCercaAlActionPerformed
-        
+        if(rbIdAl.isEnabled()){
+            Alumne al = (Alumne) gc.Buscar(tfCercaAl.getText(), Alumne.class);
+            tfNomAl.setText(al.getNom());
+            tfNif.setText(al.getNif());
+            tfCognomAl.setText(al.getCognom());
+            tfCorreuAl.setText(al.getCorreu());
+            tfTlfAl.setText(String.valueOf(al.getTelefon()));
+        }
     }//GEN-LAST:event_btnCercaAlActionPerformed
+
+    private void btnClearAlActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearAlActionPerformed
+        
+    }//GEN-LAST:event_btnClearAlActionPerformed
 
 
 
@@ -670,22 +690,22 @@ public class Vista extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCercaAl;
-    private javax.swing.JButton btnClear;
     private javax.swing.JButton btnClear1;
     private javax.swing.JButton btnClear3;
     private javax.swing.JButton btnClear7;
+    private javax.swing.JButton btnClearAl;
     private javax.swing.JButton btnCrearAlumn;
     private javax.swing.JButton btnCrearAlumn1;
     private javax.swing.JButton btnCrearAlumn3;
     private javax.swing.JButton btnCrearAlumn7;
+    private javax.swing.JButton btnEliminarAl;
+    private javax.swing.JButton btnModiAl;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton16;
     private javax.swing.JButton jButton17;
     private javax.swing.JButton jButton18;
     private javax.swing.JButton jButton19;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton8;
