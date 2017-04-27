@@ -27,7 +27,6 @@ public class Alumne implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "alumneNif", unique = true, nullable = false)
     private String nif;
 
@@ -46,13 +45,12 @@ public class Alumne implements Serializable {
     @OneToOne(mappedBy = "alumneId")
     private Matricula matriculaId;
 
-    public Alumne(String nif, String nom, String cognom, String correu, int telefon, Matricula matriculaId) {
+    public Alumne(String nif, String nom, String cognom, String correu, int telefon) {
         this.nif = nif;
         this.nom = nom;
         this.cognom = cognom;
         this.correu = correu;
         this.telefon = telefon;
-        this.matriculaId = matriculaId;
     }
 
     public String getNif() {

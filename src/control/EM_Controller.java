@@ -17,7 +17,7 @@ public class EM_Controller {
 
     public EntityManager getEntityManager() {
         //Crear el gestor de persistencia EM
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("EXTERNA");
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("INTERNA");
         //EntityManagerFactory emf = Persistence.createEntityManagerFactory("PersonaJPAPU");
         EntityManager em = emf.createEntityManager();
         return em;
