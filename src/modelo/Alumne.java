@@ -13,6 +13,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -21,6 +23,8 @@ import javax.persistence.Table;
  * @author MarcosPortatil
  */
 @Entity
+//@NamedQueries({
+//@NamedQuery(name="AlumneNIF", query="SELECT p FROM Persona p WHERE p.nombre=:nombre")})
 @Table(name = "Alumnes")
 public class Alumne implements Serializable {
 

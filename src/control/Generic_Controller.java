@@ -96,7 +96,7 @@ public class Generic_Controller<T> {
      * @param id
      * @return
      */
-    public T Buscar(Long id, Class<T> classe) {
+    public T Buscar(T id, Class<T> classe) {
         // Recupera el entity manager
         EntityManager em = new EM_Controller().getEntityManager();
 

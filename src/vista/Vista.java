@@ -49,6 +49,7 @@ public class Vista extends javax.swing.JFrame {
         menu7 = new java.awt.Menu();
         menu8 = new java.awt.Menu();
         jLabel1 = new javax.swing.JLabel();
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -65,6 +66,11 @@ public class Vista extends javax.swing.JFrame {
         jButton3 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         btnClear = new javax.swing.JButton();
+        jLabel37 = new javax.swing.JLabel();
+        rbIdAl = new javax.swing.JRadioButton();
+        rbCogAl = new javax.swing.JRadioButton();
+        tfCercaAl = new javax.swing.JTextField();
+        btnCercaAl = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         tfNif1 = new javax.swing.JTextField();
@@ -160,6 +166,20 @@ public class Vista extends javax.swing.JFrame {
 
         btnClear.setText("Neteja");
 
+        jLabel37.setText("Selecciona com vols cercar:");
+
+        buttonGroup1.add(rbIdAl);
+        rbIdAl.setText("NIF");
+
+        rbCogAl.setText("Cognom");
+
+        btnCercaAl.setText("Cerca");
+        btnCercaAl.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCercaAlActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -175,6 +195,9 @@ public class Vista extends javax.swing.JFrame {
                         .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(rbCogAl)
+                    .addComponent(rbIdAl)
+                    .addComponent(jLabel37)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(tfNomAl, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -191,8 +214,12 @@ public class Vista extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(tfNif, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(btnCrearAlumn, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(574, Short.MAX_VALUE))
+                        .addComponent(btnCrearAlumn, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(tfCercaAl, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnCercaAl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap(594, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -221,7 +248,17 @@ public class Vista extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(tfTlfAl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(508, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel37)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(rbIdAl)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(rbCogAl)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tfCercaAl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCercaAl))
+                .addContainerGap(424, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Alumne", jPanel1);
@@ -551,7 +588,7 @@ public class Vista extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 920, Short.MAX_VALUE)
+            .addComponent(jTabbedPane1)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -589,6 +626,10 @@ public class Vista extends javax.swing.JFrame {
     private void jButton19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton19ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton19ActionPerformed
+
+    private void btnCercaAlActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCercaAlActionPerformed
+        
+    }//GEN-LAST:event_btnCercaAlActionPerformed
 
 
 
@@ -628,29 +669,17 @@ public class Vista extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCercaAl;
     private javax.swing.JButton btnClear;
     private javax.swing.JButton btnClear1;
-    private javax.swing.JButton btnClear2;
     private javax.swing.JButton btnClear3;
-    private javax.swing.JButton btnClear4;
-    private javax.swing.JButton btnClear5;
-    private javax.swing.JButton btnClear6;
     private javax.swing.JButton btnClear7;
     private javax.swing.JButton btnCrearAlumn;
     private javax.swing.JButton btnCrearAlumn1;
-    private javax.swing.JButton btnCrearAlumn2;
     private javax.swing.JButton btnCrearAlumn3;
-    private javax.swing.JButton btnCrearAlumn4;
-    private javax.swing.JButton btnCrearAlumn5;
-    private javax.swing.JButton btnCrearAlumn6;
     private javax.swing.JButton btnCrearAlumn7;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton10;
-    private javax.swing.JButton jButton11;
-    private javax.swing.JButton jButton12;
-    private javax.swing.JButton jButton13;
-    private javax.swing.JButton jButton14;
-    private javax.swing.JButton jButton15;
     private javax.swing.JButton jButton16;
     private javax.swing.JButton jButton17;
     private javax.swing.JButton jButton18;
@@ -659,52 +688,27 @@ public class Vista extends javax.swing.JFrame {
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel21;
-    private javax.swing.JLabel jLabel22;
-    private javax.swing.JLabel jLabel23;
-    private javax.swing.JLabel jLabel24;
-    private javax.swing.JLabel jLabel25;
-    private javax.swing.JLabel jLabel26;
-    private javax.swing.JLabel jLabel27;
-    private javax.swing.JLabel jLabel28;
-    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel30;
-    private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel32;
     private javax.swing.JLabel jLabel33;
     private javax.swing.JLabel jLabel34;
     private javax.swing.JLabel jLabel35;
     private javax.swing.JLabel jLabel36;
+    private javax.swing.JLabel jLabel37;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel10;
-    private javax.swing.JPanel jPanel11;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
@@ -712,10 +716,6 @@ public class Vista extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTabbedPane jTabbedPane2;
-    private javax.swing.JTabbedPane jTabbedPane3;
-    private javax.swing.JTabbedPane jTabbedPane4;
-    private javax.swing.JTabbedPane jTabbedPane5;
     private javax.swing.JTable jTable1;
     private java.awt.Menu menu1;
     private java.awt.Menu menu2;
@@ -729,40 +729,23 @@ public class Vista extends javax.swing.JFrame {
     private java.awt.MenuBar menuBar2;
     private java.awt.MenuBar menuBar3;
     private java.awt.MenuBar menuBar4;
+    private javax.swing.JRadioButton rbCogAl;
+    private javax.swing.JRadioButton rbIdAl;
+    private javax.swing.JTextField tfCercaAl;
     private javax.swing.JTextField tfCognomAl;
-    private javax.swing.JTextField tfCognomAl1;
     private javax.swing.JTextField tfCognomAl2;
-    private javax.swing.JTextField tfCognomAl3;
-    private javax.swing.JTextField tfCognomAl4;
-    private javax.swing.JTextField tfCognomAl5;
     private javax.swing.JTextField tfCognomAl6;
     private javax.swing.JTextField tfCorreuAl;
-    private javax.swing.JTextField tfCorreuAl1;
-    private javax.swing.JTextField tfCorreuAl2;
-    private javax.swing.JTextField tfCorreuAl3;
-    private javax.swing.JTextField tfCorreuAl4;
     private javax.swing.JTextField tfCorreuAl5;
     private javax.swing.JTextField tfCorreuAl6;
     private javax.swing.JTextField tfNif;
     private javax.swing.JTextField tfNif1;
-    private javax.swing.JTextField tfNif2;
     private javax.swing.JTextField tfNif3;
-    private javax.swing.JTextField tfNif4;
-    private javax.swing.JTextField tfNif5;
-    private javax.swing.JTextField tfNif6;
     private javax.swing.JTextField tfNif7;
     private javax.swing.JTextField tfNomAl;
     private javax.swing.JTextField tfNomAl1;
-    private javax.swing.JTextField tfNomAl2;
     private javax.swing.JTextField tfNomAl3;
-    private javax.swing.JTextField tfNomAl4;
-    private javax.swing.JTextField tfNomAl5;
-    private javax.swing.JTextField tfNomAl6;
     private javax.swing.JTextField tfNomAl7;
     private javax.swing.JTextField tfTlfAl;
-    private javax.swing.JTextField tfTlfAl1;
-    private javax.swing.JTextField tfTlfAl2;
-    private javax.swing.JTextField tfTlfAl3;
-    private javax.swing.JTextField tfTlfAl4;
     // End of variables declaration//GEN-END:variables
 }
