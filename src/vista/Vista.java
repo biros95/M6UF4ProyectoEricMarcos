@@ -16,7 +16,7 @@ import modelo.FamiliaCicles;
 public class Vista extends javax.swing.JFrame {
 
     Generic_Controller gc = new Generic_Controller();
-    
+    Alumne al;
     FamiliaCicles fc;
     /**
      * Creates new form Vista
@@ -25,13 +25,17 @@ public class Vista extends javax.swing.JFrame {
         initComponents();
         BuidarCamps();
     }
-    
-    public void BuidarCamps(){
+
+    public void BuidarCamps() {
         tfNif.setText("");
         tfNomAl.setText("");
         tfCognomAl.setText("");
         tfCorreuAl.setText("");
         tfTlfAl.setText("");
+        tfCercaAl.setText("");
+        btnEliminarAl.setEnabled(false);
+        btnModiAl.setEnabled(false);
+        tfNif.setEnabled(true);
     }
 
     /**
@@ -72,7 +76,7 @@ public class Vista extends javax.swing.JFrame {
         btnCrearAlumn = new javax.swing.JButton();
         btnModiAl = new javax.swing.JButton();
         btnEliminarAl = new javax.swing.JButton();
-        btnClearAl3 = new javax.swing.JButton();
+        btnClearAl = new javax.swing.JButton();
         jLabel37 = new javax.swing.JLabel();
         rbIdAl = new javax.swing.JRadioButton();
         rbCogAl = new javax.swing.JRadioButton();
@@ -168,13 +172,25 @@ public class Vista extends javax.swing.JFrame {
         });
 
         btnModiAl.setText("Modificar");
+        btnModiAl.setEnabled(false);
+        btnModiAl.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModiAlActionPerformed(evt);
+            }
+        });
 
         btnEliminarAl.setText("Eliminar");
-
-        btnClearAl3.setText("Neteja");
-        btnClearAl3.addActionListener(new java.awt.event.ActionListener() {
+        btnEliminarAl.setEnabled(false);
+        btnEliminarAl.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnClearAl3ActionPerformed(evt);
+                btnEliminarAlActionPerformed(evt);
+            }
+        });
+
+        btnClearAl.setText("Neteja");
+        btnClearAl.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnClearAlActionPerformed(evt);
             }
         });
 
@@ -183,6 +199,7 @@ public class Vista extends javax.swing.JFrame {
         buttonGroup1.add(rbIdAl);
         rbIdAl.setText("NIF");
 
+        buttonGroup1.add(rbCogAl);
         rbCogAl.setText("Cognom");
 
         btnCercaAl.setText("Cerca");
@@ -218,7 +235,7 @@ public class Vista extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(btnModiAl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnClearAl3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(btnClearAl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(tfCognomAl, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -255,7 +272,7 @@ public class Vista extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(tfCorreuAl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnClearAl3))
+                    .addComponent(btnClearAl))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
@@ -645,21 +662,32 @@ public class Vista extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton19ActionPerformed
 
     private void btnCercaAlActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCercaAlActionPerformed
-        if(rbIdAl.isEnabled()){
-            Alumne al = (Alumne) gc.Buscar(tfCercaAl.getText(), Alumne.class);
+        if (rbIdAl.isEnabled()) {
+            al = (Alumne) gc.Buscar(tfCercaAl.getText(), Alumne.class);
             tfNomAl.setText(al.getNom());
             tfNif.setText(al.getNif());
             tfCognomAl.setText(al.getCognom());
             tfCorreuAl.setText(al.getCorreu());
             tfTlfAl.setText(String.valueOf(al.getTelefon()));
+            btnEliminarAl.setEnabled(true);
+            btnModiAl.setEnabled(true);
         }
+        tfNif.setEnabled(false);
     }//GEN-LAST:event_btnCercaAlActionPerformed
 
-    private void btnClearAl3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearAl3ActionPerformed
-        
-    }//GEN-LAST:event_btnClearAl3ActionPerformed
+    private void btnClearAlActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearAlActionPerformed
+        BuidarCamps();
+    }//GEN-LAST:event_btnClearAlActionPerformed
 
+    private void btnEliminarAlActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarAlActionPerformed
+        gc.Eliminar(gc.Buscar(tfNif.getText(), Alumne.class));
+    }//GEN-LAST:event_btnEliminarAlActionPerformed
 
+    private void btnModiAlActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModiAlActionPerformed
+        al = (Alumne) gc.Buscar(tfNif.getText(), Alumne.class);
+        al = new Alumne(tfNif.getText(), tfNomAl.getText(), tfCognomAl.getText(), tfCorreuAl.getText(), Integer.parseInt(tfTlfAl.getText()));
+        gc.Modificar(al);
+    }//GEN-LAST:event_btnModiAlActionPerformed
 
     /**
      * @param args the command line arguments
@@ -701,7 +729,7 @@ public class Vista extends javax.swing.JFrame {
     private javax.swing.JButton btnCercarFamilia;
     private javax.swing.JButton btnClear3;
     private javax.swing.JButton btnClear7;
-    private javax.swing.JButton btnClearAl3;
+    private javax.swing.JButton btnClearAl;
     private javax.swing.JButton btnClearFamilia;
     private javax.swing.JButton btnCrearAlumn;
     private javax.swing.JButton btnCrearAlumn3;

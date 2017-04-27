@@ -40,6 +40,9 @@ public class FamiliaCicles {
         this.id = id;
         this.nom = nom;
     }
+    public FamiliaCicles(){
+        
+    }
 
     public Long getId() {
         return id;
