@@ -330,16 +330,14 @@
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Component id="btnCrearFamilia" max="32767" attributes="0"/>
                                   </Group>
-                                  <Group type="103" alignment="0" groupAlignment="1" attributes="0">
-                                      <Component id="btnEliminarFamilia" alignment="1" min="-2" pref="75" max="-2" attributes="0"/>
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <Component id="tfNomFamilia" min="-2" pref="150" max="-2" attributes="0"/>
-                                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                              <Component id="btnBuscarFamilia" max="32767" attributes="0"/>
-                                              <Component id="btnModificarFamilia" alignment="0" max="32767" attributes="0"/>
-                                              <Component id="btnClearFamilia" alignment="0" max="32767" attributes="0"/>
-                                          </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="tfNomFamilia" min="-2" pref="150" max="-2" attributes="0"/>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                          <Component id="btnEliminarFamilia" max="32767" attributes="0"/>
+                                          <Component id="btnBuscarFamilia" max="32767" attributes="0"/>
+                                          <Component id="btnModificarFamilia" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="btnClearFamilia" alignment="0" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
