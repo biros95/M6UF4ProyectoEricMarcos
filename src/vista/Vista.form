@@ -86,7 +86,7 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jTabbedPane1" alignment="0" max="32767" attributes="0"/>
+          <Component id="jTabbedPane1" alignment="0" pref="920" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -184,7 +184,7 @@
                           <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="tfTlfAl" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="414" max="32767" attributes="0"/>
+                      <EmptySpace pref="508" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -262,45 +262,141 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <EmptySpace min="0" pref="895" max="32767" attributes="0"/>
-                  <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                          <Component id="jPanel4" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Component id="jLabel7" alignment="1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel8" alignment="1" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace min="-2" pref="168" max="-2" attributes="0"/>
+                                      <Component id="jButton5" min="-2" pref="85" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="tfNif1" min="-2" pref="150" max="-2" attributes="0"/>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Component id="btnCrearAlumn1" min="-2" pref="75" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="tfNomAl1" min="-2" pref="150" max="-2" attributes="0"/>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                              <Component id="jButton4" alignment="0" max="32767" attributes="0"/>
+                                              <Component id="btnClear1" alignment="0" min="-2" pref="85" max="-2" attributes="0"/>
+                                          </Group>
+                                      </Group>
+                                  </Group>
+                              </Group>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          </Group>
+                          <Component id="jScrollPane1" alignment="0" pref="891" max="32767" attributes="0"/>
                       </Group>
+                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <EmptySpace min="0" pref="570" max="32767" attributes="0"/>
-                  <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                          <Component id="jPanel4" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="tfNif1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnCrearAlumn1" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="tfNomAl1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jButton4" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jButton5" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="btnClear1" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="144" max="-2" attributes="0"/>
+                      <Component id="jScrollPane1" min="-2" pref="98" max="-2" attributes="0"/>
+                      <EmptySpace pref="245" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Container class="javax.swing.JPanel" name="jPanel4">
+            <Component class="javax.swing.JLabel" name="jLabel7">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Id"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="tfNif1">
+            </Component>
+            <Component class="javax.swing.JButton" name="btnCrearAlumn1">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Crear"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCrearAlumn1ActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel8">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Nom"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="tfNomAl1">
+            </Component>
+            <Component class="javax.swing.JButton" name="jButton4">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Modificar"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="jButton5">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Eliminar"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="btnClear1">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Neteja"/>
+              </Properties>
+            </Component>
+            <Container class="javax.swing.JScrollPane" name="jScrollPane1">
+              <AuxValues>
+                <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+              </AuxValues>
 
-              <Layout>
-                <DimensionLayout dim="0">
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <EmptySpace min="0" pref="595" max="32767" attributes="0"/>
-                  </Group>
-                </DimensionLayout>
-                <DimensionLayout dim="1">
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <EmptySpace min="0" pref="472" max="32767" attributes="0"/>
-                  </Group>
-                </DimensionLayout>
-              </Layout>
+              <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+              <SubComponents>
+                <Component class="javax.swing.JTable" name="jTable1">
+                  <Properties>
+                    <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
+                      <Table columnCount="4" rowCount="4">
+                        <Column editable="true" title="Title 1" type="java.lang.Object"/>
+                        <Column editable="true" title="Title 2" type="java.lang.Object"/>
+                        <Column editable="true" title="Title 3" type="java.lang.Object"/>
+                        <Column editable="true" title="Title 4" type="java.lang.Object"/>
+                      </Table>
+                    </Property>
+                  </Properties>
+                </Component>
+              </SubComponents>
             </Container>
+            <Component class="javax.swing.JButton" name="jButton1">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Buscar"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+              </Events>
+            </Component>
           </SubComponents>
         </Container>
         <Container class="javax.swing.JPanel" name="jPanel5">
@@ -315,12 +411,12 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <EmptySpace min="0" pref="895" max="32767" attributes="0"/>
+                  <EmptySpace min="0" pref="915" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <EmptySpace min="0" pref="570" max="32767" attributes="0"/>
+                  <EmptySpace min="0" pref="678" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
           </Layout>
@@ -337,15 +433,125 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <EmptySpace min="0" pref="895" max="32767" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jLabel16" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel14" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel15" alignment="1" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="tfCognomAl2" min="-2" pref="150" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="jButton8" min="-2" pref="85" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="tfNif3" min="-2" pref="150" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="btnCrearAlumn3" min="-2" pref="75" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="tfNomAl3" min="-2" pref="150" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="jButton18" min="-2" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Component id="jButton9" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="btnClear3" alignment="0" min="-2" pref="85" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                          </Group>
+                      </Group>
+                      <EmptySpace pref="596" max="32767" attributes="0"/>
+                  </Group>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <EmptySpace min="0" pref="570" max="32767" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jLabel14" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="tfNif3" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnCrearAlumn3" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jLabel15" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="tfNomAl3" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jButton9" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jLabel16" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="tfCognomAl2" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jButton8" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="btnClear3" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="jButton18" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace pref="474" max="32767" attributes="0"/>
+                  </Group>
               </Group>
             </DimensionLayout>
           </Layout>
+          <SubComponents>
+            <Component class="javax.swing.JLabel" name="jLabel14">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Id"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel15">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Nom"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel16">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Id Cicle"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="tfNomAl3">
+            </Component>
+            <Component class="javax.swing.JTextField" name="tfNif3">
+            </Component>
+            <Component class="javax.swing.JTextField" name="tfCognomAl2">
+            </Component>
+            <Component class="javax.swing.JButton" name="btnClear3">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Neteja"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="jButton8">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Eliminar"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="jButton9">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Modificar"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="btnCrearAlumn3">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Crear"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCrearAlumn3ActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="jButton18">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Buscar"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton18ActionPerformed"/>
+              </Events>
+            </Component>
+          </SubComponents>
         </Container>
         <Container class="javax.swing.JPanel" name="jPanel7">
           <Constraints>
@@ -359,12 +565,12 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <EmptySpace min="0" pref="895" max="32767" attributes="0"/>
+                  <EmptySpace min="0" pref="915" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <EmptySpace min="0" pref="570" max="32767" attributes="0"/>
+                  <EmptySpace min="0" pref="678" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
           </Layout>
@@ -381,15 +587,160 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <EmptySpace min="0" pref="895" max="32767" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Group type="102" alignment="1" attributes="0">
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Component id="jLabel35" alignment="1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel32" alignment="1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel33" alignment="1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel34" alignment="1" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="tfNomAl7" alignment="0" min="-2" pref="150" max="-2" attributes="0"/>
+                                          <Component id="tfCorreuAl5" alignment="0" min="-2" pref="150" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                          <Component id="jButton16" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="btnClear7" alignment="0" min="-2" pref="85" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="tfCognomAl6" min="-2" pref="150" max="-2" attributes="0"/>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Component id="jButton17" min="-2" pref="85" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="tfNif7" min="-2" pref="150" max="-2" attributes="0"/>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Component id="btnCrearAlumn7" min="-2" pref="75" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                          </Group>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Component id="jLabel36" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="tfCorreuAl6" min="-2" pref="150" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="jButton19" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace pref="583" max="32767" attributes="0"/>
+                  </Group>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <EmptySpace min="0" pref="570" max="32767" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jLabel32" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="tfNif7" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnCrearAlumn7" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jLabel33" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="tfNomAl7" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jButton16" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jLabel34" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="tfCognomAl6" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jButton17" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jLabel35" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="tfCorreuAl5" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnClear7" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jLabel36" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="tfCorreuAl6" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jButton19" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace pref="487" max="32767" attributes="0"/>
+                  </Group>
               </Group>
             </DimensionLayout>
           </Layout>
+          <SubComponents>
+            <Component class="javax.swing.JLabel" name="jLabel32">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Unidad ID"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel33">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Nom"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel34">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Hores"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel35">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Id Curs"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="tfCorreuAl5">
+            </Component>
+            <Component class="javax.swing.JTextField" name="tfCognomAl6">
+            </Component>
+            <Component class="javax.swing.JTextField" name="tfNomAl7">
+            </Component>
+            <Component class="javax.swing.JTextField" name="tfNif7">
+            </Component>
+            <Component class="javax.swing.JButton" name="btnCrearAlumn7">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Crear"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCrearAlumn7ActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="jButton16">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Modificar"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="jButton17">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Eliminar"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="btnClear7">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Neteja"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel36">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Id Modul"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="tfCorreuAl6">
+            </Component>
+            <Component class="javax.swing.JButton" name="jButton19">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Buscar"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton19ActionPerformed"/>
+              </Events>
+            </Component>
+          </SubComponents>
         </Container>
         <Container class="javax.swing.JPanel" name="jPanel9">
           <Constraints>
@@ -403,12 +754,12 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <EmptySpace min="0" pref="895" max="32767" attributes="0"/>
+                  <EmptySpace min="0" pref="915" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <EmptySpace min="0" pref="570" max="32767" attributes="0"/>
+                  <EmptySpace min="0" pref="678" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
           </Layout>
