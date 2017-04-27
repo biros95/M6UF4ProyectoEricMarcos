@@ -7,6 +7,7 @@ package vista;
 
 import control.Generic_Controller;
 import modelo.Alumne;
+import modelo.FamiliaCicles;
 
 /**
  *
@@ -15,6 +16,8 @@ import modelo.Alumne;
 public class Vista extends javax.swing.JFrame {
 
     Generic_Controller gc = new Generic_Controller();
+    
+    FamiliaCicles fc;
     /**
      * Creates new form Vista
      */
@@ -86,7 +89,7 @@ public class Vista extends javax.swing.JFrame {
         btnClearFamilia = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        btnBuscarFamilia = new javax.swing.JButton();
+        btnCercarFamilia = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
         jLabel14 = new javax.swing.JLabel();
@@ -274,6 +277,8 @@ public class Vista extends javax.swing.JFrame {
 
         jLabel7.setText("Id");
 
+        tfIdFamilia.setEditable(false);
+
         btnCrearFamilia.setText("Crear");
         btnCrearFamilia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -302,10 +307,10 @@ public class Vista extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        btnBuscarFamilia.setText("Buscar");
-        btnBuscarFamilia.addActionListener(new java.awt.event.ActionListener() {
+        btnCercarFamilia.setText("Cercar");
+        btnCercarFamilia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBuscarFamiliaActionPerformed(evt);
+                btnCercarFamiliaActionPerformed(evt);
             }
         });
 
@@ -332,7 +337,7 @@ public class Vista extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(btnEliminarFamilia, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(btnBuscarFamilia, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(btnCercarFamilia, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(btnModificarFamilia, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(btnClearFamilia, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                         .addGap(0, 616, Short.MAX_VALUE))
@@ -357,7 +362,7 @@ public class Vista extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnClearFamilia)
                 .addGap(18, 18, 18)
-                .addComponent(btnBuscarFamilia)
+                .addComponent(btnCercarFamilia)
                 .addGap(144, 144, 144)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(271, Short.MAX_VALUE))
@@ -610,17 +615,22 @@ public class Vista extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCrearAlumnActionPerformed
 
     private void btnCrearFamiliaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearFamiliaActionPerformed
-          Alumne al = new Alumne(tfNif.getText(), tfNomAl.getText(), tfCognomAl.getText(), tfCorreuAl.getText(), Integer.parseInt(tfTlfAl.getText()));
-        gc.Insertar(al);
+          FamiliaCicles fc = new FamiliaCicles(0L, tfNomFamilia.getText());
+          //Le pasamos un long como primer parametro FALTA CREAR UN METODO QUE COMPRUEBE
+          //QUE EL CAMPO TIENE UN LONG!!!!
+          gc.Insertar(fc);
+             
     }//GEN-LAST:event_btnCrearFamiliaActionPerformed
 
     private void btnCrearAlumn3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearAlumn3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnCrearAlumn3ActionPerformed
 
-    private void btnBuscarFamiliaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarFamiliaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnBuscarFamiliaActionPerformed
+    private void btnCercarFamiliaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCercarFamiliaActionPerformed
+         FamiliaCicles fc = (FamiliaCicles) gc.Buscar(Long.parseLong(tfIdFamilia.getText()), FamiliaCicles.class);
+         tfNomFamilia.setText(fc.getNom());
+                  
+    }//GEN-LAST:event_btnCercarFamiliaActionPerformed
 
     private void btnCrearAlumn7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearAlumn7ActionPerformed
         // TODO add your handling code here:
@@ -687,8 +697,8 @@ public class Vista extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnBuscarFamilia;
     private javax.swing.JButton btnCercaAl;
+    private javax.swing.JButton btnCercarFamilia;
     private javax.swing.JButton btnClear3;
     private javax.swing.JButton btnClear7;
     private javax.swing.JButton btnClearAl3;
