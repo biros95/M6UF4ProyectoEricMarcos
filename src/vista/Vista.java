@@ -77,16 +77,16 @@ public class Vista extends javax.swing.JFrame {
         btnCercaAl = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
-        tfNif1 = new javax.swing.JTextField();
-        btnCrearAlumn1 = new javax.swing.JButton();
+        tfIdFamilia = new javax.swing.JTextField();
+        btnCrearFamilia = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
-        tfNomAl1 = new javax.swing.JTextField();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        btnClear1 = new javax.swing.JButton();
+        tfNomFamilia = new javax.swing.JTextField();
+        btnModificarFamilia = new javax.swing.JButton();
+        btnEliminarFamilia = new javax.swing.JButton();
+        btnClearFamilia = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
+        btnBuscarFamilia = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
         jLabel14 = new javax.swing.JLabel();
@@ -274,20 +274,20 @@ public class Vista extends javax.swing.JFrame {
 
         jLabel7.setText("Id");
 
-        btnCrearAlumn1.setText("Crear");
-        btnCrearAlumn1.addActionListener(new java.awt.event.ActionListener() {
+        btnCrearFamilia.setText("Crear");
+        btnCrearFamilia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCrearAlumn1ActionPerformed(evt);
+                btnCrearFamiliaActionPerformed(evt);
             }
         });
 
         jLabel8.setText("Nom");
 
-        jButton4.setText("Modificar");
+        btnModificarFamilia.setText("Modificar");
 
-        jButton5.setText("Eliminar");
+        btnEliminarFamilia.setText("Eliminar");
 
-        btnClear1.setText("Neteja");
+        btnClearFamilia.setText("Neteja");
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -302,10 +302,10 @@ public class Vista extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        jButton1.setText("Buscar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnBuscarFamilia.setText("Buscar");
+        btnBuscarFamilia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnBuscarFamiliaActionPerformed(evt);
             }
         });
 
@@ -325,21 +325,21 @@ public class Vista extends javax.swing.JFrame {
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addGap(168, 168, 168)
-                                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(btnEliminarFamilia, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(tfNif1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(tfIdFamilia, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(btnCrearAlumn1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(btnCrearFamilia, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(tfNomAl1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(tfNomFamilia, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jButton1)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(btnBuscarFamilia, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(btnClear1, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                        .addComponent(btnModificarFamilia, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(btnClearFamilia, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 895, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 911, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -348,22 +348,22 @@ public class Vista extends javax.swing.JFrame {
                 .addGap(27, 27, 27)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
-                    .addComponent(tfNif1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnCrearAlumn1))
+                    .addComponent(tfIdFamilia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCrearFamilia))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
-                    .addComponent(tfNomAl1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton4))
+                    .addComponent(tfNomFamilia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnModificarFamilia))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton5)
+                .addComponent(btnEliminarFamilia)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnClear1)
+                .addComponent(btnClearFamilia)
                 .addGap(18, 18, 18)
-                .addComponent(jButton1)
+                .addComponent(btnBuscarFamilia)
                 .addGap(144, 144, 144)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(258, Short.MAX_VALUE))
+                .addContainerGap(271, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Familia Cicles", jPanel3);
@@ -612,17 +612,18 @@ public class Vista extends javax.swing.JFrame {
         gc.Insertar(al);
     }//GEN-LAST:event_btnCrearAlumnActionPerformed
 
-    private void btnCrearAlumn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearAlumn1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnCrearAlumn1ActionPerformed
+    private void btnCrearFamiliaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearFamiliaActionPerformed
+          Alumne al = new Alumne(tfNif.getText(), tfNomAl.getText(), tfCognomAl.getText(), tfCorreuAl.getText(), Integer.parseInt(tfTlfAl.getText()));
+        gc.Insertar(al);
+    }//GEN-LAST:event_btnCrearFamiliaActionPerformed
 
     private void btnCrearAlumn3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearAlumn3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnCrearAlumn3ActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnBuscarFamiliaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarFamiliaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnBuscarFamiliaActionPerformed
 
     private void btnCrearAlumn7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearAlumn7ActionPerformed
         // TODO add your handling code here:
@@ -689,25 +690,25 @@ public class Vista extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBuscarFamilia;
     private javax.swing.JButton btnCercaAl;
-    private javax.swing.JButton btnClear1;
     private javax.swing.JButton btnClear3;
     private javax.swing.JButton btnClear7;
     private javax.swing.JButton btnClearAl;
+    private javax.swing.JButton btnClearFamilia;
     private javax.swing.JButton btnCrearAlumn;
-    private javax.swing.JButton btnCrearAlumn1;
     private javax.swing.JButton btnCrearAlumn3;
     private javax.swing.JButton btnCrearAlumn7;
+    private javax.swing.JButton btnCrearFamilia;
     private javax.swing.JButton btnEliminarAl;
+    private javax.swing.JButton btnEliminarFamilia;
     private javax.swing.JButton btnModiAl;
+    private javax.swing.JButton btnModificarFamilia;
     private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton16;
     private javax.swing.JButton jButton17;
     private javax.swing.JButton jButton18;
     private javax.swing.JButton jButton19;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
@@ -758,14 +759,14 @@ public class Vista extends javax.swing.JFrame {
     private javax.swing.JTextField tfCorreuAl;
     private javax.swing.JTextField tfCorreuAl5;
     private javax.swing.JTextField tfCorreuAl6;
+    private javax.swing.JTextField tfIdFamilia;
     private javax.swing.JTextField tfNif;
-    private javax.swing.JTextField tfNif1;
     private javax.swing.JTextField tfNif3;
     private javax.swing.JTextField tfNif7;
     private javax.swing.JTextField tfNomAl;
-    private javax.swing.JTextField tfNomAl1;
     private javax.swing.JTextField tfNomAl3;
     private javax.swing.JTextField tfNomAl7;
+    private javax.swing.JTextField tfNomFamilia;
     private javax.swing.JTextField tfTlfAl;
     // End of variables declaration//GEN-END:variables
 }

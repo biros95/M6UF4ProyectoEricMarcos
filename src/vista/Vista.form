@@ -327,28 +327,28 @@
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace min="-2" pref="168" max="-2" attributes="0"/>
-                                      <Component id="jButton5" min="-2" pref="85" max="-2" attributes="0"/>
+                                      <Component id="btnEliminarFamilia" min="-2" pref="85" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
-                                      <Component id="tfNif1" min="-2" pref="150" max="-2" attributes="0"/>
+                                      <Component id="tfIdFamilia" min="-2" pref="150" max="-2" attributes="0"/>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="btnCrearAlumn1" max="32767" attributes="0"/>
+                                      <Component id="btnCrearFamilia" max="32767" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
-                                      <Component id="tfNomAl1" min="-2" pref="150" max="-2" attributes="0"/>
+                                      <Component id="tfNomFamilia" min="-2" pref="150" max="-2" attributes="0"/>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                          <Component id="btnBuscarFamilia" max="32767" attributes="0"/>
                                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                              <Component id="jButton4" alignment="0" max="32767" attributes="0"/>
-                                              <Component id="btnClear1" alignment="0" min="-2" pref="85" max="-2" attributes="0"/>
+                                              <Component id="btnModificarFamilia" alignment="0" max="32767" attributes="0"/>
+                                              <Component id="btnClearFamilia" alignment="0" max="32767" attributes="0"/>
                                           </Group>
                                       </Group>
                                   </Group>
                               </Group>
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
-                          <Component id="jScrollPane1" alignment="0" pref="895" max="32767" attributes="0"/>
+                          <Component id="jScrollPane1" alignment="0" pref="911" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -360,24 +360,24 @@
                       <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="tfNif1" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="btnCrearAlumn1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="tfIdFamilia" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnCrearFamilia" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="tfNomAl1" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jButton4" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="tfNomFamilia" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnModificarFamilia" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jButton5" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnEliminarFamilia" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="btnClear1" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnClearFamilia" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnBuscarFamilia" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="144" max="-2" attributes="0"/>
                       <Component id="jScrollPane1" min="-2" pref="98" max="-2" attributes="0"/>
-                      <EmptySpace pref="258" max="32767" attributes="0"/>
+                      <EmptySpace pref="271" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -388,14 +388,14 @@
                 <Property name="text" type="java.lang.String" value="Id"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="tfNif1">
+            <Component class="javax.swing.JTextField" name="tfIdFamilia">
             </Component>
-            <Component class="javax.swing.JButton" name="btnCrearAlumn1">
+            <Component class="javax.swing.JButton" name="btnCrearFamilia">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Crear"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCrearAlumn1ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCrearFamiliaActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel8">
@@ -403,19 +403,19 @@
                 <Property name="text" type="java.lang.String" value="Nom"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="tfNomAl1">
+            <Component class="javax.swing.JTextField" name="tfNomFamilia">
             </Component>
-            <Component class="javax.swing.JButton" name="jButton4">
+            <Component class="javax.swing.JButton" name="btnModificarFamilia">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Modificar"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton5">
+            <Component class="javax.swing.JButton" name="btnEliminarFamilia">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Eliminar"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="btnClear1">
+            <Component class="javax.swing.JButton" name="btnClearFamilia">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Neteja"/>
               </Properties>
@@ -441,12 +441,12 @@
                 </Component>
               </SubComponents>
             </Container>
-            <Component class="javax.swing.JButton" name="jButton1">
+            <Component class="javax.swing.JButton" name="btnBuscarFamilia">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Buscar"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnBuscarFamiliaActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>
