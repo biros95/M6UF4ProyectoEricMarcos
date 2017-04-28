@@ -5,6 +5,7 @@
  */
 package modelo;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
 import javax.persistence.Column;
@@ -24,7 +25,7 @@ import utilitats.NombreDeCurs;
  */
 @Entity
 @Table(name = "Curs")
-public class Curs {
+public class Curs implements Serializable{
 
     private static final long serialVersionUID = 1L;
     
