@@ -19,11 +19,9 @@ public class EM_Controller {
          EntityManager em;
         try {
              EntityManagerFactory emf = Persistence.createEntityManagerFactory("INTERNA");
-        //EntityManagerFactory emf = Persistence.createEntityManagerFactory("PersonaJPAPU");
         em = emf.createEntityManager();
         } catch(Exception ex){
               EntityManagerFactory emf = Persistence.createEntityManagerFactory("EXTERNA");
-        //EntityManagerFactory emf = Persistence.createEntityManagerFactory("PersonaJPAPU");
         em = emf.createEntityManager();
         }
        

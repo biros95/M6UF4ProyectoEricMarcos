@@ -7,6 +7,7 @@ package vista;
 
 import control.Alumne_Controller;
 import control.EM_Controller;
+import control.Familia_Controller;
 import control.Generic_Controller;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -27,6 +28,7 @@ public class Vista extends javax.swing.JFrame {
     FamiliaCicles fc;
     Alumne_Controller ac;
     Generic_Controller gc;
+    Familia_Controller fco;
 
     /**
      * Creates new form Vista
@@ -37,6 +39,7 @@ public class Vista extends javax.swing.JFrame {
         BuidarTaula();
         EntityManager em = EM_Controller.getEntityManager();
         gc = new Generic_Controller(em);
+        fco = new Familia_Controller(em);
         ac = new Alumne_Controller(em);
     }
 
@@ -870,8 +873,10 @@ public class Vista extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCrearAlumnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearAlumnActionPerformed
+        gc.conectar();
         Alumne al = new Alumne(tfNif.getText(), tfNomAl.getText(), tfCognomAl.getText(), tfCorreuAl.getText(), Integer.parseInt(tfTlfAl.getText()));
         gc.Insertar(al);
+        gc.desconectar();
     }//GEN-LAST:event_btnCrearAlumnActionPerformed
 
     private void btnCrearFamiliaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearFamiliaActionPerformed
@@ -896,6 +901,7 @@ public class Vista extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton19ActionPerformed
 
     private void btnCercaAlActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCercaAlActionPerformed
+        gc.conectar();
         if (rbIdAl.isSelected()) {
             al = (Alumne) gc.Buscar(tfCercaAl.getText(), Alumne.class);
             tfNomAl.setText(al.getNom());
@@ -916,6 +922,7 @@ public class Vista extends javax.swing.JFrame {
             btnModiAl.setEnabled(true);
         }
         tfNif.setEnabled(false);
+        gc.desconectar();
     }//GEN-LAST:event_btnCercaAlActionPerformed
 
     private void btnClearAlActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearAlActionPerformed
@@ -924,16 +931,21 @@ public class Vista extends javax.swing.JFrame {
     }//GEN-LAST:event_btnClearAlActionPerformed
 
     private void btnEliminarAlActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarAlActionPerformed
+        gc.conectar();
         gc.Eliminar(gc.Buscar(tfNif.getText(), Alumne.class));
+        gc.desconectar();
     }//GEN-LAST:event_btnEliminarAlActionPerformed
 
     private void btnModiAlActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModiAlActionPerformed
+        gc.conectar();
         al = (Alumne) gc.Buscar(tfNif.getText(), Alumne.class);
         al = new Alumne(tfNif.getText(), tfNomAl.getText(), tfCognomAl.getText(), tfCorreuAl.getText(), Integer.parseInt(tfTlfAl.getText()));
         gc.Modificar(al);
+        gc.desconectar();
     }//GEN-LAST:event_btnModiAlActionPerformed
 
     private void btnCercaTotsAlActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCercaTotsAlActionPerformed
+        gc.conectar();
         List<Alumne> listaAlumnes = gc.ConsultaTots("Alumne");
         String col[] = {"NIF", "NOM", "COGNOMS", "CORREU", "TELEFON"};
         DefaultTableModel taulaAlumnes = new DefaultTableModel(col, 0);
@@ -941,6 +953,7 @@ public class Vista extends javax.swing.JFrame {
         for (Alumne alumne : listaAlumnes) {
             taulaAlumnes.addRow(new Object[]{alumne.getNif(), alumne.getNom(), alumne.getCognom(), alumne.getCorreu(), alumne.getTelefon()});
         }
+        gc.desconectar();
     }//GEN-LAST:event_btnCercaTotsAlActionPerformed
 
     private void btnEliminarCicleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarCicleActionPerformed
@@ -957,23 +970,28 @@ public class Vista extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCercaCicleActionPerformed
 
     private void btnCrearCicleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearCicleActionPerformed
+        gc.conectar();
         ci = new Cicle(0L, tfNomCicle.getText(), tfGrauCicle.getText(), (FamiliaCicles) gc.Buscar(Long.parseLong(tfIdFamiCicle.getText()), FamiliaCicles.class));
         gc.Insertar(ci);
+        gc.desconectar();
     }//GEN-LAST:event_btnCrearCicleActionPerformed
 
     private void btnCercarFamiliaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCercarFamiliaActionPerformed
+        gc.conectar();
         fc = (FamiliaCicles) gc.Buscar(Long.parseLong(tfCercaIDFC.getText()), FamiliaCicles.class);
         tfIdFamilia.setText(String.valueOf(fc.getId()));
         tfNomFamilia.setText(fc.getNom());
         btnModificarFamilia.setEnabled(true);
         btnEliminarFamilia.setEnabled(true);
-        List<Cicle> listaCiclesFamilies = gc.ConsultaTots("FamiliaCicles");
+        List<Cicle> listaCiclesFamilies = fco.BuscarPerFamilia(fc.getId());
         String col[] = {"ID", "NOM", "GRAU"};
         DefaultTableModel taulaCiclesFamilia = new DefaultTableModel(col, 0);
         tablaCicles.setModel(taulaCiclesFamilia);
-        for (Cicle fc : listaCiclesFamilies) {
-            taulaCiclesFamilia.addRow(new Object[]{fc.getId(), fc.getNom(), fc.getGrau()});
+        for (Cicle ci : listaCiclesFamilies) {
+            System.out.println(ci);
+            taulaCiclesFamilia.addRow(new Object[]{ci.getId(), ci.getNom(), ci.getGrau()});
         }
+        gc.desconectar();
     }//GEN-LAST:event_btnCercarFamiliaActionPerformed
 
     private void btnClearFamiliaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearFamiliaActionPerformed
@@ -982,16 +1000,21 @@ public class Vista extends javax.swing.JFrame {
     }//GEN-LAST:event_btnClearFamiliaActionPerformed
 
     private void btnEliminarFamiliaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarFamiliaActionPerformed
+        gc.conectar();
         gc.Eliminar(gc.Buscar(Long.parseLong(tfCercaIDFC.getText()), FamiliaCicles.class));
+        gc.desconectar();
     }//GEN-LAST:event_btnEliminarFamiliaActionPerformed
 
     private void btnModificarFamiliaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarFamiliaActionPerformed
+        gc.conectar();
         fc = (FamiliaCicles) gc.Buscar(Long.parseLong(tfCercaIDFC.getText()), FamiliaCicles.class);
         fc = new FamiliaCicles(fc.getId(), tfNomFamilia.getText());
         gc.Modificar(fc);
+        gc.desconectar();
     }//GEN-LAST:event_btnModificarFamiliaActionPerformed
 
     private void btnTotsFCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTotsFCActionPerformed
+        gc.conectar();
         List<FamiliaCicles> listaFamilies = gc.ConsultaTots("FamiliaCicles");
         String col[] = {"ID", "NOM"};
         DefaultTableModel taulaFamilias = new DefaultTableModel(col, 0);
@@ -999,6 +1022,7 @@ public class Vista extends javax.swing.JFrame {
         for (FamiliaCicles fc : listaFamilies) {
             taulaFamilias.addRow(new Object[]{fc.getId(), fc.getNom()});
         }
+        gc.desconectar();
     }//GEN-LAST:event_btnTotsFCActionPerformed
 
     /**

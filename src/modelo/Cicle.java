@@ -24,6 +24,7 @@ import javax.persistence.Table;
  * @author MarcosPortatil
  */
 @Entity
+
 @Table(name = "Cicles")
 public class Cicle implements Serializable {
 

@@ -39,7 +39,7 @@ public class Generic_Controller<T> {
         etx.commit();
 
         System.out.println("close");
-        em.close();
+
     }
 
     /**
@@ -51,7 +51,6 @@ public class Generic_Controller<T> {
     public void Modificar(T p) {
         // Recupera el entity manager
         EM_Controller oem = new EM_Controller();
-        em = oem.getEntityManager();
 
         // El persistim a la base de dades
         //em.getTransaction().begin();
@@ -68,7 +67,7 @@ public class Generic_Controller<T> {
         etx.commit();
 
         System.out.println("close");
-        em.close();
+
     }
 
     /**
@@ -79,7 +78,6 @@ public class Generic_Controller<T> {
     public void Eliminar(T p) {
         // Recupera el entity manager
         EM_Controller oem = new EM_Controller();
-        em = oem.getEntityManager();
 
         // El persistim a la base de dades
         //em.getTransaction().begin();
@@ -96,7 +94,7 @@ public class Generic_Controller<T> {
         etx.commit();
 
         System.out.println("close");
-        em.close();
+
     }
 
     /**
@@ -108,27 +106,33 @@ public class Generic_Controller<T> {
      */
     public T Buscar(T id, Class<T> classe) {
         // Recupera el entity manager
-        em = new EM_Controller().getEntityManager();
 
         System.out.println("busqueda");
 
         T c = (T) em.find(classe, id);
 
         System.out.println("close");
-        em.close();
+
 
         return c;
     }
     
         public List<T> ConsultaTots(String t) {
-        // Recupera el entity manager
-        em = new EM_Controller().getEntityManager();
+        // Recupera el entity manager        
         System.out.println("Consulta");
         Query q = em.createQuery("FROM " + t);
         List<T> lista = (List<T>) q.getResultList();
         System.out.println("close");
-        em.close();
+
         return lista;
     }
+        
+        public void desconectar(){
+            em.close();
+        }
+        
+        public void conectar(){
+            em = new EM_Controller().getEntityManager();
+        }
     
 }
