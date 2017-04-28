@@ -71,7 +71,6 @@ public class Vista extends javax.swing.JFrame {
         String col3[] = {"ID", "NOM", "GRAU"};
         DefaultTableModel taulaCiclesFamilia = new DefaultTableModel(col3, 0);
         tablaCicles.setModel(taulaCiclesFamilia);
-        
     }
 
     /**
@@ -981,17 +980,16 @@ public class Vista extends javax.swing.JFrame {
         fc = (FamiliaCicles) gc.Buscar(Long.parseLong(tfCercaIDFC.getText()), FamiliaCicles.class);
         tfIdFamilia.setText(String.valueOf(fc.getId()));
         tfNomFamilia.setText(fc.getNom());
-        btnModificarFamilia.setEnabled(true);
-        btnEliminarFamilia.setEnabled(true);
         List<Cicle> listaCiclesFamilies = fco.BuscarPerFamilia(fc.getId());
         String col[] = {"ID", "NOM", "GRAU"};
         DefaultTableModel taulaCiclesFamilia = new DefaultTableModel(col, 0);
         tablaCicles.setModel(taulaCiclesFamilia);
         for (Cicle ci : listaCiclesFamilies) {
-            System.out.println(ci);
             taulaCiclesFamilia.addRow(new Object[]{ci.getId(), ci.getNom(), ci.getGrau()});
         }
         gc.desconectar();
+        btnModificarFamilia.setEnabled(true);
+        btnEliminarFamilia.setEnabled(true);
     }//GEN-LAST:event_btnCercarFamiliaActionPerformed
 
     private void btnClearFamiliaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearFamiliaActionPerformed

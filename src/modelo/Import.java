@@ -93,10 +93,5 @@ public class Import implements Serializable {
         return true;
     }
 
-    @Override
-    public String toString() {
-        return "Import{" + "id=" + id + ", importe=" + importe + ", matricula=" + matricula + '}';
-    }
 
-        
 }

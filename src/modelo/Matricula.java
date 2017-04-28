@@ -140,10 +140,5 @@ public class Matricula {
         return true;
     }
 
-    @Override
-    public String toString() {
-        return "Matricula{" + "id=" + id + ", alumneId=" + alumneId + ", data=" + data + ", modalitat=" + modalitat + ", descompte=" + descompte + ", importId=" + importId + ", listaUF=" + listaUF + '}';
-    }
 
-    
 }

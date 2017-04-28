@@ -16,6 +16,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -24,7 +26,8 @@ import javax.persistence.Table;
  * @author MarcosPortatil
  */
 @Entity
-
+@NamedQueries({
+@NamedQuery(name = "cercaCiclesFamilia", query = "SELECT c FROM Cicle c WHERE c.familia.id=:id")})
 @Table(name = "Cicles")
 public class Cicle implements Serializable {
 
@@ -132,11 +135,6 @@ public class Cicle implements Serializable {
             return false;
         }
         return true;
-    }
-
-    @Override
-    public String toString() {
-        return "Cicle{" + "id=" + id + ", nom=" + nom + ", grau=" + grau + ", llistaModuls=" + llistaModuls + ", llistaCursos=" + llistaCursos + ", familia=" + familia + '}';
     }
 
      

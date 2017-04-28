@@ -24,8 +24,6 @@ import javax.persistence.Table;
  * @author MarcosPortatil
  */
 @Entity
-@NamedQueries({
-@NamedQuery(name = "cercaCiclesFamilia", query = "SELECT c FROM Cicle c WHERE c.familia.id=:id")})
 @Table(name = "FamiliaCicles")
 public class FamiliaCicles implements Serializable{
 
@@ -98,12 +96,5 @@ public class FamiliaCicles implements Serializable{
         }
         return true;
     }
-
-    @Override
-    public String toString() {
-        return "FamiliaCicles{" + "id=" + id + ", nom=" + nom + ", llistaCicles=" + llistaCicles + '}';
-    }
-
-    
-    
+ 
 }

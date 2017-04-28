@@ -133,11 +133,5 @@ public class Alumne implements Serializable {
         return true;
     }
 
-    @Override
-    public String toString() {
-        return "Alumne{" + "nif=" + nif + ", nom=" + nom + ", cognom=" + cognom + ", correu=" + correu + ", telefon=" + telefon + ", matriculaId=" + matriculaId + '}';
-    }
-
-    
     
 }

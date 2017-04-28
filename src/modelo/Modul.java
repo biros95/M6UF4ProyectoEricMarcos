@@ -106,13 +106,4 @@ public class Modul implements Serializable {
         }
         return true;
     }
-
-    @Override
-    public String toString() {
-        return "Modul{" + "id=" + id + ", nom=" + nom + ", llistaUF=" + llistaUF + ", cicle=" + cicle + '}';
-    }
-
-    
-    
-
 }

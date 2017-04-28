@@ -129,10 +129,5 @@ public class UnitatFormativa {
         return true;
     }
 
-    @Override
-    public String toString() {
-        return "UnitatFormativa{" + "id=" + id + ", nom=" + nom + ", hores=" + hores + ", listaMatriculas=" + listaMatriculas + ", curs=" + curs + ", modul=" + modul + '}';
-    }
-
     
 }

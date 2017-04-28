@@ -107,10 +107,5 @@ public class Curs implements Serializable{
         return true;
     }
 
-    @Override
-    public String toString() {
-        return "Curs{" + "id=" + id + ", nombreDeCurs=" + nombreDeCurs + ", listaUF=" + listaUF + ", cicle=" + cicle + '}';
-    }
-    
-    
+
 }
