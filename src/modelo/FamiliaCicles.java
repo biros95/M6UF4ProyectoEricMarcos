@@ -5,6 +5,7 @@
  */
 package modelo;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -22,26 +23,27 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "FamiliaCicles")
-public class FamiliaCicles {
+public class FamiliaCicles implements Serializable{
 
     private static final long serialVersionUID = 1L;
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "familiaId", unique = true, nullable = false)
     private Long id;
 
-    @Column(name = "nom", nullable = false, length = 20 )
+    @Column(name = "nom", nullable = false, length = 20)
     private String nom;
     
     @OneToMany(mappedBy = "familia")
     private List<Cicle> llistaCicles;
 
+    public FamiliaCicles() {
+    }
+
     public FamiliaCicles(Long id, String nom) {
         this.id = id;
         this.nom = nom;
-    }
-    public FamiliaCicles(){
-        
     }
 
     public Long getId() {
@@ -70,8 +72,8 @@ public class FamiliaCicles {
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 31 * hash + Objects.hashCode(this.id);
+        int hash = 5;
+        hash = 41 * hash + Objects.hashCode(this.id);
         return hash;
     }
 
@@ -98,5 +100,6 @@ public class FamiliaCicles {
         return "FamiliaCicles{" + "id=" + id + ", nom=" + nom + ", llistaCicles=" + llistaCicles + '}';
     }
 
+    
     
 }

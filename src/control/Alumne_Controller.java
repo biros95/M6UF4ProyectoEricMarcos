@@ -32,16 +32,6 @@ public class Alumne_Controller extends Generic_Controller<Alumne> {
         return p;
     }
     
-    public List<Alumne> ConsultaTots() {
-        // Recupera el entity manager
-        em = new EM_Controller().getEntityManager();
 
-        System.out.println("Consulta");
-        Query q = em.createQuery("FROM Alumne");
-        List<Alumne> lista = (List<Alumne>) q.getResultList();
-        System.out.println("close");
-        em.close();
-        return lista;
-    }
 
 }

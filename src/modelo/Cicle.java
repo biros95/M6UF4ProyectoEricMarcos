@@ -50,6 +50,9 @@ public class Cicle implements Serializable {
     @JoinColumn(name = "idFamilia")
     private FamiliaCicles familia;
 
+    public Cicle() {
+    }
+
     public Cicle(Long id, String nom, String grau, FamiliaCicles familia) {
         this.id = id;
         this.nom = nom;
@@ -108,7 +111,7 @@ public class Cicle implements Serializable {
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 17 * hash + Objects.hashCode(this.id);
+        hash = 41 * hash + Objects.hashCode(this.id);
         return hash;
     }
 
@@ -135,5 +138,5 @@ public class Cicle implements Serializable {
         return "Cicle{" + "id=" + id + ", nom=" + nom + ", grau=" + grau + ", llistaModuls=" + llistaModuls + ", llistaCursos=" + llistaCursos + ", familia=" + familia + '}';
     }
 
-    
+     
 }

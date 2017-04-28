@@ -1,7 +1,9 @@
 package control;
 
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+import javax.persistence.Query;
 
 /**
  *
@@ -116,6 +118,17 @@ public class Generic_Controller<T> {
         em.close();
 
         return c;
+    }
+    
+        public List<T> ConsultaTots(String t) {
+        // Recupera el entity manager
+        em = new EM_Controller().getEntityManager();
+        System.out.println("Consulta");
+        Query q = em.createQuery("FROM " + t);
+        List<T> lista = (List<T>) q.getResultList();
+        System.out.println("close");
+        em.close();
+        return lista;
     }
     
 }
