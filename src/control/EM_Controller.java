@@ -16,10 +16,17 @@ import javax.persistence.Persistence;
 public class EM_Controller {
 
     public static EntityManager getEntityManager() {
-        //Crear el gestor de persistencia EM
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("INTERNA");
+         EntityManager em;
+        try {
+             EntityManagerFactory emf = Persistence.createEntityManagerFactory("INTERNA");
         //EntityManagerFactory emf = Persistence.createEntityManagerFactory("PersonaJPAPU");
-        EntityManager em = emf.createEntityManager();
+        em = emf.createEntityManager();
+        } catch(Exception ex){
+              EntityManagerFactory emf = Persistence.createEntityManagerFactory("EXTERNA");
+        //EntityManagerFactory emf = Persistence.createEntityManagerFactory("PersonaJPAPU");
+        em = emf.createEntityManager();
+        }
+       
         return em;
     }
 }
