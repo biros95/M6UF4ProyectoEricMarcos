@@ -5,6 +5,7 @@
  */
 package control;
 
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import modelo.Alumne;
@@ -13,21 +14,34 @@ import modelo.Alumne;
  *
  * @author Eric
  */
-public class Alumne_Controller extends Generic_Controller<Alumne>{
+public class Alumne_Controller extends Generic_Controller<Alumne> {
     
-    public Alumne BuscarPerNom(String nom) {
-        // Recupera el entity manager
-        EntityManager em = new EM_Controller().getEntityManager();
+    public Alumne_Controller(EntityManager entityManger) {
+        super(entityManger);
+    }
 
-        System.out.println("Busqueda per nom");
-        //Query query = em.createNamedQuery("PersonaNom",Persona.class);
-        Query query = em.createNamedQuery("PersonaNom", Alumne.class);
-        query.setParameter("nombre", nom);
+    public Alumne BuscarPerCognom(String cognom) {
+        // Recupera el entity manager       
+        em = new EM_Controller().getEntityManager();
+        System.out.println("Busqueda per cognom");
+        Query query = em.createNamedQuery("alumneCognom", Alumne.class);
+        query.setParameter("cognom", cognom);
         Alumne p = (Alumne) query.getSingleResult();
         System.out.println("close");
         em.close();
-
         return p;
     }
     
+    public List<Alumne> ConsultaTots() {
+        // Recupera el entity manager
+        em = new EM_Controller().getEntityManager();
+
+        System.out.println("Consulta");
+        Query q = em.createQuery("FROM Alumne");
+        List<Alumne> lista = (List<Alumne>) q.getResultList();
+        System.out.println("close");
+        em.close();
+        return lista;
+    }
+
 }

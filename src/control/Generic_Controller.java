@@ -8,11 +8,19 @@ import javax.persistence.EntityTransaction;
  * @author Eric
  */
 public class Generic_Controller<T> {
+
+    EntityManager em;
+    
+    public Generic_Controller(EntityManager entityManger) {
+        this.em = entityManger;
+    }
+    
+    
     
     public void Insertar(T p) {
         // Recupera el entity manager
         EM_Controller oem = new EM_Controller();
-        EntityManager em = oem.getEntityManager();
+        
 
         // El persistim a la base de dades
         //em.getTransaction().begin();
@@ -41,7 +49,7 @@ public class Generic_Controller<T> {
     public void Modificar(T p) {
         // Recupera el entity manager
         EM_Controller oem = new EM_Controller();
-        EntityManager em = oem.getEntityManager();
+        em = oem.getEntityManager();
 
         // El persistim a la base de dades
         //em.getTransaction().begin();
@@ -69,7 +77,7 @@ public class Generic_Controller<T> {
     public void Eliminar(T p) {
         // Recupera el entity manager
         EM_Controller oem = new EM_Controller();
-        EntityManager em = oem.getEntityManager();
+        em = oem.getEntityManager();
 
         // El persistim a la base de dades
         //em.getTransaction().begin();
@@ -98,7 +106,7 @@ public class Generic_Controller<T> {
      */
     public T Buscar(T id, Class<T> classe) {
         // Recupera el entity manager
-        EntityManager em = new EM_Controller().getEntityManager();
+        em = new EM_Controller().getEntityManager();
 
         System.out.println("busqueda");
 
