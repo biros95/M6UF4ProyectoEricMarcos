@@ -6,7 +6,6 @@
 package modelo;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import javax.persistence.Column;
@@ -51,15 +50,25 @@ public class Cicle implements Serializable {
     @JoinColumn(name = "idFamilia")
     private FamiliaCicles familia;
 
-    public Cicle() {
-    }
-
     public Cicle(Long id, String nom, String grau, FamiliaCicles familia) {
         this.id = id;
         this.nom = nom;
         this.grau = grau;
         this.familia = familia;
     }
+
+    public Cicle(String nom, String grau, FamiliaCicles familia) {
+        this.nom = nom;
+        this.grau = grau;
+        this.familia = familia;
+    }
+    
+    
+
+    public Cicle() {
+    }
+
+    
 
     public Long getId() {
         return id;
@@ -103,8 +112,8 @@ public class Cicle implements Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 59 * hash + Objects.hashCode(this.id);
+        int hash = 3;
+        hash = 29 * hash + Objects.hashCode(this.id);
         return hash;
     }
 
@@ -125,7 +134,7 @@ public class Cicle implements Serializable {
         }
         return true;
     }
-
-   
     
+    
+
 }

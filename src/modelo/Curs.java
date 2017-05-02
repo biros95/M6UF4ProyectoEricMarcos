@@ -56,6 +56,13 @@ public class Curs implements Serializable{
         this.cicle = cicle;
     }
 
+    public Curs(String nombreDeCurs, Cicle cicle) {
+        this.nombreDeCurs = nombreDeCurs;
+        this.cicle = cicle;
+    }
+    
+    
+
     public Long getId() {
         return id;
     }

@@ -53,6 +53,13 @@ public class Modul implements Serializable {
         this.curs = curs;
     }
 
+    public Modul(String nom, Curs curs) {
+        this.nom = nom;
+        this.curs = curs;
+    }
+    
+    
+
     public Long getId() {
         return id;
     }
