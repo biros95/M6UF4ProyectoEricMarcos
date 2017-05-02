@@ -782,17 +782,17 @@
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="tfCognomAl2" min="-2" pref="150" max="-2" attributes="0"/>
+                              <Component id="tfIdCicleCurs" min="-2" pref="150" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="jButton8" min="-2" pref="85" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="tfNif3" min="-2" pref="150" max="-2" attributes="0"/>
+                              <Component id="tfIdCurs" min="-2" pref="150" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="btnCrearAlumn3" min="-2" pref="75" max="-2" attributes="0"/>
+                              <Component id="btnCrearCurs" min="-2" pref="75" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="tfNomAl3" min="-2" pref="150" max="-2" attributes="0"/>
+                              <Component id="tfNomCurs" min="-2" pref="150" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="jButton18" min="-2" max="-2" attributes="0"/>
@@ -813,19 +813,19 @@
                       <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel14" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="tfNif3" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="btnCrearAlumn3" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="tfIdCurs" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnCrearCurs" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel15" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="tfNomAl3" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="tfNomCurs" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jButton9" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel16" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="tfCognomAl2" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="tfIdCicleCurs" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jButton8" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
@@ -853,11 +853,11 @@
                 <Property name="text" type="java.lang.String" value="Id Cicle"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="tfNomAl3">
+            <Component class="javax.swing.JTextField" name="tfNomCurs">
             </Component>
-            <Component class="javax.swing.JTextField" name="tfNif3">
+            <Component class="javax.swing.JTextField" name="tfIdCurs">
             </Component>
-            <Component class="javax.swing.JTextField" name="tfCognomAl2">
+            <Component class="javax.swing.JTextField" name="tfIdCicleCurs">
             </Component>
             <Component class="javax.swing.JButton" name="btnClear3">
               <Properties>
@@ -874,12 +874,12 @@
                 <Property name="text" type="java.lang.String" value="Modificar"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="btnCrearAlumn3">
+            <Component class="javax.swing.JButton" name="btnCrearCurs">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Crear"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCrearAlumn3ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCrearCursActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JButton" name="jButton18">
@@ -937,7 +937,7 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="jLabel19" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabel17" alignment="1" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel20" alignment="1" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel18" alignment="1" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -973,7 +973,7 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="jLabel17" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel20" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="tfNif4" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="btnCrearAlumn4" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
@@ -999,7 +999,7 @@
                 </DimensionLayout>
               </Layout>
               <SubComponents>
-                <Component class="javax.swing.JLabel" name="jLabel17">
+                <Component class="javax.swing.JLabel" name="jLabel20">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Id"/>
                   </Properties>

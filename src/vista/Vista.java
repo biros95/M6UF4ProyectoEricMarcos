@@ -15,6 +15,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import modelo.Alumne;
 import modelo.Cicle;
+import modelo.Curs;
 import modelo.FamiliaCicles;
 
 /**
@@ -29,6 +30,7 @@ public class Vista extends javax.swing.JFrame {
     Alumne_Controller ac;
     Generic_Controller gc;
     Familia_Controller fco;
+    Curs cr;
 
     /**
      * Creates new form Vista
@@ -157,17 +159,17 @@ public class Vista extends javax.swing.JFrame {
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
-        tfNomAl3 = new javax.swing.JTextField();
-        tfNif3 = new javax.swing.JTextField();
-        tfCognomAl2 = new javax.swing.JTextField();
+        tfNomCurs = new javax.swing.JTextField();
+        tfIdCurs = new javax.swing.JTextField();
+        tfIdCicleCurs = new javax.swing.JTextField();
         btnClear3 = new javax.swing.JButton();
         jButton8 = new javax.swing.JButton();
         jButton9 = new javax.swing.JButton();
-        btnCrearAlumn3 = new javax.swing.JButton();
+        btnCrearCurs = new javax.swing.JButton();
         jButton18 = new javax.swing.JButton();
         jPanel7 = new javax.swing.JPanel();
         jPanel10 = new javax.swing.JPanel();
-        jLabel17 = new javax.swing.JLabel();
+        jLabel20 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
         tfNomAl4 = new javax.swing.JTextField();
@@ -678,10 +680,10 @@ public class Vista extends javax.swing.JFrame {
 
         jButton9.setText("Modificar");
 
-        btnCrearAlumn3.setText("Crear");
-        btnCrearAlumn3.addActionListener(new java.awt.event.ActionListener() {
+        btnCrearCurs.setText("Crear");
+        btnCrearCurs.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCrearAlumn3ActionPerformed(evt);
+                btnCrearCursActionPerformed(evt);
             }
         });
 
@@ -705,15 +707,15 @@ public class Vista extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addComponent(tfCognomAl2, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(tfIdCicleCurs, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addComponent(tfNif3, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(tfIdCurs, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(btnCrearAlumn3, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnCrearCurs, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addComponent(tfNomAl3, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(tfNomCurs, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jButton18)
@@ -728,17 +730,17 @@ public class Vista extends javax.swing.JFrame {
                 .addGap(40, 40, 40)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel14)
-                    .addComponent(tfNif3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnCrearAlumn3))
+                    .addComponent(tfIdCurs, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCrearCurs))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel15)
-                    .addComponent(tfNomAl3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tfNomCurs, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton9))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel16)
-                    .addComponent(tfCognomAl2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tfIdCicleCurs, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton8))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnClear3)
@@ -749,7 +751,7 @@ public class Vista extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Curs", jPanel6);
 
-        jLabel17.setText("Id");
+        jLabel20.setText("Id");
 
         jLabel18.setText("Nom");
 
@@ -783,7 +785,7 @@ public class Vista extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel19)
-                    .addComponent(jLabel17, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel20, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel18, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -810,7 +812,7 @@ public class Vista extends javax.swing.JFrame {
             .addGroup(jPanel10Layout.createSequentialGroup()
                 .addGap(40, 40, 40)
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel17)
+                    .addComponent(jLabel20)
                     .addComponent(tfNif4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnCrearAlumn4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -985,19 +987,20 @@ public class Vista extends javax.swing.JFrame {
 
     private void btnCrearAlumnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearAlumnActionPerformed
         gc.conectar();
-        Alumne al = new Alumne(tfNif.getText(), tfNomAl.getText(), tfCognomAl.getText(), tfCorreuAl.getText(), Integer.parseInt(tfTlfAl.getText()));
+       al = new Alumne(tfNif.getText(), tfNomAl.getText(), tfCognomAl.getText(), tfCorreuAl.getText(), Integer.parseInt(tfTlfAl.getText()));
         gc.Insertar(al);
         gc.desconectar();
     }//GEN-LAST:event_btnCrearAlumnActionPerformed
 
     private void btnCrearFamiliaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearFamiliaActionPerformed
-        FamiliaCicles fc = new FamiliaCicles(0L, tfNomFamilia.getText());
+        fc = new FamiliaCicles(0L, tfNomFamilia.getText());
         gc.Insertar(fc);
     }//GEN-LAST:event_btnCrearFamiliaActionPerformed
 
-    private void btnCrearAlumn3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearAlumn3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnCrearAlumn3ActionPerformed
+    private void btnCrearCursActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearCursActionPerformed
+        cr = new Curs(0L, tfNomCurs.getText(), (Cicle) gc.Buscar(tfIdCicleCurs, Cicle.class));
+        gc.Insertar(fc);
+    }//GEN-LAST:event_btnCrearCursActionPerformed
 
     private void btnCrearAlumn7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearAlumn7ActionPerformed
         // TODO add your handling code here:
@@ -1190,10 +1193,10 @@ public class Vista extends javax.swing.JFrame {
     private javax.swing.JButton btnClearCicle;
     private javax.swing.JButton btnClearFamilia;
     private javax.swing.JButton btnCrearAlumn;
-    private javax.swing.JButton btnCrearAlumn3;
     private javax.swing.JButton btnCrearAlumn4;
     private javax.swing.JButton btnCrearAlumn7;
     private javax.swing.JButton btnCrearCicle;
+    private javax.swing.JButton btnCrearCurs;
     private javax.swing.JButton btnCrearFamilia;
     private javax.swing.JButton btnEliminarAl;
     private javax.swing.JButton btnEliminarCicle;
@@ -1224,6 +1227,7 @@ public class Vista extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel32;
     private javax.swing.JLabel jLabel33;
@@ -1270,7 +1274,6 @@ public class Vista extends javax.swing.JFrame {
     private javax.swing.JTextField tfCercaCicle;
     private javax.swing.JTextField tfCercaIDFC;
     private javax.swing.JTextField tfCognomAl;
-    private javax.swing.JTextField tfCognomAl2;
     private javax.swing.JTextField tfCognomAl3;
     private javax.swing.JTextField tfCognomAl6;
     private javax.swing.JTextField tfCorreuAl;
@@ -1278,17 +1281,18 @@ public class Vista extends javax.swing.JFrame {
     private javax.swing.JTextField tfCorreuAl6;
     private javax.swing.JTextField tfGrauCicle;
     private javax.swing.JTextField tfIdCicle;
+    private javax.swing.JTextField tfIdCicleCurs;
+    private javax.swing.JTextField tfIdCurs;
     private javax.swing.JTextField tfIdFamiCicle;
     private javax.swing.JTextField tfIdFamilia;
     private javax.swing.JTextField tfNif;
-    private javax.swing.JTextField tfNif3;
     private javax.swing.JTextField tfNif4;
     private javax.swing.JTextField tfNif7;
     private javax.swing.JTextField tfNomAl;
-    private javax.swing.JTextField tfNomAl3;
     private javax.swing.JTextField tfNomAl4;
     private javax.swing.JTextField tfNomAl7;
     private javax.swing.JTextField tfNomCicle;
+    private javax.swing.JTextField tfNomCurs;
     private javax.swing.JTextField tfNomFamilia;
     private javax.swing.JTextField tfTlfAl;
     // End of variables declaration//GEN-END:variables
