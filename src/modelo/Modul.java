@@ -50,6 +50,11 @@ public class Modul implements Serializable {
         this.cicle = cicle;
     }
 
+    public Modul() {
+    }
+    
+    
+
     public Long getId() {
         return id;
     }

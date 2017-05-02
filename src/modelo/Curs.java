@@ -30,7 +30,7 @@ public class Curs implements Serializable{
     private static final long serialVersionUID = 1L;
     
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "cursId", unique = true, nullable = false)
     private Long id;
     
@@ -49,6 +49,11 @@ public class Curs implements Serializable{
         this.nombreDeCurs = nombreDeCurs;
         this.cicle = cicle;
     }
+
+    public Curs() {
+    }
+    
+    
 
     public Long getId() {
         return id;
