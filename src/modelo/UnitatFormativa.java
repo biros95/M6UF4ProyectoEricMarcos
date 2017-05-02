@@ -5,6 +5,7 @@
  */
 package modelo;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
 import javax.persistence.Column;
@@ -24,10 +25,12 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "UnitatFormativa")
 
-public class UnitatFormativa {
+public class UnitatFormativa implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "unitatId", unique = true, nullable = false)
     private Long id;
 
@@ -36,14 +39,14 @@ public class UnitatFormativa {
 
     @Column(name = "hores", nullable = false)
     private int hores;
-    
+
     @ManyToMany
     private List<Matricula> listaMatriculas;
-    
+
     @ManyToOne
     @JoinColumn(name = "idCurs")
     private Curs curs;
-    
+
     @ManyToOne
     @JoinColumn(name = "idModul")
     private Modul modul;
@@ -54,6 +57,9 @@ public class UnitatFormativa {
         this.hores = hores;
         this.curs = curs;
         this.modul = modul;
+    }
+
+    public UnitatFormativa() {
     }
 
     public Long getId() {
@@ -129,5 +135,4 @@ public class UnitatFormativa {
         return true;
     }
 
-    
 }
