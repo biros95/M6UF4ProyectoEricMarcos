@@ -43,17 +43,18 @@ public class Curs implements Serializable{
     @ManyToOne
     @JoinColumn(name = "idCicle")
     private Cicle cicle;
+    
+    @OneToMany (mappedBy = "curs")
+    private List<Modul> llistaModuls;
+
+    public Curs() {
+    }
 
     public Curs(Long id, String nombreDeCurs, Cicle cicle) {
         this.id = id;
         this.nombreDeCurs = nombreDeCurs;
         this.cicle = cicle;
     }
-
-    public Curs() {
-    }
-    
-    
 
     public Long getId() {
         return id;
@@ -87,10 +88,18 @@ public class Curs implements Serializable{
         this.cicle = cicle;
     }
 
+    public List<Modul> getLlistaModuls() {
+        return llistaModuls;
+    }
+
+    public void setLlistaModuls(List<Modul> llistaModuls) {
+        this.llistaModuls = llistaModuls;
+    }
+
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 83 * hash + Objects.hashCode(this.id);
+        int hash = 7;
+        hash = 47 * hash + Objects.hashCode(this.id);
         return hash;
     }
 
@@ -112,5 +121,5 @@ public class Curs implements Serializable{
         return true;
     }
 
-
+    
 }

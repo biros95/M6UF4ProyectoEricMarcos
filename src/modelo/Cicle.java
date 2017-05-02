@@ -45,9 +45,6 @@ public class Cicle implements Serializable {
     private String grau;
     
     @OneToMany(mappedBy="cicle")
-    private List<Modul> llistaModuls;
-    
-    @OneToMany(mappedBy="cicle")
     private List<Curs> llistaCursos;
     
     @ManyToOne
@@ -88,14 +85,6 @@ public class Cicle implements Serializable {
         this.grau = grau;
     }
 
-    public List<Modul> getLlistaModuls() {
-        return llistaModuls;
-    }
-
-    public void setLlistaModuls(List<Modul> llistaModuls) {
-        this.llistaModuls = llistaModuls;
-    }
-
     public List<Curs> getLlistaCursos() {
         return llistaCursos;
     }
@@ -114,8 +103,8 @@ public class Cicle implements Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 41 * hash + Objects.hashCode(this.id);
+        int hash = 5;
+        hash = 59 * hash + Objects.hashCode(this.id);
         return hash;
     }
 
@@ -136,5 +125,7 @@ public class Cicle implements Serializable {
         }
         return true;
     }
+
+   
     
 }
