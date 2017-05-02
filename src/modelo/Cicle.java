@@ -46,6 +46,9 @@ public class Cicle implements Serializable {
     @OneToMany(mappedBy="cicle")
     private List<Curs> llistaCursos;
     
+    @OneToMany(mappedBy="cicle")
+    private List<Modul> llistaModuls;
+    
     @ManyToOne
     @JoinColumn(name = "idFamilia")
     private FamiliaCicles familia;
