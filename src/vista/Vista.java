@@ -516,9 +516,9 @@ public class Vista extends javax.swing.JFrame {
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(7, 7, 7)
                 .addComponent(jLabel17)
-                .addGap(2, 2, 2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -987,14 +987,16 @@ public class Vista extends javax.swing.JFrame {
 
     private void btnCrearAlumnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearAlumnActionPerformed
         gc.conectar();
-       al = new Alumne(tfNif.getText(), tfNomAl.getText(), tfCognomAl.getText(), tfCorreuAl.getText(), Integer.parseInt(tfTlfAl.getText()));
+        al = new Alumne(tfNif.getText(), tfNomAl.getText(), tfCognomAl.getText(), tfCorreuAl.getText(), Integer.parseInt(tfTlfAl.getText()));
         gc.Insertar(al);
         gc.desconectar();
     }//GEN-LAST:event_btnCrearAlumnActionPerformed
 
     private void btnCrearFamiliaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearFamiliaActionPerformed
-        fc = new FamiliaCicles(0L, tfNomFamilia.getText());
+        gc.conectar();
+        fc = new FamiliaCicles(tfNomFamilia.getText());
         gc.Insertar(fc);
+//        gc.desconectar();
     }//GEN-LAST:event_btnCrearFamiliaActionPerformed
 
     private void btnCrearCursActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearCursActionPerformed

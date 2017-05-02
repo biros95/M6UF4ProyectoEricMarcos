@@ -41,16 +41,25 @@ public class Modul implements Serializable {
     private List<UnitatFormativa> llistaUF;
     
     @ManyToOne
+    @JoinColumn(name = "idCurs")
+    private Curs curs;
+    
+    @ManyToOne
     @JoinColumn(name = "idCicle")
     private Cicle cicle;
 
-    public Modul(Long id, String nom, Cicle cicle) {
-        this.id = id;
-        this.nom = nom;
-        this.cicle = cicle;
+    public Modul() {
     }
 
-    public Modul() {
+    public Modul(Long id, String nom, Curs curs) {
+        this.id = id;
+        this.nom = nom;
+        this.curs = curs;
+    }
+
+    public Modul(String nom, Curs curs) {
+        this.nom = nom;
+        this.curs = curs;
     }
     
     
@@ -79,18 +88,18 @@ public class Modul implements Serializable {
         this.llistaUF = llistaUF;
     }
 
-    public Cicle getCicle() {
-        return cicle;
+    public Curs getCurs() {
+        return curs;
     }
 
-    public void setCicle(Cicle cicle) {
-        this.cicle = cicle;
+    public void setCurs(Curs curs) {
+        this.curs = curs;
     }
 
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 53 * hash + Objects.hashCode(this.id);
+        int hash = 7;
+        hash = 67 * hash + Objects.hashCode(this.id);
         return hash;
     }
 
@@ -111,4 +120,6 @@ public class Modul implements Serializable {
         }
         return true;
     }
+
+    
 }

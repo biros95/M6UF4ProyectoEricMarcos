@@ -59,6 +59,12 @@ public class UnitatFormativa implements Serializable {
         this.modul = modul;
     }
 
+    public UnitatFormativa(String nom, int hores, Curs curs) {
+        this.nom = nom;
+        this.hores = hores;
+        this.curs = curs;
+    }
+
     public UnitatFormativa() {
     }
 

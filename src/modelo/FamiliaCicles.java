@@ -43,10 +43,14 @@ public class FamiliaCicles implements Serializable{
     public FamiliaCicles() {
     }
 
+    public FamiliaCicles(String nom) {
+        this.nom = nom;
+    }   
+
     public FamiliaCicles(Long id, String nom) {
         this.id = id;
         this.nom = nom;
-    }
+    }   
 
     public Long getId() {
         return id;
@@ -74,8 +78,8 @@ public class FamiliaCicles implements Serializable{
 
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 41 * hash + Objects.hashCode(this.id);
+        int hash = 7;
+        hash = 79 * hash + Objects.hashCode(this.id);
         return hash;
     }
 
@@ -96,5 +100,5 @@ public class FamiliaCicles implements Serializable{
         }
         return true;
     }
- 
+
 }

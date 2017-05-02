@@ -28,6 +28,7 @@ import javax.persistence.Table;
 public class Matricula implements Serializable{
 
     private static final long serialVersionUID = 1L;
+    
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "matriculaId", unique = true, nullable = false)
@@ -58,6 +59,17 @@ public class Matricula implements Serializable{
         this.modalitat = modalitat;
         this.descompte = descompte;
         this.importId = importId;
+    }
+
+    public Matricula(Alumne alumneId, Date data, String modalitat, String descompte, Import importId) {
+        this.alumneId = alumneId;
+        this.data = data;
+        this.modalitat = modalitat;
+        this.descompte = descompte;
+        this.importId = importId;
+    }    
+    
+    public Matricula() {
     }
 
     public Long getId() {

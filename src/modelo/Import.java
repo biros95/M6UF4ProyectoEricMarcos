@@ -44,6 +44,14 @@ public class Import implements Serializable {
         this.matricula = matricula;
     }
 
+    public Import(double importe, Matricula matricula) {
+        this.importe = importe;
+        this.matricula = matricula;
+    }
+
+    public Import() {
+    }
+
     public Long getId() {
         return id;
     }

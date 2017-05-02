@@ -6,7 +6,6 @@
 package modelo;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import javax.persistence.Column;
@@ -45,17 +44,14 @@ public class Cicle implements Serializable {
     private String grau;
     
     @OneToMany(mappedBy="cicle")
-    private List<Modul> llistaModuls;
+    private List<Curs> llistaCursos;
     
     @OneToMany(mappedBy="cicle")
-    private List<Curs> llistaCursos;
+    private List<Modul> llistaModuls;
     
     @ManyToOne
     @JoinColumn(name = "idFamilia")
     private FamiliaCicles familia;
-
-    public Cicle() {
-    }
 
     public Cicle(Long id, String nom, String grau, FamiliaCicles familia) {
         this.id = id;
@@ -63,6 +59,19 @@ public class Cicle implements Serializable {
         this.grau = grau;
         this.familia = familia;
     }
+
+    public Cicle(String nom, String grau, FamiliaCicles familia) {
+        this.nom = nom;
+        this.grau = grau;
+        this.familia = familia;
+    }
+    
+    
+
+    public Cicle() {
+    }
+
+    
 
     public Long getId() {
         return id;
@@ -88,14 +97,6 @@ public class Cicle implements Serializable {
         this.grau = grau;
     }
 
-    public List<Modul> getLlistaModuls() {
-        return llistaModuls;
-    }
-
-    public void setLlistaModuls(List<Modul> llistaModuls) {
-        this.llistaModuls = llistaModuls;
-    }
-
     public List<Curs> getLlistaCursos() {
         return llistaCursos;
     }
@@ -114,8 +115,8 @@ public class Cicle implements Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 41 * hash + Objects.hashCode(this.id);
+        int hash = 3;
+        hash = 29 * hash + Objects.hashCode(this.id);
         return hash;
     }
 
@@ -137,4 +138,6 @@ public class Cicle implements Serializable {
         return true;
     }
     
+    
+
 }
