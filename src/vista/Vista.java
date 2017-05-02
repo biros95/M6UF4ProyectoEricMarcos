@@ -1000,8 +1000,12 @@ public class Vista extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCrearFamiliaActionPerformed
 
     private void btnCrearCursActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearCursActionPerformed
-        cr = new Curs(0L, tfNomCurs.getText(), (Cicle) gc.Buscar(tfIdCicleCurs, Cicle.class));
-        gc.Insertar(fc);
+        gc.conectar();
+        ci = (Cicle) gc.Buscar(Long.parseLong(tfIdCicleCurs.getText()), Cicle.class);
+        System.out.println(ci.getId());
+        cr = new Curs(tfNomCurs.getText(), ci);
+        gc.Insertar(cr);
+        gc.desconectar();
     }//GEN-LAST:event_btnCrearCursActionPerformed
 
     private void btnCrearAlumn7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearAlumn7ActionPerformed
