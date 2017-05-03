@@ -16,6 +16,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -24,6 +26,8 @@ import javax.persistence.Table;
  * @author Eric
  */
 @Entity
+@NamedQueries({
+@NamedQuery(name = "cercaUFModul", query = "SELECT c FROM UnitatFormativa c WHERE c.modul.id=:id")})
 @Table(name = "Modul")
 public class Modul implements Serializable {
 
@@ -36,14 +40,14 @@ public class Modul implements Serializable {
 
     @Column(name = "modulNom", length = 50, nullable = false)
     private String nom;
-    
+
     @OneToMany(mappedBy = "modul")
     private List<UnitatFormativa> llistaUF;
-    
+
     @ManyToOne
     @JoinColumn(name = "idCurs")
     private Curs curs;
-    
+
     @ManyToOne
     @JoinColumn(name = "idCicle")
     private Cicle cicle;
@@ -51,18 +55,18 @@ public class Modul implements Serializable {
     public Modul() {
     }
 
-    public Modul(Long id, String nom, Curs curs) {
+    public Modul(Long id, String nom, Curs curs, Cicle cicle) {
         this.id = id;
         this.nom = nom;
         this.curs = curs;
+        this.cicle = cicle;
     }
 
-    public Modul(String nom, Curs curs) {
+    public Modul(String nom, Curs curs, Cicle cicle) {
         this.nom = nom;
         this.curs = curs;
+        this.cicle = cicle;
     }
-    
-    
 
     public Long getId() {
         return id;
@@ -96,10 +100,18 @@ public class Modul implements Serializable {
         this.curs = curs;
     }
 
+    public Cicle getCicle() {
+        return cicle;
+    }
+
+    public void setCicle(Cicle cicle) {
+        this.cicle = cicle;
+    }
+
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 67 * hash + Objects.hashCode(this.id);
+        int hash = 5;
+        hash = 89 * hash + Objects.hashCode(this.id);
         return hash;
     }
 
