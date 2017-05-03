@@ -27,17 +27,15 @@ public class Cicle_Controller extends Generic_Controller {
         query.setParameter("id", id);
         List<Curs> p = (List<Curs>) query.getResultList();
         System.out.println(p.size());
-        System.out.println("close sunormah");
         return p;
     }
-    
+
     public List<Modul> BuscarModulsCicle(Long id) {
         System.out.println("Busqueda per id");
         Query query = em.createNamedQuery("cercaModulsCicles", Modul.class);
         query.setParameter("id", id);
         List<Modul> p = (List<Modul>) query.getResultList();
         System.out.println(p.size());
-        System.out.println("close sunormah");
         return p;
     }
 

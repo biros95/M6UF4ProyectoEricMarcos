@@ -15,6 +15,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import utilitats.NombreDeCurs;
@@ -24,6 +26,9 @@ import utilitats.NombreDeCurs;
  * @author Eric
  */
 @Entity
+@NamedQueries({
+@NamedQuery(name = "cercaModulCurs", query = "SELECT c FROM Modul c WHERE c.curs.id=:id"),
+@NamedQuery(name = "cercaUFCurs", query = "SELECT c FROM UnitatFormativa c WHERE c.curs.id=:id")})
 @Table(name = "Curs")
 public class Curs implements Serializable{
 
@@ -59,9 +64,7 @@ public class Curs implements Serializable{
     public Curs(String nombreDeCurs, Cicle cicle) {
         this.nombreDeCurs = nombreDeCurs;
         this.cicle = cicle;
-    }
-    
-    
+    }   
 
     public Long getId() {
         return id;
