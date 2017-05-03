@@ -10,5 +10,15 @@ package utilitats;
  * @author MarcosPortatil
  */
 public enum NombreDeCurs {
-    PRIMER, SEGON
+    PRIMER, SEGON;
+    
+    public static NombreDeCurs getPRIMER() {    
+        return PRIMER;
+    }
+
+    public static NombreDeCurs getSEGON() {
+        return SEGON;
+    }
 }
+
+

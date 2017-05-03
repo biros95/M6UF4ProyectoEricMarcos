@@ -22,8 +22,7 @@ public class Familia_Controller extends Generic_Controller {
         super(entityManger);
     }
     
-    public List<Cicle> BuscarPerFamilia(Long id) {
-      
+    public List<Cicle> BuscarPerFamilia(Long id) {      
         System.out.println("Busqueda per id");
         Query query = em.createNamedQuery("cercaCiclesFamilia", Cicle.class);
         query.setParameter("id", id);
@@ -32,6 +31,8 @@ public class Familia_Controller extends Generic_Controller {
         System.out.println("close sunormah");        
         return p;
     }
+    
+    
 
     
     
