@@ -24,7 +24,6 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "UnitatFormativa")
-
 public class UnitatFormativa implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -51,6 +50,9 @@ public class UnitatFormativa implements Serializable {
     @JoinColumn(name = "idModul")
     private Modul modul;
 
+    public UnitatFormativa() {
+    }
+
     public UnitatFormativa(Long id, String nom, int hores, Curs curs, Modul modul) {
         this.id = id;
         this.nom = nom;
@@ -59,13 +61,11 @@ public class UnitatFormativa implements Serializable {
         this.modul = modul;
     }
 
-    public UnitatFormativa(String nom, int hores, Curs curs) {
+    public UnitatFormativa(String nom, int hores, Curs curs, Modul modul) {
         this.nom = nom;
         this.hores = hores;
         this.curs = curs;
-    }
-
-    public UnitatFormativa() {
+        this.modul = modul;
     }
 
     public Long getId() {
@@ -118,8 +118,8 @@ public class UnitatFormativa implements Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 79 * hash + Objects.hashCode(this.id);
+        int hash = 5;
+        hash = 97 * hash + Objects.hashCode(this.id);
         return hash;
     }
 
@@ -141,4 +141,5 @@ public class UnitatFormativa implements Serializable {
         return true;
     }
 
+    
 }
