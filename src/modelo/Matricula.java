@@ -17,6 +17,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import utilitats.Descompte;
@@ -27,6 +29,8 @@ import utilitats.Modalitat;
  * @author Eric
  */
 @Entity
+@NamedQueries({
+@NamedQuery(name = "afegirUF", query = "SELECT c FROM Client c WHERE c.nom=:nom")})
 @Table(name = "Matricula")
 public class Matricula implements Serializable{
 
@@ -43,10 +47,10 @@ public class Matricula implements Serializable{
 
     private Date data;
 
-    @Column(name = "modalitat", length = 50, nullable = false)
+    @Column(name = "modalitat", nullable = false)
     private Modalitat modalitat;
 
-    @Column(name = "descompte", length = 50, nullable = false)
+    @Column(name = "descompte", nullable = false)
     private Descompte descompte;
     
     @Embedded

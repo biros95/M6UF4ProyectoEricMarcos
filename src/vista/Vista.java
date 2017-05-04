@@ -14,10 +14,12 @@ import control.Generic_Controller;
 import control.Modul_Controller;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import javafx.scene.control.RadioButton;
 import javax.persistence.EntityManager;
+import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import modelo.Alumne;
@@ -343,11 +345,12 @@ public class Vista extends javax.swing.JFrame {
         btnModificarMatricula = new javax.swing.JButton();
         btnEliminarMatricula = new javax.swing.JButton();
         btnNetejarMatricula = new javax.swing.JButton();
-        jScrollPane11 = new javax.swing.JScrollPane();
-        tableUFsMatricula = new javax.swing.JTable();
         jLabel38 = new javax.swing.JLabel();
         tfCercaIdMatricula = new javax.swing.JTextField();
         btnCercaIdMatricula = new javax.swing.JButton();
+        btnRefrescaUF = new javax.swing.JButton();
+        jScrollPane12 = new javax.swing.JScrollPane();
+        listaUFs = new javax.swing.JList<>();
 
         menu1.setLabel("File");
         menuBar1.add(menu1);
@@ -1484,22 +1487,19 @@ public class Vista extends javax.swing.JFrame {
 
         btnNetejarMatricula.setText("Netejar");
 
-        tableUFsMatricula.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane11.setViewportView(tableUFsMatricula);
-
         jLabel38.setText("UF de la matricula");
 
         btnCercaIdMatricula.setText("Cerca per ID");
+
+        btnRefrescaUF.setText("Refresca UF's");
+        btnRefrescaUF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRefrescaUFActionPerformed(evt);
+            }
+        });
+
+        listaUFs.setToolTipText("");
+        jScrollPane12.setViewportView(listaUFs);
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
@@ -1530,31 +1530,27 @@ public class Vista extends javax.swing.JFrame {
                         .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(btnCercaIdMatricula, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnNetejarMatricula, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnEliminarMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel9Layout.createSequentialGroup()
-                                .addComponent(jLabel38)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(jScrollPane11, javax.swing.GroupLayout.DEFAULT_SIZE, 622, Short.MAX_VALUE)))
+                            .addComponent(btnEliminarMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(tfCercaIdMatricula, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(tfImport, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE))
                     .addGroup(jPanel9Layout.createSequentialGroup()
                         .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(tfCercaIdMatricula, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(tfImport, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE))
+                            .addComponent(tfIdMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(tfIdAlumneMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel9Layout.createSequentialGroup()
-                                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(tfIdMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(tfIdAlumneMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel9Layout.createSequentialGroup()
-                                        .addGap(29, 29, 29)
-                                        .addComponent(btnModificarMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
-                                        .addGap(28, 28, 28)
-                                        .addComponent(btnCrearMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                                .addGap(29, 29, 29)
+                                .addComponent(btnModificarMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
+                                .addGap(28, 28, 28)
+                                .addComponent(btnCrearMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnRefrescaUF)
+                    .addComponent(jLabel38)
+                    .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(332, Short.MAX_VALUE))
         );
         jPanel9Layout.setVerticalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1595,12 +1591,15 @@ public class Vista extends javax.swing.JFrame {
                                 .addGap(9, 9, 9)
                                 .addComponent(btnEliminarMatricula)
                                 .addGap(8, 8, 8)
-                                .addComponent(btnNetejarMatricula))))
-                    .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tfCercaIdMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnCercaIdMatricula))
+                                .addComponent(btnNetejarMatricula)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(tfCercaIdMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnCercaIdMatricula)))
+                    .addGroup(jPanel9Layout.createSequentialGroup()
+                        .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnRefrescaUF)))
                 .addContainerGap(497, Short.MAX_VALUE))
         );
 
@@ -1870,17 +1869,12 @@ public class Vista extends javax.swing.JFrame {
 
     private void btnCrearCicleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearCicleActionPerformed
         gc.conectar();
-        ci = (Cicle) gc.Buscar(Long.parseLong(tfIdCicleCurs.getText()), Cicle.class);
-        if (rbPrimer.isSelected()) {
-            cr = new Curs(NombreDeCurs.PRIMER, ci);
-        } else {
-            cr = new Curs(NombreDeCurs.SEGON, ci);
-        }
-        gc.Insertar(cr);
+        ci = new Cicle(tfNomCicle.getText(), tfGrauCicle.getText(), (FamiliaCicles) gc.Buscar(Long.parseLong(tfIdFamiCicle.getText()), FamiliaCicles.class));
+        gc.Insertar(ci);
         gc.desconectar();
     }//GEN-LAST:event_btnCrearCicleActionPerformed
 
-    
+
     private void btnEliminarCursActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarCursActionPerformed
         gc.conectar();
         cr = (Curs) gc.Buscar(Long.parseLong(tfIdCurs.getText()), Curs.class);
@@ -2015,31 +2009,47 @@ public class Vista extends javax.swing.JFrame {
         gc.conectar();
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         Date date = new Date();
-        al = (Alumne) gc.Buscar(Long.parseLong(tfIdAlumneMatricula.getText()), FamiliaCicles.class);
-        if(rbComplet.isSelected()){
+        al = (Alumne) gc.Buscar(tfIdAlumneMatricula.getText(), Alumne.class);
+        List<String> llistaUF;
+        if (rbComplet.isSelected()) {
             Descompte desc = estadoRadioButon();
             matricula = new Matricula(al, date, Modalitat.COMPLET, desc, new Import(Double.parseDouble(tfImport.getText())));
         } else {
             Descompte desc = estadoRadioButon();
             matricula = new Matricula(al, date, Modalitat.UFS, desc, new Import(Double.parseDouble(tfImport.getText())));
         }
+        llistaUF = listaUFs.getSelectedValuesList();
+        String[] partes;
+        List<UnitatFormativa> ufs = null;
+        for (String string : llistaUF) {
+            partes = string.split(",");
+            uf = (UnitatFormativa) gc.Buscar(Integer.parseInt(partes[0]), UnitatFormativa.class);
+            ufs.add(uf);
+        }
+        matricula.setListaUF(ufs);
         gc.Insertar(matricula);
         gc.desconectar();
     }//GEN-LAST:event_btnCrearMatriculaActionPerformed
 
-    private Descompte estadoRadioButon(){
-        switch (bgDescompte.getSelection().getClass().getName()){
-            case "rbCap":
-               
-                return Descompte.CAP;
-            case "rbMig":
-                return Descompte.PARCIAL;
-            case "rbTotal":
-                return Descompte.TOTAL;
+    private void btnRefrescaUFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefrescaUFActionPerformed
+        List<UnitatFormativa> listaUF = gc.ConsultaTots("UnitatFormativa");
+        String col[] = {"ID", "NOM", "HORES", "Nom Curs", "Any Curs", "Modul Nom"};
+        DefaultListModel taulaUFModul = new DefaultListModel();
+        listaUFs.setModel(taulaUFModul);
+        for (UnitatFormativa uf1 : listaUF) {
+            taulaUFModul.add(listaUF.indexOf(uf1), Arrays.toString(new Object[]{uf1.getId(), uf1.getNom(), uf1.getHores(), uf1.getCurs().getCicle().getNom(), uf1.getCurs().getNombreDeCurs(), uf1.getModul().getNom(),}));
         }
-        return Descompte.CAP;
+    }//GEN-LAST:event_btnRefrescaUFActionPerformed
+
+    private Descompte estadoRadioButon() {
+        if (rbCap.isSelected()) {
+            return Descompte.CAP;
+        } else if (rbMig.isSelected()) {
+            return Descompte.PARCIAL;
+        }
+        return Descompte.TOTAL;
     }
-    
+
     /**
      * @param args the command line arguments
      */
@@ -2118,6 +2128,7 @@ public class Vista extends javax.swing.JFrame {
     private javax.swing.JButton btnNetejaModul;
     private javax.swing.JButton btnNetejaUF;
     private javax.swing.JButton btnNetejarMatricula;
+    private javax.swing.JButton btnRefrescaUF;
     private javax.swing.JButton btnTotsFC;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup grupNomCurs;
@@ -2168,7 +2179,7 @@ public class Vista extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane10;
-    private javax.swing.JScrollPane jScrollPane11;
+    private javax.swing.JScrollPane jScrollPane12;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
@@ -2178,6 +2189,7 @@ public class Vista extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JList<String> listaUFs;
     private java.awt.Menu menu1;
     private java.awt.Menu menu2;
     private java.awt.Menu menu3;
@@ -2209,7 +2221,6 @@ public class Vista extends javax.swing.JFrame {
     private javax.swing.JScrollPane tableTotesUF;
     private javax.swing.JTable tableTotsModuls;
     private javax.swing.JScrollPane tableUFModul;
-    private javax.swing.JTable tableUFsMatricula;
     private javax.swing.JTable taulaModulCurs;
     private javax.swing.JTable taulaModulUF;
     private javax.swing.JTable taulaTotsCursos;
