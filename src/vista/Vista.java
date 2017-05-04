@@ -1638,7 +1638,7 @@ public class Vista extends javax.swing.JFrame {
         if (rbPrimer.isSelected()) {
             cr = new Curs(NombreDeCurs.PRIMER, ci);
         } else {
-            // cr = 
+            cr = new Curs(NombreDeCurs.SEGON, ci);
         }
         gc.Insertar(cr);
         gc.desconectar();
@@ -1648,7 +1648,7 @@ public class Vista extends javax.swing.JFrame {
         gc.conectar();
         cr = (Curs) gc.Buscar(Long.parseLong(tfCercaCurs.getText()), Curs.class);
         tfIdCurs.setText(String.valueOf(cr.getId()));
-        if (cr.getNombreDeCurs().equals("PRIMER")) {
+        if (cr.getNombreDeCurs() == NombreDeCurs.PRIMER) {
             rbPrimer.setSelected(true);
         } else {
             rbSegon.setSelected(true);
@@ -1799,10 +1799,11 @@ public class Vista extends javax.swing.JFrame {
         cr = (Curs) gc.Buscar(Long.parseLong(tfIdCurs.getText()), Curs.class);
         cr.setId(cr.getId());
         if (rbPrimer.isSelected()) {
-            //TODO
+            cr.setNombreDeCurs(NombreDeCurs.PRIMER);
         } else {
-            //TODO
+            cr.setNombreDeCurs(NombreDeCurs.SEGON);
         }
+        cr.setCicle((Cicle) gc.Buscar(Long.parseLong(tfIdCicleCurs.getText()), Cicle.class));
         gc.Modificar(cr);
         gc.desconectar();
     }//GEN-LAST:event_btnModiCursActionPerformed
