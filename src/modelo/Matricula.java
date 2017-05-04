@@ -19,6 +19,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import utilitats.Descompte;
+import utilitats.Modalitat;
 
 /**
  *
@@ -42,10 +44,10 @@ public class Matricula implements Serializable{
     private Date data;
 
     @Column(name = "modalitat", length = 50, nullable = false)
-    private String modalitat;
+    private Modalitat modalitat;
 
     @Column(name = "descompte", length = 50, nullable = false)
-    private String descompte;
+    private Descompte descompte;
     
     @Embedded
     private Import importe;
@@ -56,15 +58,16 @@ public class Matricula implements Serializable{
     public Matricula() {
     }
 
-    public Matricula(Alumne alumneId, Date data, String modalitat, String descompte, Import importe) {
+    public Matricula(Alumne alumneId, Date data, Modalitat modalitat, Descompte descompte, Import importe) {
         this.alumneId = alumneId;
         this.data = data;
         this.modalitat = modalitat;
         this.descompte = descompte;
         this.importe = importe;
+       
     }
 
-    public Matricula(Long id, Alumne alumneId, Date data, String modalitat, String descompte, Import importe) {
+    public Matricula(Long id, Alumne alumneId, Date data, Modalitat modalitat, Descompte descompte, Import importe) {
         this.id = id;
         this.alumneId = alumneId;
         this.data = data;
@@ -97,19 +100,19 @@ public class Matricula implements Serializable{
         this.data = data;
     }
 
-    public String getModalitat() {
+    public Modalitat getModalitat() {
         return modalitat;
     }
 
-    public void setModalitat(String modalitat) {
+    public void setModalitat(Modalitat modalitat) {
         this.modalitat = modalitat;
     }
 
-    public String getDescompte() {
+    public Descompte getDescompte() {
         return descompte;
     }
 
-    public void setDescompte(String descompte) {
+    public void setDescompte(Descompte descompte) {
         this.descompte = descompte;
     }
 
@@ -132,7 +135,7 @@ public class Matricula implements Serializable{
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 59 * hash + Objects.hashCode(this.id);
+        hash = 23 * hash + Objects.hashCode(this.id);
         return hash;
     }
 
@@ -153,8 +156,8 @@ public class Matricula implements Serializable{
         }
         return true;
     }
-    
-    
+
+   
 
 
 

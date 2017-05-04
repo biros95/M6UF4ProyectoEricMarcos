@@ -1410,9 +1410,19 @@ public class Vista extends javax.swing.JFrame {
         bgModalitat.add(rbComplet);
         rbComplet.setSelected(true);
         rbComplet.setText("Curs Complet");
+        rbComplet.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton1ActionPerformed(evt);
+            }
+        });
 
         bgModalitat.add(rbSoltes);
         rbSoltes.setText("UF Soltes");
+        rbSoltes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton2ActionPerformed(evt);
+            }
+        });
 
         bgDescompte.add(rbCap);
         rbCap.setSelected(true);
@@ -1435,6 +1445,11 @@ public class Vista extends javax.swing.JFrame {
         jLabel31.setText("Import");
 
         btnCrearMatricula.setText("Crear");
+        btnCrearMatricula.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         btnModificarMatricula.setText("Modificar");
         btnModificarMatricula.setEnabled(false);
@@ -1536,10 +1551,11 @@ public class Vista extends javax.swing.JFrame {
                         .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel9Layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(rbComplet)
-                                    .addComponent(jLabel29)
-                                    .addComponent(rbSoltes, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(rbSoltes, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(rbComplet)
+                                        .addComponent(jLabel29)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(rbCap)
