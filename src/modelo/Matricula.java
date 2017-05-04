@@ -10,6 +10,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -46,30 +47,30 @@ public class Matricula implements Serializable{
     @Column(name = "descompte", length = 50, nullable = false)
     private String descompte;
     
-    @OneToOne(mappedBy = "matricula")
-    private Import importId;
+    @Embedded
+    private Import importe;
     
     @ManyToMany(mappedBy = "listaMatriculas")
     private List<UnitatFormativa> listaUF;
 
-    public Matricula(Long id, Alumne alumneId, Date data, String modalitat, String descompte, Import importId) {
+    public Matricula() {
+    }
+
+    public Matricula(Alumne alumneId, Date data, String modalitat, String descompte, Import importe) {
+        this.alumneId = alumneId;
+        this.data = data;
+        this.modalitat = modalitat;
+        this.descompte = descompte;
+        this.importe = importe;
+    }
+
+    public Matricula(Long id, Alumne alumneId, Date data, String modalitat, String descompte, Import importe) {
         this.id = id;
         this.alumneId = alumneId;
         this.data = data;
         this.modalitat = modalitat;
         this.descompte = descompte;
-        this.importId = importId;
-    }
-
-    public Matricula(Alumne alumneId, Date data, String modalitat, String descompte, Import importId) {
-        this.alumneId = alumneId;
-        this.data = data;
-        this.modalitat = modalitat;
-        this.descompte = descompte;
-        this.importId = importId;
-    }    
-    
-    public Matricula() {
+        this.importe = importe;
     }
 
     public Long getId() {
@@ -112,12 +113,12 @@ public class Matricula implements Serializable{
         this.descompte = descompte;
     }
 
-    public Import getImportId() {
-        return importId;
+    public Import getImporte() {
+        return importe;
     }
 
-    public void setImportId(Import importId) {
-        this.importId = importId;
+    public void setImporte(Import importe) {
+        this.importe = importe;
     }
 
     public List<UnitatFormativa> getListaUF() {
@@ -130,8 +131,8 @@ public class Matricula implements Serializable{
 
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 47 * hash + Objects.hashCode(this.id);
+        int hash = 7;
+        hash = 59 * hash + Objects.hashCode(this.id);
         return hash;
     }
 
@@ -152,6 +153,10 @@ public class Matricula implements Serializable{
         }
         return true;
     }
+    
+    
 
 
+
+    
 }
