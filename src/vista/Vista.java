@@ -1877,8 +1877,9 @@ public class Vista extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCrearCicleActionPerformed
 
     private Modalitat estadoRadioButon(){
-        switch (bgModalitat.getSelection()){
-            case rbSoltes.getModel():
+        switch (bgModalitat.getSelection().getClass().getName()){
+            
+            case rbSoltes.getClass().getName():
                 return Modalitat.UFS;
                 
         }
@@ -2017,8 +2018,11 @@ public class Vista extends javax.swing.JFrame {
 
     private void btnCrearMatriculaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearMatriculaActionPerformed
         gc.conectar();
-        uf = new UnitatFormativa(tfNomUF.getText(), Integer.parseInt(tfHoresUF.getText()), (Curs) gc.Buscar(Long.parseLong(tfIdCursUF.getText()), Curs.class), (Modul) gc.Buscar(Long.parseLong(tfIdModulUF.getText()), Modul.class));
-        gc.Insertar(uf);
+        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        Date date = new Date();
+        al = (Alumne) gc.Buscar(Long.parseLong(tfIdAlumneMatricula.getText()), FamiliaCicles.class);
+        
+        gc.Insertar(ci);
         gc.desconectar();
     }//GEN-LAST:event_btnCrearMatriculaActionPerformed
 
