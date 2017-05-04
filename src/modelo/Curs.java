@@ -39,7 +39,7 @@ public class Curs implements Serializable{
     @Column(name = "cursId", unique = true, nullable = false)
     private Long id;
     
-    @Column(name = "nombreDeCurs", length = 5)
+    @Column(name = "nombreDeCurs")
     private NombreDeCurs nombreDeCurs;
     
     @OneToMany(mappedBy = "curs")
