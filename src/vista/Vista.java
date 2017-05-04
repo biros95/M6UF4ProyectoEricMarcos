@@ -24,9 +24,11 @@ import modelo.Alumne;
 import modelo.Cicle;
 import modelo.Curs;
 import modelo.FamiliaCicles;
+import modelo.Import;
 import modelo.Matricula;
 import modelo.Modul;
 import modelo.UnitatFormativa;
+import utilitats.Descompte;
 import utilitats.Modalitat;
 import utilitats.NombreDeCurs;
 
@@ -2014,19 +2016,19 @@ public class Vista extends javax.swing.JFrame {
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         Date date = new Date();
         al = (Alumne) gc.Buscar(Long.parseLong(tfIdAlumneMatricula.getText()), FamiliaCicles.class);
-        
-        gc.Insertar(ci);
+        if(rbComplet.isSelected()){
+            Descompte desc = estadoRadioButon();
+            matricula = new Matricula(al, date, Modalitat.COMPLET, desc, new Import(Double.parseDouble(tfImport.getText())));
+        } else {
+            Descompte desc = estadoRadioButon();
+            matricula = new Matricula(al, date, Modalitat.UFS, desc, new Import(Double.parseDouble(tfImport.getText())));
+        }
+        gc.Insertar(matricula);
         gc.desconectar();
     }//GEN-LAST:event_btnCrearMatriculaActionPerformed
 
-    private Modalitat estadoRadioButon(){
-        switch (bgModalitat.getSelection()){
-            case rbSoltes.getModel():
-                return Modalitat.UFS;
-                
-        }
+    private Descompte estadoRadioButon(){
         
-        return Modalitat.COMPLET;
     }
     
     /**
