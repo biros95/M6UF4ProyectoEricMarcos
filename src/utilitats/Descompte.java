@@ -10,5 +10,5 @@ package utilitats;
  * @author MarcosPortatil
  */
 public enum Descompte {
-   PARCIAL, TOTAL;
+   CAP, PARCIAL, TOTAL;
 }

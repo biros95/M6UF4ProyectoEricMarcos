@@ -11,14 +11,10 @@ package utilitats;
  */
 public enum NombreDeCurs {
     PRIMER, SEGON;
-    
-    public static NombreDeCurs getPRIMER() {    
-        return PRIMER;
-    }
 
-    public static NombreDeCurs getSEGON() {
-        return SEGON;
-    }
+
+    
+   
 }
 
 
