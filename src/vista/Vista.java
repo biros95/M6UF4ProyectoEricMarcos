@@ -12,7 +12,11 @@ import control.EM_Controller;
 import control.Familia_Controller;
 import control.Generic_Controller;
 import control.Modul_Controller;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import javafx.scene.control.RadioButton;
 import javax.persistence.EntityManager;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -20,8 +24,10 @@ import modelo.Alumne;
 import modelo.Cicle;
 import modelo.Curs;
 import modelo.FamiliaCicles;
+import modelo.Matricula;
 import modelo.Modul;
 import modelo.UnitatFormativa;
+import utilitats.Modalitat;
 import utilitats.NombreDeCurs;
 
 /**
@@ -43,6 +49,7 @@ public class Vista extends javax.swing.JFrame {
     Cicle_Controller cic;
     Modul_Controller mc;
     NombreDeCurs ndc;
+    Matricula matricula;
 
     /**
      * Creates new form Vista
@@ -61,34 +68,50 @@ public class Vista extends javax.swing.JFrame {
     }
 
     public void BuidarCamps() {
+        //Vaciar campos de texto.
+
+        //Alumno
         tfNif.setText("");
         tfNomAl.setText("");
         tfCognomAl.setText("");
         tfCorreuAl.setText("");
         tfTlfAl.setText("");
         tfCercaAl.setText("");
+
+        //Familia
         tfIdFamilia.setText("");
         tfIdFamiCicle.setText("");
         tfNomFamilia.setText("");
         tfCercaIDFC.setText("");
+
+        //Ciclos
         tfNomCicle.setText("");
         tfIdCicle.setText("");
         tfGrauCicle.setText("");
         tfCercaCicle.setText("");
+
+        //Curso
         tfIdCurs.setText("");
         tfIdCicleCurs.setText("");
         tfCercaCurs.setText("");
+
+        //Modul
         tfIdModul.setText("");
         tfNomModul.setText("");
         tfIdCursModul.setText("");
         tfIdModulCicle.setText("");
         tfIdModulCerca.setText("");
+
+        //UF
         tfIdUF.setText("");
         tfNomUF.setText("");
         tfHoresUF.setText("");
         tfIdCursUF.setText("");
         tfIdModulUF.setText("");
         tfCercaIDUF.setText("");
+
+        //Matricula
+        //Desactivar botones
         btnEliminarAl.setEnabled(false);
         btnModiAl.setEnabled(false);
         btnEliminarFamilia.setEnabled(false);
@@ -1447,7 +1470,7 @@ public class Vista extends javax.swing.JFrame {
         btnCrearMatricula.setText("Crear");
         btnCrearMatricula.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnCrearMatriculaActionPerformed(evt);
             }
         });
 
@@ -1844,11 +1867,23 @@ public class Vista extends javax.swing.JFrame {
 
     private void btnCrearCicleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearCicleActionPerformed
         gc.conectar();
-        ci = new Cicle(tfNomCicle.getText(), tfGrauCicle.getText(), (FamiliaCicles) gc.Buscar(Long.parseLong(tfIdFamiCicle.getText()), FamiliaCicles.class));
+        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        Date date = new Date();
+        al = (Alumne) gc.Buscar(Long.parseLong(tfIdAlumneMatricula.getText()), FamiliaCicles.class);
+        
         gc.Insertar(ci);
         gc.desconectar();
     }//GEN-LAST:event_btnCrearCicleActionPerformed
 
+    private Modalitat estadoRadioButon(){
+        switch (bgModalitat.getSelection()){
+            case rbSoltes.getModel():
+                return Modalitat.UFS;
+                
+        }
+        
+        return Modalitat.COMPLET;
+    }
     private void btnEliminarCursActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarCursActionPerformed
         gc.conectar();
         cr = (Curs) gc.Buscar(Long.parseLong(tfIdCurs.getText()), Curs.class);
@@ -1902,7 +1937,7 @@ public class Vista extends javax.swing.JFrame {
     private void btnModificarModulActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarModulActionPerformed
         gc.conectar();
         mo = (Modul) gc.Buscar(Long.parseLong(tfIdModul.getText()), Modul.class);
-        mo = new Modul(mo.getId(), tfNomModul.getText(), (Curs) gc.Buscar(Long.parseLong(tfIdCursModul.getText()), Curs.class), (Cicle) gc.Buscar(Long.parseLong(tfIdModulCicle.getText()), Cicle.class));                
+        mo = new Modul(mo.getId(), tfNomModul.getText(), (Curs) gc.Buscar(Long.parseLong(tfIdCursModul.getText()), Curs.class), (Cicle) gc.Buscar(Long.parseLong(tfIdModulCicle.getText()), Cicle.class));
         gc.Modificar(mo);
         gc.desconectar();
     }//GEN-LAST:event_btnModificarModulActionPerformed
@@ -1951,7 +1986,7 @@ public class Vista extends javax.swing.JFrame {
         uf = new UnitatFormativa(Long.parseLong(tfIdUF.getText()), tfNomUF.getText(), Integer.parseInt(tfHoresUF.getText()), (Curs) gc.Buscar(Long.parseLong(tfIdCursUF.getText()), Curs.class), (Modul) gc.Buscar(Long.parseLong(tfIdModulUF.getText()), Modul.class));
         gc.Modificar(uf);
         gc.desconectar();
-        
+
     }//GEN-LAST:event_btnModiUFActionPerformed
 
     private void btnNetejaUFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNetejaUFActionPerformed
@@ -1971,10 +2006,6 @@ public class Vista extends javax.swing.JFrame {
         gc.desconectar();
     }//GEN-LAST:event_btnCercaTotesUFActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
-
     private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jRadioButton1ActionPerformed
@@ -1982,6 +2013,13 @@ public class Vista extends javax.swing.JFrame {
     private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jRadioButton2ActionPerformed
+
+    private void btnCrearMatriculaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearMatriculaActionPerformed
+        gc.conectar();
+        uf = new UnitatFormativa(tfNomUF.getText(), Integer.parseInt(tfHoresUF.getText()), (Curs) gc.Buscar(Long.parseLong(tfIdCursUF.getText()), Curs.class), (Modul) gc.Buscar(Long.parseLong(tfIdModulUF.getText()), Modul.class));
+        gc.Insertar(uf);
+        gc.desconectar();
+    }//GEN-LAST:event_btnCrearMatriculaActionPerformed
 
     /**
      * @param args the command line arguments
