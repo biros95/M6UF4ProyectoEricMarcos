@@ -2028,7 +2028,16 @@ public class Vista extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCrearMatriculaActionPerformed
 
     private Descompte estadoRadioButon(){
-        
+        switch (bgDescompte.getSelection().getClass().getName()){
+            case "rbCap":
+               
+                return Descompte.CAP;
+            case "rbMig":
+                return Descompte.PARCIAL;
+            case "rbTotal":
+                return Descompte.TOTAL;
+        }
+        return Descompte.CAP;
     }
     
     /**
