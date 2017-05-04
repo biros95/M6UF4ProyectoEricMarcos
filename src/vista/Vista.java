@@ -27,6 +27,7 @@ import modelo.FamiliaCicles;
 import modelo.Matricula;
 import modelo.Modul;
 import modelo.UnitatFormativa;
+import utilitats.Descompte;
 import utilitats.Modalitat;
 import utilitats.NombreDeCurs;
 
@@ -2019,14 +2020,17 @@ public class Vista extends javax.swing.JFrame {
         gc.desconectar();
     }//GEN-LAST:event_btnCrearMatriculaActionPerformed
 
-    private Modalitat estadoRadioButon(){
-        switch (bgModalitat.getSelection()){
-            case rbSoltes.getModel():
-                return Modalitat.UFS;
-                
+    private Descompte estadoRadioButon(){
+        switch (bgDescompte.getSelection().getClass().getName()){
+            case "rbCap":
+               
+                return Descompte.CAP;
+            case "rbMig":
+                return Descompte.PARCIAL;
+            case "rbTotal":
+                return Descompte.TOTAL;
         }
-        
-        return Modalitat.COMPLET;
+        return Descompte.CAP;
     }
     
     /**
