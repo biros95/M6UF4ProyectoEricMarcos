@@ -1868,24 +1868,17 @@ public class Vista extends javax.swing.JFrame {
 
     private void btnCrearCicleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearCicleActionPerformed
         gc.conectar();
-        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-        Date date = new Date();
-        al = (Alumne) gc.Buscar(Long.parseLong(tfIdAlumneMatricula.getText()), FamiliaCicles.class);
-        
-        gc.Insertar(ci);
+        ci = (Cicle) gc.Buscar(Long.parseLong(tfIdCicleCurs.getText()), Cicle.class);
+        if (rbPrimer.isSelected()) {
+            cr = new Curs(NombreDeCurs.PRIMER, ci);
+        } else {
+            cr = new Curs(NombreDeCurs.SEGON, ci);
+        }
+        gc.Insertar(cr);
         gc.desconectar();
     }//GEN-LAST:event_btnCrearCicleActionPerformed
 
-    private Modalitat estadoRadioButon(){
-        switch (bgModalitat.getSelection().getClass().getName()){
-            
-            case rbSoltes.getClass().getName():
-                return Modalitat.UFS;
-                
-        }
-        
-        return Modalitat.COMPLET;
-    }
+    
     private void btnEliminarCursActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarCursActionPerformed
         gc.conectar();
         cr = (Curs) gc.Buscar(Long.parseLong(tfIdCurs.getText()), Curs.class);
@@ -2026,6 +2019,16 @@ public class Vista extends javax.swing.JFrame {
         gc.desconectar();
     }//GEN-LAST:event_btnCrearMatriculaActionPerformed
 
+    private Modalitat estadoRadioButon(){
+        switch (bgModalitat.getSelection()){
+            case rbSoltes.getModel():
+                return Modalitat.UFS;
+                
+        }
+        
+        return Modalitat.COMPLET;
+    }
+    
     /**
      * @param args the command line arguments
      */
