@@ -301,23 +301,28 @@ public class Vista extends javax.swing.JFrame {
         tablaTotesUF = new javax.swing.JTable();
         btnCercaTotesUF = new javax.swing.JButton();
         jPanel9 = new javax.swing.JPanel();
-        jTextField1 = new javax.swing.JTextField();
-        jtMatriculaAluID = new javax.swing.JTextField();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
-        jRadioButton3 = new javax.swing.JRadioButton();
-        jRadioButton4 = new javax.swing.JRadioButton();
-        jRadioButton5 = new javax.swing.JRadioButton();
-        jTextField3 = new javax.swing.JTextField();
+        tfIdMatricula = new javax.swing.JTextField();
+        tfIdAlumneMatricula = new javax.swing.JTextField();
+        rbComplet = new javax.swing.JRadioButton();
+        rbSoltes = new javax.swing.JRadioButton();
+        rbCap = new javax.swing.JRadioButton();
+        rbMig = new javax.swing.JRadioButton();
+        rbTotal = new javax.swing.JRadioButton();
+        tfImport = new javax.swing.JTextField();
         jLabel19 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
         jLabel29 = new javax.swing.JLabel();
         jLabel30 = new javax.swing.JLabel();
         jLabel31 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        btnCrearMatricula = new javax.swing.JButton();
+        btnModificarMatricula = new javax.swing.JButton();
+        btnEliminarMatricula = new javax.swing.JButton();
+        btnNetejarMatricula = new javax.swing.JButton();
+        jScrollPane11 = new javax.swing.JScrollPane();
+        tableUFsMatricula = new javax.swing.JTable();
+        jLabel38 = new javax.swing.JLabel();
+        tfCercaIdMatricula = new javax.swing.JTextField();
+        btnCercaIdMatricula = new javax.swing.JButton();
 
         menu1.setLabel("File");
         menuBar1.add(menu1);
@@ -1400,34 +1405,24 @@ public class Vista extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Unitat Formativa", jPanel8);
 
-        jTextField1.setEditable(false);
+        tfIdMatricula.setEditable(false);
 
-        bgModalitat.add(jRadioButton1);
-        jRadioButton1.setSelected(true);
-        jRadioButton1.setText("Curs Complet");
-        jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton1ActionPerformed(evt);
-            }
-        });
+        bgModalitat.add(rbComplet);
+        rbComplet.setSelected(true);
+        rbComplet.setText("Curs Complet");
 
-        bgModalitat.add(jRadioButton2);
-        jRadioButton2.setText("UF Soltes");
-        jRadioButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton2ActionPerformed(evt);
-            }
-        });
+        bgModalitat.add(rbSoltes);
+        rbSoltes.setText("UF Soltes");
 
-        bgDescompte.add(jRadioButton3);
-        jRadioButton3.setSelected(true);
-        jRadioButton3.setText("0%");
+        bgDescompte.add(rbCap);
+        rbCap.setSelected(true);
+        rbCap.setText("0%");
 
-        bgDescompte.add(jRadioButton4);
-        jRadioButton4.setText("50%");
+        bgDescompte.add(rbMig);
+        rbMig.setText("50%");
 
-        bgDescompte.add(jRadioButton5);
-        jRadioButton5.setText("100%");
+        bgDescompte.add(rbTotal);
+        rbTotal.setText("100%");
 
         jLabel19.setText("ID");
 
@@ -1439,20 +1434,32 @@ public class Vista extends javax.swing.JFrame {
 
         jLabel31.setText("Import");
 
-        jButton1.setText("Crear");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+        btnCrearMatricula.setText("Crear");
+
+        btnModificarMatricula.setText("Modificar");
+        btnModificarMatricula.setEnabled(false);
+
+        btnEliminarMatricula.setText("Eliminar");
+        btnEliminarMatricula.setEnabled(false);
+
+        btnNetejarMatricula.setText("Netejar");
+
+        tableUFsMatricula.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
             }
-        });
+        ));
+        jScrollPane11.setViewportView(tableUFsMatricula);
 
-        jButton2.setText("Modificar");
-        jButton2.setEnabled(false);
+        jLabel38.setText("UF de la matricula");
 
-        jButton3.setText("Eliminar");
-        jButton3.setEnabled(false);
-
-        jButton4.setText("Netejar");
+        btnCercaIdMatricula.setText("Cerca per ID");
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
@@ -1467,64 +1474,93 @@ public class Vista extends javax.swing.JFrame {
                     .addComponent(jLabel30)
                     .addComponent(jLabel31))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel9Layout.createSequentialGroup()
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel9Layout.createSequentialGroup()
                         .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jRadioButton1)
+                            .addComponent(rbComplet)
                             .addGroup(jPanel9Layout.createSequentialGroup()
-                                .addComponent(jRadioButton3)
+                                .addComponent(rbCap)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jRadioButton4)))
+                                .addComponent(rbMig)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jRadioButton2)
-                            .addComponent(jRadioButton5))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(rbSoltes)
+                            .addComponent(rbTotal))
+                        .addGap(16, 16, 16)
+                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(btnCercaIdMatricula, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnNetejarMatricula, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnEliminarMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jPanel9Layout.createSequentialGroup()
+                                .addComponent(jLabel38)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(jScrollPane11, javax.swing.GroupLayout.DEFAULT_SIZE, 622, Short.MAX_VALUE)))
                     .addGroup(jPanel9Layout.createSequentialGroup()
-                        .addComponent(jtMatriculaAluID, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton2)))
-                .addContainerGap(667, Short.MAX_VALUE))
+                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(tfCercaIdMatricula, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(tfImport, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE))
+                            .addGroup(jPanel9Layout.createSequentialGroup()
+                                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(tfIdMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(tfIdAlumneMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel9Layout.createSequentialGroup()
+                                        .addGap(29, 29, 29)
+                                        .addComponent(btnModificarMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
+                                        .addGap(28, 28, 28)
+                                        .addComponent(btnCrearMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         jPanel9Layout.setVerticalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel9Layout.createSequentialGroup()
-                .addGap(40, 40, 40)
-                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel19)
-                    .addComponent(jButton1))
+                .addGap(20, 20, 20)
+                .addComponent(jLabel38)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel9Layout.createSequentialGroup()
+                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(tfIdMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel19)
+                            .addComponent(btnCrearMatricula))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(tfIdAlumneMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel20)
+                            .addComponent(btnModificarMatricula))
+                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel9Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(rbComplet)
+                                    .addComponent(jLabel29)
+                                    .addComponent(rbSoltes, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(rbCap)
+                                    .addComponent(rbMig)
+                                    .addComponent(rbTotal)
+                                    .addComponent(jLabel30))
+                                .addGap(16, 16, 16)
+                                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(tfImport, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel31)))
+                            .addGroup(jPanel9Layout.createSequentialGroup()
+                                .addGap(9, 9, 9)
+                                .addComponent(btnEliminarMatricula)
+                                .addGap(8, 8, 8)
+                                .addComponent(btnNetejarMatricula))))
+                    .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jtMatriculaAluID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel20)
-                    .addComponent(jButton2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jRadioButton1)
-                    .addComponent(jRadioButton2)
-                    .addComponent(jLabel29)
-                    .addComponent(jButton3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jRadioButton3)
-                    .addComponent(jRadioButton4)
-                    .addComponent(jRadioButton5)
-                    .addComponent(jLabel30)
-                    .addComponent(jButton4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel31))
-                .addContainerGap(526, Short.MAX_VALUE))
+                    .addComponent(tfCercaIdMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCercaIdMatricula))
+                .addContainerGap(497, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Matrícula", jPanel9);
@@ -1823,8 +1859,8 @@ public class Vista extends javax.swing.JFrame {
         String col[] = {"ID", "NOM", "HORES"};
         DefaultTableModel taulaUFModul = new DefaultTableModel(col, 0);
         taulaModulUF.setModel(taulaUFModul);
-        for (UnitatFormativa uf : listaUF) {
-            taulaUFModul.addRow(new Object[]{uf.getId(), uf.getNom(), uf.getHores()});
+        for (UnitatFormativa uf1 : listaUF) {
+            taulaUFModul.addRow(new Object[]{uf1.getId(), uf1.getNom(), uf1.getHores()});
         }
         gc.desconectar();
         btnModificarModul.setEnabled(true);
@@ -1974,6 +2010,7 @@ public class Vista extends javax.swing.JFrame {
     private javax.swing.JButton btnCercaCicle;
     private javax.swing.JButton btnCercaCurs;
     private javax.swing.JButton btnCercaIDUF;
+    private javax.swing.JButton btnCercaIdMatricula;
     private javax.swing.JButton btnCercaModul;
     private javax.swing.JButton btnCercaTotesUF;
     private javax.swing.JButton btnCercaTotsAl;
@@ -1989,12 +2026,14 @@ public class Vista extends javax.swing.JFrame {
     private javax.swing.JButton btnCrearCicle;
     private javax.swing.JButton btnCrearCurs;
     private javax.swing.JButton btnCrearFamilia;
+    private javax.swing.JButton btnCrearMatricula;
     private javax.swing.JButton btnCrearModul;
     private javax.swing.JButton btnEliUF;
     private javax.swing.JButton btnEliminarAl;
     private javax.swing.JButton btnEliminarCicle;
     private javax.swing.JButton btnEliminarCurs;
     private javax.swing.JButton btnEliminarFamilia;
+    private javax.swing.JButton btnEliminarMatricula;
     private javax.swing.JButton btnEliminarModul;
     private javax.swing.JButton btnLimpiCurs;
     private javax.swing.JButton btnModiAl;
@@ -2002,16 +2041,14 @@ public class Vista extends javax.swing.JFrame {
     private javax.swing.JButton btnModiCurs;
     private javax.swing.JButton btnModiUF;
     private javax.swing.JButton btnModificarFamilia;
+    private javax.swing.JButton btnModificarMatricula;
     private javax.swing.JButton btnModificarModul;
     private javax.swing.JButton btnNetejaModul;
     private javax.swing.JButton btnNetejaUF;
+    private javax.swing.JButton btnNetejarMatricula;
     private javax.swing.JButton btnTotsFC;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup grupNomCurs;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -2043,6 +2080,7 @@ public class Vista extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel35;
     private javax.swing.JLabel jLabel36;
     private javax.swing.JLabel jLabel37;
+    private javax.swing.JLabel jLabel38;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -2056,13 +2094,9 @@ public class Vista extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JRadioButton jRadioButton3;
-    private javax.swing.JRadioButton jRadioButton4;
-    private javax.swing.JRadioButton jRadioButton5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane10;
+    private javax.swing.JScrollPane jScrollPane11;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
@@ -2072,9 +2106,6 @@ public class Vista extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jtMatriculaAluID;
     private java.awt.Menu menu1;
     private java.awt.Menu menu2;
     private java.awt.Menu menu3;
@@ -2087,10 +2118,15 @@ public class Vista extends javax.swing.JFrame {
     private java.awt.MenuBar menuBar2;
     private java.awt.MenuBar menuBar3;
     private java.awt.MenuBar menuBar4;
+    private javax.swing.JRadioButton rbCap;
     private javax.swing.JRadioButton rbCogAl;
+    private javax.swing.JRadioButton rbComplet;
     private javax.swing.JRadioButton rbIdAl;
+    private javax.swing.JRadioButton rbMig;
     private javax.swing.JRadioButton rbPrimer;
     private javax.swing.JRadioButton rbSegon;
+    private javax.swing.JRadioButton rbSoltes;
+    private javax.swing.JRadioButton rbTotal;
     private javax.swing.JTable tablaCicles;
     private javax.swing.JTable tablaTodasFamilias;
     private javax.swing.JTable tablaTotesUF;
@@ -2101,6 +2137,7 @@ public class Vista extends javax.swing.JFrame {
     private javax.swing.JScrollPane tableTotesUF;
     private javax.swing.JTable tableTotsModuls;
     private javax.swing.JScrollPane tableUFModul;
+    private javax.swing.JTable tableUFsMatricula;
     private javax.swing.JTable taulaModulCurs;
     private javax.swing.JTable taulaModulUF;
     private javax.swing.JTable taulaTotsCursos;
@@ -2110,10 +2147,12 @@ public class Vista extends javax.swing.JFrame {
     private javax.swing.JTextField tfCercaCurs;
     private javax.swing.JTextField tfCercaIDFC;
     private javax.swing.JTextField tfCercaIDUF;
+    private javax.swing.JTextField tfCercaIdMatricula;
     private javax.swing.JTextField tfCognomAl;
     private javax.swing.JTextField tfCorreuAl;
     private javax.swing.JTextField tfGrauCicle;
     private javax.swing.JTextField tfHoresUF;
+    private javax.swing.JTextField tfIdAlumneMatricula;
     private javax.swing.JTextField tfIdCicle;
     private javax.swing.JTextField tfIdCicleCurs;
     private javax.swing.JTextField tfIdCurs;
@@ -2121,11 +2160,13 @@ public class Vista extends javax.swing.JFrame {
     private javax.swing.JTextField tfIdCursUF;
     private javax.swing.JTextField tfIdFamiCicle;
     private javax.swing.JTextField tfIdFamilia;
+    private javax.swing.JTextField tfIdMatricula;
     private javax.swing.JTextField tfIdModul;
     private javax.swing.JTextField tfIdModulCerca;
     private javax.swing.JTextField tfIdModulCicle;
     private javax.swing.JTextField tfIdModulUF;
     private javax.swing.JTextField tfIdUF;
+    private javax.swing.JTextField tfImport;
     private javax.swing.JTextField tfNif;
     private javax.swing.JTextField tfNomAl;
     private javax.swing.JTextField tfNomCicle;
