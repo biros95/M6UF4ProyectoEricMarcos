@@ -40,7 +40,7 @@ public class Curs implements Serializable{
     private Long id;
     
     @Column(name = "nombreDeCurs", length = 5)
-    private String nombreDeCurs;
+    private NombreDeCurs nombreDeCurs;
     
     @OneToMany(mappedBy = "curs")
     private List<UnitatFormativa> listaUF;
@@ -55,16 +55,16 @@ public class Curs implements Serializable{
     public Curs() {
     }
 
-    public Curs(Long id, String nombreDeCurs, Cicle cicle) {
-        this.id = id;
+    public Curs(NombreDeCurs nombreDeCurs, Cicle cicle) {
         this.nombreDeCurs = nombreDeCurs;
         this.cicle = cicle;
     }
 
-    public Curs(String nombreDeCurs, Cicle cicle) {
+    public Curs(Long id, NombreDeCurs nombreDeCurs, Cicle cicle) {
+        this.id = id;
         this.nombreDeCurs = nombreDeCurs;
         this.cicle = cicle;
-    }   
+    }
 
     public Long getId() {
         return id;
@@ -74,11 +74,11 @@ public class Curs implements Serializable{
         this.id = id;
     }
 
-    public String getNombreDeCurs() {
+    public NombreDeCurs getNombreDeCurs() {
         return nombreDeCurs;
     }
 
-    public void setNombreDeCurs(String nombreDeCurs) {
+    public void setNombreDeCurs(NombreDeCurs nombreDeCurs) {
         this.nombreDeCurs = nombreDeCurs;
     }
 
@@ -109,7 +109,7 @@ public class Curs implements Serializable{
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 47 * hash + Objects.hashCode(this.id);
+        hash = 37 * hash + Objects.hashCode(this.id);
         return hash;
     }
 
@@ -130,6 +130,7 @@ public class Curs implements Serializable{
         }
         return true;
     }
-
     
+    
+
 }

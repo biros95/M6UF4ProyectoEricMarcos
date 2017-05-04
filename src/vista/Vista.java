@@ -1612,9 +1612,8 @@ public class Vista extends javax.swing.JFrame {
     private void btnCrearCursActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearCursActionPerformed
         gc.conectar();
         ci = (Cicle) gc.Buscar(Long.parseLong(tfIdCicleCurs.getText()), Cicle.class);
-        System.out.println(ci.getId());
         if (rbPrimer.isSelected()) {
-            // cr = ndc.PRIMER;
+            cr = new Curs(NombreDeCurs.PRIMER, ci);
         } else {
             // cr = 
         }
