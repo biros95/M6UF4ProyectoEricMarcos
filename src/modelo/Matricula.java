@@ -29,8 +29,7 @@ import utilitats.Modalitat;
  * @author Eric
  */
 @Entity
-@NamedQueries({
-@NamedQuery(name = "afegirUF", query = "SELECT c FROM Client c WHERE c.nom=:nom")})
+
 @Table(name = "Matricula")
 public class Matricula implements Serializable{
 
