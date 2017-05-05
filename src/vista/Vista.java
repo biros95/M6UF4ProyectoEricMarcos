@@ -2016,29 +2016,29 @@ public class Vista extends javax.swing.JFrame {
     }//GEN-LAST:event_jRadioButton1ActionPerformed
 
     private void btnCrearMatriculaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearMatriculaActionPerformed
-        //        gc.conectar();
-        //        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-        //        Date date = new Date();
-        //        al = (Alumne) gc.Buscar(tfIdAlumneMatricula.getText(), Alumne.class);
-        //        List<String> llistaUF;
-        //        if (rbComplet.isSelected()) {
-            //            Descompte desc = estadoRadioButon();
-            //            matricula = new Matricula(al, date, Modalitat.COMPLET, desc, new Import(Double.parseDouble(tfImport.getText())));
-            //        } else {
-            //            Descompte desc = estadoRadioButon();
-            //            matricula = new Matricula(al, date, Modalitat.UFS, desc, new Import(Double.parseDouble(tfImport.getText())));
-            //        }
-        ////        llistaUF = listaUFs.getSelectedValuesList();
-        ////        String[] partes;
-        ////        List<UnitatFormativa> ufs = null;
-        ////        for (String string : llistaUF) {
-            ////            partes = string.split(",");
-            ////            uf = (UnitatFormativa) gc.Buscar(Integer.parseInt(partes[0]), UnitatFormativa.class);
-            ////            ufs.add(uf);
-            ////        }
-        ////        matricula.setListaUF(ufs);
-        //        gc.Insertar(matricula);
-        //        gc.desconectar();
+                gc.conectar();
+                DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+                Date date = new Date();
+                al = (Alumne) gc.Buscar(tfIdAlumneMatricula.getText(), Alumne.class);
+                List<String> llistaUF;
+                if (rbComplet.isSelected()) {
+                        Descompte desc = estadoRadioButon();
+                        matricula = new Matricula(al, date, Modalitat.COMPLET, desc, new Import(Double.parseDouble(tfImport.getText())));
+                    } else {
+                        Descompte desc = estadoRadioButon();
+                        matricula = new Matricula(al, date, Modalitat.UFS, desc, new Import(Double.parseDouble(tfImport.getText())));
+                    }
+                llistaUF = listaUFs.getSelectedValuesList();
+                String[] partes;
+                List<UnitatFormativa> ufs = null;
+                for (String string : llistaUF) {
+                        partes = string.split(",");
+                        uf = (UnitatFormativa) gc.Buscar(Integer.parseInt(partes[0]), UnitatFormativa.class);
+                        ufs.add(uf);
+                    }
+                matricula.setListaUF(ufs);
+                gc.Insertar(matricula);
+                gc.desconectar();
     }//GEN-LAST:event_btnCrearMatriculaActionPerformed
 
     private Descompte estadoRadioButon() {
@@ -2048,7 +2048,9 @@ public class Vista extends javax.swing.JFrame {
             return Descompte.PARCIAL;
         }
         return Descompte.TOTAL;
+
     }
+
 
     /**
      * @param args the command line arguments
