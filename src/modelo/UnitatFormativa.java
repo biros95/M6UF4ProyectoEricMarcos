@@ -8,8 +8,10 @@ package modelo;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -39,14 +41,14 @@ public class UnitatFormativa implements Serializable {
     @Column(name = "hores", nullable = false)
     private int hores;
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL, fetch=FetchType.EAGER)
     private List<Matricula> listaMatriculas;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "idCurs")
     private Curs curs;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "idModul")
     private Modul modul;
 
@@ -140,6 +142,13 @@ public class UnitatFormativa implements Serializable {
         }
         return true;
     }
+
+    @Override
+    public String toString() {
+        return "UnitatFormativa{" + "id=" + id + ", nom=" + nom + ", hores=" + hores + ", curs=" + curs + ", modul=" + modul + '}';
+    }
+    
+    
 
     
 }

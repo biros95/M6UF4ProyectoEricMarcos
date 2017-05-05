@@ -9,6 +9,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -37,7 +38,7 @@ public class FamiliaCicles implements Serializable{
     @Column(name = "nom", nullable = false, length = 20)
     private String nom;
     
-    @OneToMany(mappedBy = "familia")
+    @OneToMany(mappedBy = "familia", cascade = CascadeType.ALL)
     private List<Cicle> llistaCicles;
 
     public FamiliaCicles() {

@@ -8,6 +8,7 @@ package modelo;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -45,11 +46,11 @@ public class Curs implements Serializable{
     @OneToMany(mappedBy = "curs")
     private List<UnitatFormativa> listaUF;
     
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "idCicle")
     private Cicle cicle;
     
-    @OneToMany (mappedBy = "curs")
+    @OneToMany (mappedBy = "curs", cascade = CascadeType.ALL)
     private List<Modul> llistaModuls;
 
     public Curs() {

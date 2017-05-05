@@ -9,16 +9,16 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import utilitats.Descompte;
@@ -55,7 +55,7 @@ public class Matricula implements Serializable{
     @Embedded
     private Import importe;
     
-    @ManyToMany(mappedBy = "listaMatriculas")
+    @ManyToMany(mappedBy = "listaMatriculas", cascade = CascadeType.ALL, fetch=FetchType.EAGER)
     private List<UnitatFormativa> listaUF;
 
     public Matricula() {

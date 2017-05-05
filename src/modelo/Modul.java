@@ -9,6 +9,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -41,14 +42,14 @@ public class Modul implements Serializable {
     @Column(name = "modulNom", length = 50, nullable = false)
     private String nom;
 
-    @OneToMany(mappedBy = "modul")
+    @OneToMany(mappedBy = "modul", cascade = CascadeType.ALL)
     private List<UnitatFormativa> llistaUF;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "idCurs")
     private Curs curs;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "idCicle")
     private Cicle cicle;
 
