@@ -26,8 +26,6 @@ import javax.persistence.Table;
  * @author Eric
  */
 @Entity
-@NamedQueries({
-@NamedQuery(name = "cercaUFModul", query = "SELECT c FROM UnitatFormativa c WHERE c.modul.id=:id")})
 @Table(name = "Modul")
 public class Modul implements Serializable {
 
