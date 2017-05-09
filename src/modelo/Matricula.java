@@ -32,7 +32,8 @@ import utilitats.Modalitat;
  */
 @Entity
 @NamedQueries({
-@NamedQuery(name="nifMatricula", query="SELECT p FROM Matricula p WHERE p.alumneId.nif=:nif")})
+@NamedQuery(name="nifMatricula", query="SELECT p FROM Matricula p WHERE p.alumneId.nif=:nif"),
+@NamedQuery(name="alumneUFMatricula", query="SELECT p.alumneId FROM Matricula p WHERE p.listaUF IN (id)")})
 @Table(name = "Matricula")
 public class Matricula implements Serializable{
 

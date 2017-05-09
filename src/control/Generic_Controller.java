@@ -12,17 +12,14 @@ import javax.persistence.Query;
 public class Generic_Controller<T> {
 
     EntityManager em;
-    
+    //EM_Controller oem = new EM_Controller();
+
     public Generic_Controller(EntityManager entityManger) {
         this.em = entityManger;
     }
-    
-    
-    
+
     public void Insertar(T p) {
         // Recupera el entity manager
-        EM_Controller oem = new EM_Controller();
-        
 
         // El persistim a la base de dades
         //em.getTransaction().begin();
@@ -43,14 +40,14 @@ public class Generic_Controller<T> {
     }
 
     /**
-     * Metode que li arriba per parametre un T per modificar-lo i
-     * actualitzar-lo a la BBDD.
+     * Metode que li arriba per parametre un T per modificar-lo i actualitzar-lo
+     * a la BBDD.
      *
      * @param p
      */
     public void Modificar(T p) {
         // Recupera el entity manager
-        EM_Controller oem = new EM_Controller();
+        //EM_Controller oem = new EM_Controller();
 
         // El persistim a la base de dades
         //em.getTransaction().begin();
@@ -77,7 +74,7 @@ public class Generic_Controller<T> {
      */
     public void Eliminar(T p) {
         // Recupera el entity manager
-        EM_Controller oem = new EM_Controller();
+        //EM_Controller oem = new EM_Controller();
 
         // El persistim a la base de dades
         //em.getTransaction().begin();
@@ -113,11 +110,10 @@ public class Generic_Controller<T> {
 
         System.out.println("close");
 
-
         return c;
     }
-    
-        public List<T> ConsultaTots(String t) {
+
+    public List<T> ConsultaTots(String t) {
         // Recupera el entity manager        
         System.out.println("Consulta");
         Query q = em.createQuery("FROM " + t);
@@ -126,13 +122,13 @@ public class Generic_Controller<T> {
 
         return lista;
     }
-        
-        public void desconectar(){
-            em.close();
-        }
-        
-        public void conectar(){
-            em = new EM_Controller().getEntityManager();
-        }
-    
+
+    public void desconectar() {
+        em.close();
+    }
+
+    public void conectar() {
+        em = new EM_Controller().getEntityManager();
+    }
+
 }
