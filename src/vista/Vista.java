@@ -12,6 +12,7 @@ import control.EM_Controller;
 import control.Familia_Controller;
 import control.Generic_Controller;
 import control.Modul_Controller;
+import exception.ExcepcionAlumne;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -429,6 +430,11 @@ public class Vista extends javax.swing.JFrame {
 
         buttonGroup1.add(rbCogAl);
         rbCogAl.setText("Cognom");
+        rbCogAl.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbCogAlActionPerformed(evt);
+            }
+        });
 
         btnCercaAl.setText("Cerca");
         btnCercaAl.addActionListener(new java.awt.event.ActionListener() {
@@ -1676,17 +1682,23 @@ public class Vista extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCercaCursActionPerformed
 
     private void btnCercaAlActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCercaAlActionPerformed
+
+        try{
         gc.conectar();
         if (rbIdAl.isSelected()) {
             al = (Alumne) gc.Buscar(tfCercaAl.getText(), Alumne.class);
+            if (al == null) {
+                throw new ExcepcionAlumne("NIF");
+            }
             tfNomAl.setText(al.getNom());
             tfNif.setText(al.getNif());
             tfCognomAl.setText(al.getCognom());
             tfCorreuAl.setText(al.getCorreu());
             tfTlfAl.setText(String.valueOf(al.getTelefon()));
             btnEliminarAl.setEnabled(true);
-            btnModiAl.setEnabled(true);
+           btnModiAl.setEnabled(true);
         } else if (rbCogAl.isSelected()) {
+            
             al = (Alumne) ac.BuscarPerCognom(tfCercaAl.getText());
             tfNomAl.setText(al.getNom());
             tfNif.setText(al.getNif());
@@ -1698,6 +1710,10 @@ public class Vista extends javax.swing.JFrame {
         }
         tfNif.setEnabled(false);
         gc.desconectar();
+        }
+        catch(ExcepcionAlumne ex){
+            
+        }
     }//GEN-LAST:event_btnCercaAlActionPerformed
 
     private void btnClearAlActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearAlActionPerformed
@@ -1720,15 +1736,24 @@ public class Vista extends javax.swing.JFrame {
     }//GEN-LAST:event_btnModiAlActionPerformed
 
     private void btnCercaTotsAlActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCercaTotsAlActionPerformed
+        try{          
         gc.conectar();
         List<Alumne> listaAlumnes = gc.ConsultaTots("Alumne");
+            if (listaAlumnes.isEmpty()) {
+                throw new ExcepcionAlumne("TOTS");
+            }
         String col[] = {"NIF", "NOM", "COGNOMS", "CORREU", "TELEFON"};
         DefaultTableModel taulaAlumnes = new DefaultTableModel(col, 0);
         tablaTotsAl.setModel(taulaAlumnes);
         for (Alumne alumne : listaAlumnes) {
             taulaAlumnes.addRow(new Object[]{alumne.getNif(), alumne.getNom(), alumne.getCognom(), alumne.getCorreu(), alumne.getTelefon()});
-        }
+       
         gc.desconectar();
+        }
+        }
+        catch (ExcepcionAlumne ex){
+            
+        }
     }//GEN-LAST:event_btnCercaTotsAlActionPerformed
 
     private void btnCercarFamiliaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCercarFamiliaActionPerformed
@@ -2044,6 +2069,10 @@ public class Vista extends javax.swing.JFrame {
         gc.Insertar(matricula);
         gc.desconectar();
     }//GEN-LAST:event_btnCrearMatriculaActionPerformed
+
+    private void rbCogAlActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbCogAlActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rbCogAlActionPerformed
 
     private Descompte estadoRadioButon() {
         if (rbCap.isSelected()) {
