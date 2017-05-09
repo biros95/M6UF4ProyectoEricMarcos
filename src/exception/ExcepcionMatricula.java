@@ -7,8 +7,15 @@ package exception;
 
 /**
  *
- * @author Eric
+ * @author MarcosPortatil
  */
-public class ExceptionBeta {
+public class ExcepcionMatricula extends Exception{
+
+    public ExcepcionMatricula() {
+    }
+
+    public ExcepcionMatricula(String message) {
+        super(message);
+    }
     
 }
