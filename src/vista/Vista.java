@@ -19,7 +19,9 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import javafx.scene.control.RadioButton;
 import javax.persistence.EntityManager;
 import javax.swing.DefaultListModel;
@@ -2064,16 +2066,17 @@ public class Vista extends javax.swing.JFrame {
             Descompte desc = estadoRadioButon();
             matricula = new Matricula(al, date, Modalitat.UFS, desc, new Import(Double.parseDouble(tfImport.getText())));
         }
-//        List<String> list = listaUFs.getSelectedValuesList();
-//        String[] partes;
-//        List<UnitatFormativa> ufs = new ArrayList<UnitatFormativa>();
-//        for (String string : list) {
-//            string = string.replace("[", "");
-//            partes = string.split(",");
-//            uf = (UnitatFormativa) gc.Buscar(Long.parseLong(partes[0]), UnitatFormativa.class);
-//            ufs.add(uf);
-//        }
-//        matricula.setListaUF(ufs);
+        List<String> list = listaUFs.getSelectedValuesList();
+        String[] partes;
+        List<UnitatFormativa> ufs = new ArrayList<UnitatFormativa>();
+        for (String string : list) {
+            string = string.replace("[", "");
+            partes = string.split(",");
+            uf = (UnitatFormativa) gc.Buscar(Long.parseLong(partes[0]), UnitatFormativa.class);
+            ufs.add(uf);
+        }
+        Set<UnitatFormativa> foo = new HashSet<UnitatFormativa>(ufs);
+        matricula.setListaUF(foo);
         gc.Insertar(matricula);
         gc.desconectar();
     }//GEN-LAST:event_btnCrearMatriculaActionPerformed

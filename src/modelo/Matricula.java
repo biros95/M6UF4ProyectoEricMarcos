@@ -9,6 +9,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
@@ -59,7 +60,7 @@ public class Matricula implements Serializable{
     private Import importe;
     
     @ManyToMany(mappedBy = "listaMatriculas", cascade = CascadeType.ALL)
-    private List<UnitatFormativa> listaUF;
+    private Set<UnitatFormativa> listaUF;
 
     public Matricula() {
     }
@@ -130,13 +131,15 @@ public class Matricula implements Serializable{
         this.importe = importe;
     }
 
-    public List<UnitatFormativa> getListaUF() {
+    public Set<UnitatFormativa> getListaUF() {
         return listaUF;
     }
 
-    public void setListaUF(List<UnitatFormativa> listaUF) {
+    public void setListaUF(Set<UnitatFormativa> listaUF) {
         this.listaUF = listaUF;
     }
+
+   
 
     @Override
     public int hashCode() {

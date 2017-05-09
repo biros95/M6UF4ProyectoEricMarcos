@@ -5,17 +5,23 @@
  */
 package exception;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author MarcosPortatil
  */
 public class ExcepcionMatricula extends Exception{
-
+    String mensaje;
     public ExcepcionMatricula() {
     }
 
     public ExcepcionMatricula(String message) {
-        super(message);
+            super(message);
+      mensaje  = message.equals("NIF") ? "No s'ha trobat cap alumne amb aquest NIF": (message.equals("COG")) ?
+              "No s'ha trobat cap alumne amb aquest cognom": "No s'han trobat alumnes";
+        
+     JOptionPane.showMessageDialog(null, mensaje);
     }
     
 }
