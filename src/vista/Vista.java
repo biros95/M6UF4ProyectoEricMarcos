@@ -11,6 +11,7 @@ import control.Curs_Controller;
 import control.EM_Controller;
 import control.Familia_Controller;
 import control.Generic_Controller;
+import control.Matricula_Controller;
 import control.Modul_Controller;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -55,6 +56,7 @@ public class Vista extends javax.swing.JFrame {
     Modul_Controller mc;
     NombreDeCurs ndc;
     Matricula matricula;
+    Matricula_Controller mac;
 
     /**
      * Creates new form Vista
@@ -70,6 +72,7 @@ public class Vista extends javax.swing.JFrame {
         cic = new Cicle_Controller(em);
         cc = new Curs_Controller(em);
         mc = new Modul_Controller(em);
+        mac = new Matricula_Controller(em);
     }
 
     public void BuidarCamps() {
@@ -347,8 +350,8 @@ public class Vista extends javax.swing.JFrame {
         btnEliminarMatricula = new javax.swing.JButton();
         btnNetejarMatricula = new javax.swing.JButton();
         jLabel38 = new javax.swing.JLabel();
-        tfCercaIdMatricula = new javax.swing.JTextField();
-        btnCercaIdMatricula = new javax.swing.JButton();
+        tfCercaNifMatricula = new javax.swing.JTextField();
+        btnCercaNifMatricula = new javax.swing.JButton();
         btnRefrescaUF = new javax.swing.JButton();
         jScrollPane12 = new javax.swing.JScrollPane();
         listaUFs = new javax.swing.JList<>();
@@ -1490,7 +1493,12 @@ public class Vista extends javax.swing.JFrame {
 
         jLabel38.setText("UF de la matricula");
 
-        btnCercaIdMatricula.setText("Cerca per ID");
+        btnCercaNifMatricula.setText("Cerca per NIF");
+        btnCercaNifMatricula.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCercaNifMatriculaActionPerformed(evt);
+            }
+        });
 
         btnRefrescaUF.setText("Refresca UF's");
         btnRefrescaUF.addActionListener(new java.awt.event.ActionListener() {
@@ -1529,11 +1537,11 @@ public class Vista extends javax.swing.JFrame {
                             .addComponent(rbTotal))
                         .addGap(16, 16, 16)
                         .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(btnCercaIdMatricula, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnCercaNifMatricula, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnNetejarMatricula, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnEliminarMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(tfCercaIdMatricula, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(tfCercaNifMatricula, javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(tfImport, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE))
                     .addGroup(jPanel9Layout.createSequentialGroup()
                         .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1551,7 +1559,7 @@ public class Vista extends javax.swing.JFrame {
                     .addComponent(btnRefrescaUF)
                     .addComponent(jLabel38)
                     .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(332, Short.MAX_VALUE))
+                .addContainerGap(326, Short.MAX_VALUE))
         );
         jPanel9Layout.setVerticalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1595,8 +1603,8 @@ public class Vista extends javax.swing.JFrame {
                                 .addComponent(btnNetejarMatricula)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(tfCercaIdMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnCercaIdMatricula)))
+                            .addComponent(tfCercaNifMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnCercaNifMatricula)))
                     .addGroup(jPanel9Layout.createSequentialGroup()
                         .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -2023,7 +2031,7 @@ public class Vista extends javax.swing.JFrame {
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         Date date = new Date();
         al = (Alumne) gc.Buscar(tfIdAlumneMatricula.getText(), Alumne.class);
-        List<String> llistaUF;
+//        List<String> llistaUF = null;
         if (rbComplet.isSelected()) {
             Descompte desc = estadoRadioButon();
             matricula = new Matricula(al, date, Modalitat.COMPLET, desc, new Import(Double.parseDouble(tfImport.getText())));
@@ -2031,19 +2039,40 @@ public class Vista extends javax.swing.JFrame {
             Descompte desc = estadoRadioButon();
             matricula = new Matricula(al, date, Modalitat.UFS, desc, new Import(Double.parseDouble(tfImport.getText())));
         }
-        List<String> list = listaUFs.getSelectedValuesList();
-        String[] partes;
-        List<UnitatFormativa> ufs = new ArrayList<UnitatFormativa>();
-        for (String string : list) {
-            string = string.replace("[", "");
-            partes = string.split(",");
-            uf = (UnitatFormativa) gc.Buscar(Long.parseLong(partes[0]), UnitatFormativa.class);
-            ufs.add(uf);
-        }
-        matricula.setListaUF(ufs);
+//        List<String> list = listaUFs.getSelectedValuesList();
+//        String[] partes;
+//        List<UnitatFormativa> ufs = new ArrayList<UnitatFormativa>();
+//        for (String string : list) {
+//            string = string.replace("[", "");
+//            partes = string.split(",");
+//            uf = (UnitatFormativa) gc.Buscar(Long.parseLong(partes[0]), UnitatFormativa.class);
+//            ufs.add(uf);
+//        }
+//        matricula.setListaUF(ufs);
         gc.Insertar(matricula);
         gc.desconectar();
     }//GEN-LAST:event_btnCrearMatriculaActionPerformed
+
+    private void btnCercaNifMatriculaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCercaNifMatriculaActionPerformed
+        gc.conectar();
+        matricula = mac.BuscarPerNif(tfCercaNifMatricula.getText());
+        tfIdMatricula.setText(String.valueOf(matricula.getId()));
+        tfIdAlumneMatricula.setText(matricula.getAlumneId().getNif());
+        if(matricula.getModalitat() == Modalitat.COMPLET){
+            rbComplet.setSelected(true);            
+        } else {
+            rbSoltes.setSelected(true);
+        }
+        if(matricula.getDescompte() == Descompte.CAP){
+            rbCap.setSelected(true);
+        } else if(matricula.getDescompte() == Descompte.PARCIAL){
+            rbMig.setSelected(true);
+        } else {
+            rbTotal.setSelected(true);
+        }
+        tfImport.setText(String.valueOf(matricula.getImporte().getImporte()));
+        gc.desconectar();
+    }//GEN-LAST:event_btnCercaNifMatriculaActionPerformed
 
     private Descompte estadoRadioButon() {
         if (rbCap.isSelected()) {
@@ -2097,8 +2126,8 @@ public class Vista extends javax.swing.JFrame {
     private javax.swing.JButton btnCercaCicle;
     private javax.swing.JButton btnCercaCurs;
     private javax.swing.JButton btnCercaIDUF;
-    private javax.swing.JButton btnCercaIdMatricula;
     private javax.swing.JButton btnCercaModul;
+    private javax.swing.JButton btnCercaNifMatricula;
     private javax.swing.JButton btnCercaTotesUF;
     private javax.swing.JButton btnCercaTotsAl;
     private javax.swing.JButton btnCercaTotsCicles;
@@ -2235,7 +2264,7 @@ public class Vista extends javax.swing.JFrame {
     private javax.swing.JTextField tfCercaCurs;
     private javax.swing.JTextField tfCercaIDFC;
     private javax.swing.JTextField tfCercaIDUF;
-    private javax.swing.JTextField tfCercaIdMatricula;
+    private javax.swing.JTextField tfCercaNifMatricula;
     private javax.swing.JTextField tfCognomAl;
     private javax.swing.JTextField tfCorreuAl;
     private javax.swing.JTextField tfGrauCicle;

@@ -19,6 +19,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import utilitats.Descompte;
@@ -29,14 +31,15 @@ import utilitats.Modalitat;
  * @author Eric
  */
 @Entity
-
+@NamedQueries({
+@NamedQuery(name="nifMatricula", query="SELECT p FROM Matricula p WHERE p.alumneId.nif=:nif")})
 @Table(name = "Matricula")
 public class Matricula implements Serializable{
 
     private static final long serialVersionUID = 1L;
     
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "matriculaId", unique = true, nullable = false)
     private Long id;
     
@@ -46,16 +49,16 @@ public class Matricula implements Serializable{
 
     private Date data;
 
-    @Column(name = "modalitat", nullable = false)
+    @Column(name = "modalitat")
     private Modalitat modalitat;
 
-    @Column(name = "descompte", nullable = false)
+    @Column(name = "descompte")
     private Descompte descompte;
     
     @Embedded
     private Import importe;
     
-    @ManyToMany(mappedBy = "listaMatriculas", cascade = CascadeType.ALL, fetch=FetchType.EAGER)
+    @ManyToMany(mappedBy = "listaMatriculas", cascade = CascadeType.ALL)
     private List<UnitatFormativa> listaUF;
 
     public Matricula() {

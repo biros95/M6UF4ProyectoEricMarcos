@@ -1704,13 +1704,13 @@
                               </Group>
                               <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                  <Component id="btnCercaIdMatricula" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="btnCercaNifMatricula" alignment="0" max="32767" attributes="0"/>
                                   <Component id="btnNetejarMatricula" alignment="0" max="32767" attributes="0"/>
                                   <Component id="btnEliminarMatricula" alignment="1" min="-2" pref="91" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                              <Component id="tfCercaIdMatricula" alignment="0" max="32767" attributes="0"/>
+                              <Component id="tfCercaNifMatricula" alignment="0" max="32767" attributes="0"/>
                               <Component id="tfImport" alignment="0" pref="150" max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
@@ -1736,7 +1736,7 @@
                           <Component id="jLabel38" min="-2" max="-2" attributes="0"/>
                           <Component id="jScrollPane12" min="-2" pref="300" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="332" max="32767" attributes="0"/>
+                      <EmptySpace pref="326" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -1791,8 +1791,8 @@
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="tfCercaIdMatricula" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="btnCercaIdMatricula" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="tfCercaNifMatricula" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="btnCercaNifMatricula" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
@@ -1919,12 +1919,15 @@
                 <Property name="text" type="java.lang.String" value="UF de la matricula"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="tfCercaIdMatricula">
+            <Component class="javax.swing.JTextField" name="tfCercaNifMatricula">
             </Component>
-            <Component class="javax.swing.JButton" name="btnCercaIdMatricula">
+            <Component class="javax.swing.JButton" name="btnCercaNifMatricula">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Cerca per ID"/>
+                <Property name="text" type="java.lang.String" value="Cerca per NIF"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCercaNifMatriculaActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btnRefrescaUF">
               <Properties>
