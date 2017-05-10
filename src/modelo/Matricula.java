@@ -33,7 +33,8 @@ import utilitats.Modalitat;
  */
 @Entity
 @NamedQueries({
-@NamedQuery(name="nifMatricula", query="SELECT p FROM Matricula p WHERE p.alumneId.nif=:nif")})
+@NamedQuery(name="nifMatricula", query="SELECT p FROM Matricula p WHERE p.alumneId.nif=:nif"),
+@NamedQuery(name="alumneUFMatricula", query="SELECT p.alumneId FROM Matricula p WHERE p.listaUF IN (id)")})
 @Table(name = "Matricula")
 public class Matricula implements Serializable{
 
@@ -60,7 +61,7 @@ public class Matricula implements Serializable{
     private Import importe;
     
     @ManyToMany(mappedBy = "listaMatriculas", cascade = CascadeType.ALL)
-    private Set<UnitatFormativa> listaUF;
+    private List<UnitatFormativa> listaUF;
 
     public Matricula() {
     }
@@ -131,13 +132,15 @@ public class Matricula implements Serializable{
         this.importe = importe;
     }
 
-    public Set<UnitatFormativa> getListaUF() {
+    public List<UnitatFormativa> getListaUF() {
         return listaUF;
     }
 
-    public void setListaUF(Set<UnitatFormativa> listaUF) {
+    public void setListaUF(List<UnitatFormativa> listaUF) {
         this.listaUF = listaUF;
     }
+
+
 
    
 

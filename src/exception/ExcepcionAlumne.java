@@ -13,6 +13,10 @@ import javax.swing.JOptionPane;
  */
 public class ExcepcionAlumne extends Exception {
  String mensaje;
+ /**
+  * Creado
+  * @param message 
+  */
     public ExcepcionAlumne(String message) {
         super(message);
       mensaje  = message.equals("NIF") ? "No s'ha trobat cap alumne amb aquest NIF": (message.equals("COG")) ?

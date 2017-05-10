@@ -358,6 +358,10 @@ public class Vista extends javax.swing.JFrame {
         btnRefrescaUF = new javax.swing.JButton();
         jScrollPane12 = new javax.swing.JScrollPane();
         listaUFs = new javax.swing.JList<>();
+        jScrollPane11 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        jButton1 = new javax.swing.JButton();
+        tfUFNOM = new javax.swing.JTextField();
 
         menu1.setLabel("File");
         menuBar1.add(menu1);
@@ -1518,55 +1522,84 @@ public class Vista extends javax.swing.JFrame {
         listaUFs.setToolTipText("");
         jScrollPane12.setViewportView(listaUFs);
 
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane11.setViewportView(jTable1);
+
+        jButton1.setText("jButton1");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
         jPanel9Layout.setHorizontalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel9Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel19)
-                    .addComponent(jLabel20)
-                    .addComponent(jLabel29)
-                    .addComponent(jLabel30)
-                    .addComponent(jLabel31))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel9Layout.createSequentialGroup()
-                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(rbComplet)
-                            .addGroup(jPanel9Layout.createSequentialGroup()
-                                .addComponent(rbCap)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(rbMig)))
+                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel19)
+                            .addComponent(jLabel20)
+                            .addComponent(jLabel29)
+                            .addComponent(jLabel30)
+                            .addComponent(jLabel31))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(rbSoltes)
-                            .addComponent(rbTotal))
-                        .addGap(16, 16, 16)
-                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(btnCercaNifMatricula, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnNetejarMatricula, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnEliminarMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(tfCercaNifMatricula, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(tfImport, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE))
-                    .addGroup(jPanel9Layout.createSequentialGroup()
-                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(tfIdMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(tfIdAlumneMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel9Layout.createSequentialGroup()
-                                .addGap(29, 29, 29)
-                                .addComponent(btnModificarMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
-                                .addGap(28, 28, 28)
-                                .addComponent(btnCrearMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnRefrescaUF)
-                    .addComponent(jLabel38)
-                    .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(rbComplet)
+                                    .addGroup(jPanel9Layout.createSequentialGroup()
+                                        .addComponent(rbCap)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(rbMig)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(rbSoltes)
+                                    .addComponent(rbTotal))
+                                .addGap(16, 16, 16)
+                                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(btnCercaNifMatricula, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(btnNetejarMatricula, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(btnEliminarMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(tfCercaNifMatricula, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(tfImport, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE))
+                            .addGroup(jPanel9Layout.createSequentialGroup()
+                                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(tfIdMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(tfIdAlumneMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel9Layout.createSequentialGroup()
+                                        .addGap(29, 29, 29)
+                                        .addComponent(btnModificarMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
+                                        .addGap(28, 28, 28)
+                                        .addComponent(btnCrearMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnRefrescaUF)
+                            .addComponent(jLabel38)
+                            .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel9Layout.createSequentialGroup()
+                        .addGap(21, 21, 21)
+                        .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(tfUFNOM, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton1)))
                 .addContainerGap(326, Short.MAX_VALUE))
         );
         jPanel9Layout.setVerticalGroup(
@@ -1617,7 +1650,13 @@ public class Vista extends javax.swing.JFrame {
                         .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnRefrescaUF)))
-                .addContainerGap(497, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jButton1)
+                        .addComponent(tfUFNOM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(165, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Matrícula", jPanel9);
@@ -1693,36 +1732,35 @@ public class Vista extends javax.swing.JFrame {
 
     private void btnCercaAlActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCercaAlActionPerformed
 
-        try{
-        gc.conectar();
-        if (rbIdAl.isSelected()) {
-            al = (Alumne) gc.Buscar(tfCercaAl.getText(), Alumne.class);
-            if (al == null) {
-                throw new ExcepcionAlumne("NIF");
+        try {
+            gc.conectar();
+            if (rbIdAl.isSelected()) {
+                al = (Alumne) gc.Buscar(tfCercaAl.getText(), Alumne.class);
+                if (al == null) {
+                    throw new ExcepcionAlumne("NIF");
+                }
+                tfNomAl.setText(al.getNom());
+                tfNif.setText(al.getNif());
+                tfCognomAl.setText(al.getCognom());
+                tfCorreuAl.setText(al.getCorreu());
+                tfTlfAl.setText(String.valueOf(al.getTelefon()));
+                btnEliminarAl.setEnabled(true);
+                btnModiAl.setEnabled(true);
+            } else if (rbCogAl.isSelected()) {
+
+                al = (Alumne) ac.BuscarPerCognom(tfCercaAl.getText());
+                tfNomAl.setText(al.getNom());
+                tfNif.setText(al.getNif());
+                tfCognomAl.setText(al.getCognom());
+                tfCorreuAl.setText(al.getCorreu());
+                tfTlfAl.setText(String.valueOf(al.getTelefon()));
+                btnEliminarAl.setEnabled(true);
+                btnModiAl.setEnabled(true);
             }
-            tfNomAl.setText(al.getNom());
-            tfNif.setText(al.getNif());
-            tfCognomAl.setText(al.getCognom());
-            tfCorreuAl.setText(al.getCorreu());
-            tfTlfAl.setText(String.valueOf(al.getTelefon()));
-            btnEliminarAl.setEnabled(true);
-           btnModiAl.setEnabled(true);
-        } else if (rbCogAl.isSelected()) {
-            
-            al = (Alumne) ac.BuscarPerCognom(tfCercaAl.getText());
-            tfNomAl.setText(al.getNom());
-            tfNif.setText(al.getNif());
-            tfCognomAl.setText(al.getCognom());
-            tfCorreuAl.setText(al.getCorreu());
-            tfTlfAl.setText(String.valueOf(al.getTelefon()));
-            btnEliminarAl.setEnabled(true);
-            btnModiAl.setEnabled(true);
-        }
-        tfNif.setEnabled(false);
-        gc.desconectar();
-        }
-        catch(ExcepcionAlumne ex){
-            
+            tfNif.setEnabled(false);
+            gc.desconectar();
+        } catch (ExcepcionAlumne ex) {
+
         }
     }//GEN-LAST:event_btnCercaAlActionPerformed
 
@@ -1746,23 +1784,22 @@ public class Vista extends javax.swing.JFrame {
     }//GEN-LAST:event_btnModiAlActionPerformed
 
     private void btnCercaTotsAlActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCercaTotsAlActionPerformed
-        try{          
-        gc.conectar();
-        List<Alumne> listaAlumnes = gc.ConsultaTots("Alumne");
+        try {
+            gc.conectar();
+            List<Alumne> listaAlumnes = gc.ConsultaTots("Alumne");
             if (listaAlumnes.isEmpty()) {
                 throw new ExcepcionAlumne("TOTS");
             }
-        String col[] = {"NIF", "NOM", "COGNOMS", "CORREU", "TELEFON"};
-        DefaultTableModel taulaAlumnes = new DefaultTableModel(col, 0);
-        tablaTotsAl.setModel(taulaAlumnes);
-        for (Alumne alumne : listaAlumnes) {
-            taulaAlumnes.addRow(new Object[]{alumne.getNif(), alumne.getNom(), alumne.getCognom(), alumne.getCorreu(), alumne.getTelefon()});
-       
-        gc.desconectar();
-        }
-        }
-        catch (ExcepcionAlumne ex){
-            
+            String col[] = {"NIF", "NOM", "COGNOMS", "CORREU", "TELEFON"};
+            DefaultTableModel taulaAlumnes = new DefaultTableModel(col, 0);
+            tablaTotsAl.setModel(taulaAlumnes);
+            for (Alumne alumne : listaAlumnes) {
+                taulaAlumnes.addRow(new Object[]{alumne.getNif(), alumne.getNom(), alumne.getCognom(), alumne.getCorreu(), alumne.getTelefon()});
+
+                gc.desconectar();
+            }
+        } catch (ExcepcionAlumne ex) {
+
         }
     }//GEN-LAST:event_btnCercaTotsAlActionPerformed
 
@@ -2042,7 +2079,6 @@ public class Vista extends javax.swing.JFrame {
         for (UnitatFormativa uf1 : listaUF) {
             taulaUFModul.add(listaUF.indexOf(uf1), Arrays.toString(new Object[]{uf1.getId(), uf1.getNom(), uf1.getHores(), uf1.getCurs().getCicle().getNom(), uf1.getCurs().getNombreDeCurs(), uf1.getModul().getNom(),}));
         }
-        gc.desconectar();
     }//GEN-LAST:event_btnRefrescaUFActionPerformed
 
     private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
@@ -2058,7 +2094,7 @@ public class Vista extends javax.swing.JFrame {
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         Date date = new Date();
         al = (Alumne) gc.Buscar(tfIdAlumneMatricula.getText(), Alumne.class);
-//        List<String> llistaUF = null;
+        List<String> llistaUF = null;
         if (rbComplet.isSelected()) {
             Descompte desc = estadoRadioButon();
             matricula = new Matricula(al, date, Modalitat.COMPLET, desc, new Import(Double.parseDouble(tfImport.getText())));
@@ -2075,8 +2111,7 @@ public class Vista extends javax.swing.JFrame {
             uf = (UnitatFormativa) gc.Buscar(Long.parseLong(partes[0]), UnitatFormativa.class);
             ufs.add(uf);
         }
-        Set<UnitatFormativa> foo = new HashSet<UnitatFormativa>(ufs);
-        matricula.setListaUF(foo);
+        matricula.setListaUF(ufs);
         gc.Insertar(matricula);
         gc.desconectar();
     }//GEN-LAST:event_btnCrearMatriculaActionPerformed
@@ -2086,14 +2121,14 @@ public class Vista extends javax.swing.JFrame {
         matricula = mac.BuscarPerNif(tfCercaNifMatricula.getText());
         tfIdMatricula.setText(String.valueOf(matricula.getId()));
         tfIdAlumneMatricula.setText(matricula.getAlumneId().getNif());
-        if(matricula.getModalitat() == Modalitat.COMPLET){
-            rbComplet.setSelected(true);            
+        if (matricula.getModalitat() == Modalitat.COMPLET) {
+            rbComplet.setSelected(true);
         } else {
             rbSoltes.setSelected(true);
         }
-        if(matricula.getDescompte() == Descompte.CAP){
+        if (matricula.getDescompte() == Descompte.CAP) {
             rbCap.setSelected(true);
-        } else if(matricula.getDescompte() == Descompte.PARCIAL){
+        } else if (matricula.getDescompte() == Descompte.PARCIAL) {
             rbMig.setSelected(true);
         } else {
             rbTotal.setSelected(true);
@@ -2105,6 +2140,18 @@ public class Vista extends javax.swing.JFrame {
     private void rbCogAlActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbCogAlActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_rbCogAlActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        gc.conectar();
+        List<Alumne> list = mac.BuscarAlumneUF(tfUFNOM.getText());
+        String col[] = {"NOM"};
+        DefaultTableModel taulaUFModuls = new DefaultTableModel();
+        jTable1.setModel(taulaUFModuls);
+        for (Alumne uf1 : list) {
+            taulaUFModuls.addRow(new Object[]{uf1.getNom()});
+        }
+        gc.desconectar();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     private Descompte estadoRadioButon() {
         if (rbCap.isSelected()) {
@@ -2198,6 +2245,7 @@ public class Vista extends javax.swing.JFrame {
     private javax.swing.JButton btnTotsFC;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup grupNomCurs;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -2245,6 +2293,7 @@ public class Vista extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane10;
+    private javax.swing.JScrollPane jScrollPane11;
     private javax.swing.JScrollPane jScrollPane12;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
@@ -2255,6 +2304,7 @@ public class Vista extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTable jTable1;
     private javax.swing.JList<String> listaUFs;
     private java.awt.Menu menu1;
     private java.awt.Menu menu2;
@@ -2323,5 +2373,6 @@ public class Vista extends javax.swing.JFrame {
     private javax.swing.JTextField tfNomModul;
     private javax.swing.JTextField tfNomUF;
     private javax.swing.JTextField tfTlfAl;
+    private javax.swing.JTextField tfUFNOM;
     // End of variables declaration//GEN-END:variables
 }
