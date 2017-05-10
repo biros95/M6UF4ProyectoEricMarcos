@@ -20,10 +20,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
-import javafx.scene.control.RadioButton;
 import javax.persistence.EntityManager;
 import javax.swing.DefaultListModel;
-import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import modelo.Alumne;
 import modelo.Cicle;
@@ -58,6 +56,7 @@ public class Vista extends javax.swing.JFrame {
     NombreDeCurs ndc;
     Matricula matricula;
     Matricula_Controller mac;
+    EntityManager em;
 
     /**
      * Creates new form Vista
@@ -66,7 +65,7 @@ public class Vista extends javax.swing.JFrame {
         initComponents();
         BuidarCamps();
         BuidarTaula();
-        EntityManager em = EM_Controller.getEntityManager();
+        em = EM_Controller.getEntityManager();
         gc = new Generic_Controller(em);
         fco = new Familia_Controller(em);
         ac = new Alumne_Controller(em);
@@ -74,6 +73,18 @@ public class Vista extends javax.swing.JFrame {
         cc = new Curs_Controller(em);
         mc = new Modul_Controller(em);
         mac = new Matricula_Controller(em);
+    }
+
+    public void actualizarLista() {
+        gc.conectar();
+        List<UnitatFormativa> listaUF = gc.ConsultaTots("UnitatFormativa");
+        String col[] = {"ID", "NOM", "HORES", "Nom Curs", "Any Curs", "Modul Nom"};
+        DefaultListModel taulaUFModul = new DefaultListModel();
+        listaUFs.setModel(taulaUFModul);
+        for (UnitatFormativa uf1 : listaUF) {
+            taulaUFModul.add(listaUF.indexOf(uf1), Arrays.toString(new Object[]{uf1.getId(), uf1.getNom(), uf1.getHores(), uf1.getCurs().getCicle().getNom(), uf1.getCurs().getNombreDeCurs(), uf1.getModul().getNom(),}));
+        }
+        gc.desconectar();
     }
 
     public void BuidarCamps() {
@@ -120,6 +131,16 @@ public class Vista extends javax.swing.JFrame {
         tfCercaIDUF.setText("");
 
         //Matricula
+        tfIdMatricula.setText("");
+        tfIdAlumneMatricula.setText("");
+        tfImport.setText("");
+        tfTotesUFCerca.setText("");
+        tfCercaNifMatricula.setText("");
+        tfUFNOM.setText("");
+        tfCursAlumnes.setText("");
+        tfCicleAlumnes.setText("");
+        tfFamiliaAlumnes.setText("");
+
         //Desactivar botones
         btnEliminarAl.setEnabled(false);
         btnModiAl.setEnabled(false);
@@ -135,6 +156,10 @@ public class Vista extends javax.swing.JFrame {
         btnModificarModul.setEnabled(false);
         btnModiUF.setEnabled(false);
         btnEliUF.setEnabled(false);
+        btnModificarMatricula.setEnabled(false);
+        btnEliminarMatricula.setEnabled(false);
+        rbComplet.setSelected(true);
+        rbCap.setSelected(true);
     }
 
     public void BuidarTaula() {
@@ -174,6 +199,24 @@ public class Vista extends javax.swing.JFrame {
         String col12[] = {"ID", "NOM", "HORES", "IDCURS", "IDMODUL"};
         DefaultTableModel taulaUF = new DefaultTableModel(col12, 0);
         tablaTotesUF.setModel(taulaUF);
+        String col13[] = {"ID", "Alumne NIF", "Data", "Modalitat", "Descompte", "Import"};
+        DefaultTableModel taulaTotesMatricules = new DefaultTableModel(col13, 0);
+        tableTotesMatricules.setModel(taulaTotesMatricules);
+        String col14[] = {"ID", "NOM", "HORES", "Nom Curs", "Any Curs", "Modul Nom"};
+        DefaultListModel taulaUFsModul = new DefaultListModel();
+        listaUFs.setModel(taulaUFsModul);
+        String col15[] = {"NOM", "COGNOM", "NIF"};
+        DefaultTableModel taulaAlumnesUF = new DefaultTableModel(col15, 0);
+        taulaAlumnesUf.setModel(taulaAlumnesUF);
+        String col16[] = {"NOM", "COGNOM", "NIF"};
+        DefaultTableModel taulaCursAlumnes = new DefaultTableModel(col16, 0);
+        tableCursAlumne.setModel(taulaCursAlumnes);
+        String col17[] = {"NOM", "COGNOM", "NIF"};
+        DefaultTableModel taulaCicleAlumnes = new DefaultTableModel(col17, 0);
+        tableCicleAlumne.setModel(taulaCicleAlumnes);
+        String col18[] = {"NOM", "COGNOM", "NIF"};
+        DefaultTableModel taulaFamiliaAlumnes = new DefaultTableModel(col18, 0);
+        tableFamiliaAlumne.setModel(taulaFamiliaAlumnes);
     }
 
     /**
@@ -350,12 +393,8 @@ public class Vista extends javax.swing.JFrame {
         btnModificarMatricula = new javax.swing.JButton();
         btnEliminarMatricula = new javax.swing.JButton();
         btnNetejarMatricula = new javax.swing.JButton();
-        jLabel38 = new javax.swing.JLabel();
         tfCercaNifMatricula = new javax.swing.JTextField();
         btnCercaNifMatricula = new javax.swing.JButton();
-        btnRefrescaUF = new javax.swing.JButton();
-        jScrollPane12 = new javax.swing.JScrollPane();
-        listaUFs = new javax.swing.JList<>();
         jTabbedPane2 = new javax.swing.JTabbedPane();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane13 = new javax.swing.JScrollPane();
@@ -365,7 +404,35 @@ public class Vista extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         tfUFNOM = new javax.swing.JTextField();
         jScrollPane11 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        taulaAlumnesUf = new javax.swing.JTable();
+        jPanel12 = new javax.swing.JPanel();
+        jScrollPane15 = new javax.swing.JScrollPane();
+        tableCursAlumne = new javax.swing.JTable();
+        btnCercaCursAlumnes = new javax.swing.JButton();
+        tfCursAlumnes = new javax.swing.JTextField();
+        jPanel13 = new javax.swing.JPanel();
+        jScrollPane16 = new javax.swing.JScrollPane();
+        tableCicleAlumne = new javax.swing.JTable();
+        tfCicleAlumnes = new javax.swing.JTextField();
+        btnCercaCicleAlumnes = new javax.swing.JButton();
+        jPanel14 = new javax.swing.JPanel();
+        jScrollPane17 = new javax.swing.JScrollPane();
+        tableFamiliaAlumne = new javax.swing.JTable();
+        tfFamiliaAlumnes = new javax.swing.JTextField();
+        btnCercaFamiliaAlumnes = new javax.swing.JButton();
+        tfTotesUFCerca = new javax.swing.JTextField();
+        jLabel39 = new javax.swing.JLabel();
+        jTabbedPane3 = new javax.swing.JTabbedPane();
+        jPanel11 = new javax.swing.JPanel();
+        jLabel38 = new javax.swing.JLabel();
+        jScrollPane12 = new javax.swing.JScrollPane();
+        listaUFs = new javax.swing.JList<>();
+        btnRefrescaUF = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jLabel40 = new javax.swing.JLabel();
+        jPanel10 = new javax.swing.JPanel();
+        jScrollPane14 = new javax.swing.JScrollPane();
+        tableTotesUFMatricula = new javax.swing.JTable();
 
         menu1.setLabel("File");
         menuBar1.add(menu1);
@@ -1501,13 +1568,26 @@ public class Vista extends javax.swing.JFrame {
 
         btnModificarMatricula.setText("Modificar");
         btnModificarMatricula.setEnabled(false);
+        btnModificarMatricula.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModificarMatriculaActionPerformed(evt);
+            }
+        });
 
         btnEliminarMatricula.setText("Eliminar");
         btnEliminarMatricula.setEnabled(false);
+        btnEliminarMatricula.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarMatriculaActionPerformed(evt);
+            }
+        });
 
         btnNetejarMatricula.setText("Netejar");
-
-        jLabel38.setText("UF de la matricula");
+        btnNetejarMatricula.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNetejarMatriculaActionPerformed(evt);
+            }
+        });
 
         btnCercaNifMatricula.setText("Cerca per NIF");
         btnCercaNifMatricula.addActionListener(new java.awt.event.ActionListener() {
@@ -1515,16 +1595,6 @@ public class Vista extends javax.swing.JFrame {
                 btnCercaNifMatriculaActionPerformed(evt);
             }
         });
-
-        btnRefrescaUF.setText("Refresca UF's");
-        btnRefrescaUF.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRefrescaUFActionPerformed(evt);
-            }
-        });
-
-        listaUFs.setToolTipText("");
-        jScrollPane12.setViewportView(listaUFs);
 
         tableTotesMatricules.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -1571,14 +1641,14 @@ public class Vista extends javax.swing.JFrame {
 
         jTabbedPane2.addTab("Cerca Totes les Matricules", jPanel2);
 
-        jButton1.setText("jButton1");
+        jButton1.setText("Buscar per id UF");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        taulaAlumnesUf.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -1589,35 +1659,261 @@ public class Vista extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane11.setViewportView(jTable1);
+        jScrollPane11.setViewportView(taulaAlumnesUf);
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(jScrollPane11, javax.swing.GroupLayout.DEFAULT_SIZE, 808, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(tfUFNOM, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton1)
                 .addGap(30, 30, 30))
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, 348, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(51, 51, 51)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton1)
-                    .addComponent(tfUFNOM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(tfUFNOM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButton1))
+                    .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(75, Short.MAX_VALUE))
+        );
+
+        jTabbedPane2.addTab("Buscar per UF", jPanel4);
+
+        tableCursAlumne.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane15.setViewportView(tableCursAlumne);
+
+        btnCercaCursAlumnes.setText("Cerca per Curs");
+        btnCercaCursAlumnes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCercaCursAlumnesActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
+        jPanel12.setLayout(jPanel12Layout);
+        jPanel12Layout.setHorizontalGroup(
+            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel12Layout.createSequentialGroup()
+                .addComponent(jScrollPane15, javax.swing.GroupLayout.PREFERRED_SIZE, 491, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tfCursAlumnes, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnCercaCursAlumnes)
+                .addGap(0, 339, Short.MAX_VALUE))
+        );
+        jPanel12Layout.setVerticalGroup(
+            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel12Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnCercaCursAlumnes)
+                        .addComponent(tfCursAlumnes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane15, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jTabbedPane2.addTab("tab2", jPanel4);
+        jTabbedPane2.addTab("Busca per Curs", jPanel12);
+
+        tableCicleAlumne.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane16.setViewportView(tableCicleAlumne);
+
+        btnCercaCicleAlumnes.setText("Cerca per Curs");
+        btnCercaCicleAlumnes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCercaCicleAlumnesActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
+        jPanel13.setLayout(jPanel13Layout);
+        jPanel13Layout.setHorizontalGroup(
+            jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel13Layout.createSequentialGroup()
+                .addComponent(jScrollPane16, javax.swing.GroupLayout.PREFERRED_SIZE, 491, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(tfCicleAlumnes, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnCercaCicleAlumnes)
+                .addGap(0, 339, Short.MAX_VALUE))
+        );
+        jPanel13Layout.setVerticalGroup(
+            jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel13Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnCercaCicleAlumnes)
+                        .addComponent(tfCicleAlumnes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane16, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jTabbedPane2.addTab("Busca per Cicle", jPanel13);
+
+        tableFamiliaAlumne.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane17.setViewportView(tableFamiliaAlumne);
+
+        btnCercaFamiliaAlumnes.setText("Cerca per Curs");
+        btnCercaFamiliaAlumnes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCercaFamiliaAlumnesActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel14Layout = new javax.swing.GroupLayout(jPanel14);
+        jPanel14.setLayout(jPanel14Layout);
+        jPanel14Layout.setHorizontalGroup(
+            jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel14Layout.createSequentialGroup()
+                .addComponent(jScrollPane17, javax.swing.GroupLayout.PREFERRED_SIZE, 491, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(tfFamiliaAlumnes, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnCercaFamiliaAlumnes)
+                .addGap(0, 339, Short.MAX_VALUE))
+        );
+        jPanel14Layout.setVerticalGroup(
+            jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel14Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnCercaFamiliaAlumnes)
+                        .addComponent(tfFamiliaAlumnes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane17, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jTabbedPane2.addTab("Busca per Familia", jPanel14);
+
+        jLabel39.setText("UF's");
+
+        jLabel38.setText("UF de la matricula");
+
+        listaUFs.setToolTipText("");
+        jScrollPane12.setViewportView(listaUFs);
+
+        btnRefrescaUF.setText("Refresca UF's");
+        btnRefrescaUF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRefrescaUFActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText("Agrega UF");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        jLabel40.setText("*Recordeu seleccionar UF's i donarli a agregar UF per poder crear una matricula");
+
+        javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
+        jPanel11.setLayout(jPanel11Layout);
+        jPanel11Layout.setHorizontalGroup(
+            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel11Layout.createSequentialGroup()
+                .addComponent(jLabel38)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(jPanel11Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel11Layout.createSequentialGroup()
+                        .addComponent(btnRefrescaUF)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton2)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel40)
+                .addContainerGap(45, Short.MAX_VALUE))
+        );
+        jPanel11Layout.setVerticalGroup(
+            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel11Layout.createSequentialGroup()
+                .addComponent(jLabel38)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnRefrescaUF)
+                    .addComponent(jButton2)
+                    .addComponent(jLabel40))
+                .addGap(0, 65, Short.MAX_VALUE))
+        );
+
+        jTabbedPane3.addTab("Seleccionar UFs", jPanel11);
+
+        tableTotesUFMatricula.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane14.setViewportView(tableTotesUFMatricula);
+
+        javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
+        jPanel10.setLayout(jPanel10Layout);
+        jPanel10Layout.setHorizontalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel10Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane14, javax.swing.GroupLayout.DEFAULT_SIZE, 721, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel10Layout.setVerticalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel10Layout.createSequentialGroup()
+                .addComponent(jScrollPane14, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 5, Short.MAX_VALUE))
+        );
+
+        jTabbedPane3.addTab("Veure UFs de Matricula", jPanel10);
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
@@ -1626,34 +1922,17 @@ public class Vista extends javax.swing.JFrame {
             .addGroup(jPanel9Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTabbedPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addGroup(jPanel9Layout.createSequentialGroup()
                         .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel19)
                             .addComponent(jLabel20)
                             .addComponent(jLabel29)
                             .addComponent(jLabel30)
-                            .addComponent(jLabel31))
+                            .addComponent(jLabel31)
+                            .addComponent(jLabel39))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel9Layout.createSequentialGroup()
-                                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(rbComplet)
-                                    .addGroup(jPanel9Layout.createSequentialGroup()
-                                        .addComponent(rbCap)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(rbMig)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(rbSoltes)
-                                    .addComponent(rbTotal))
-                                .addGap(16, 16, 16)
-                                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(btnCercaNifMatricula, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(btnNetejarMatricula, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(btnEliminarMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(tfCercaNifMatricula, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(tfImport, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE))
                             .addGroup(jPanel9Layout.createSequentialGroup()
                                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(tfIdMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1664,24 +1943,45 @@ public class Vista extends javax.swing.JFrame {
                                         .addComponent(btnModificarMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
                                         .addGap(28, 28, 28)
-                                        .addComponent(btnCrearMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnRefrescaUF)
-                            .addComponent(jLabel38)
-                            .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jTabbedPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 1099, Short.MAX_VALUE))
+                                        .addComponent(btnCrearMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(jPanel9Layout.createSequentialGroup()
+                                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel9Layout.createSequentialGroup()
+                                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(rbComplet)
+                                            .addGroup(jPanel9Layout.createSequentialGroup()
+                                                .addComponent(rbCap)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(rbMig)))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(rbSoltes)
+                                            .addComponent(rbTotal)))
+                                    .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(tfCercaNifMatricula, javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(tfImport, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)))
+                                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel9Layout.createSequentialGroup()
+                                        .addGap(16, 16, 16)
+                                        .addComponent(btnCercaNifMatricula))
+                                    .addGroup(jPanel9Layout.createSequentialGroup()
+                                        .addGap(18, 18, 18)
+                                        .addComponent(btnEliminarMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(btnNetejarMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(10, 10, 10))))
+                            .addComponent(tfTotesUFCerca, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addComponent(jTabbedPane3)))
                 .addContainerGap())
         );
         jPanel9Layout.setVerticalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel9Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(jLabel38)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel9Layout.createSequentialGroup()
+                        .addGap(40, 40, 40)
                         .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(tfIdMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel19)
@@ -1691,40 +1991,39 @@ public class Vista extends javax.swing.JFrame {
                             .addComponent(tfIdAlumneMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel20)
                             .addComponent(btnModificarMatricula))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel9Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(rbSoltes, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(rbComplet)
-                                        .addComponent(jLabel29)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(rbCap)
-                                    .addComponent(rbMig)
-                                    .addComponent(rbTotal)
-                                    .addComponent(jLabel30))
-                                .addGap(16, 16, 16)
-                                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(tfImport, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel31)))
-                            .addGroup(jPanel9Layout.createSequentialGroup()
-                                .addGap(9, 9, 9)
-                                .addComponent(btnEliminarMatricula)
-                                .addGap(8, 8, 8)
-                                .addComponent(btnNetejarMatricula)))
+                            .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(rbSoltes, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnEliminarMatricula))
+                            .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(rbComplet)
+                                .addComponent(jLabel29)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(rbCap)
+                            .addComponent(rbMig)
+                            .addComponent(rbTotal)
+                            .addComponent(jLabel30)
+                            .addComponent(btnNetejarMatricula))
+                        .addGap(16, 16, 16)
+                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(tfImport, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel31))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(tfTotesUFCerca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel39))
+                        .addGap(5, 5, 5)
                         .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(tfCercaNifMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnCercaNifMatricula)))
                     .addGroup(jPanel9Layout.createSequentialGroup()
-                        .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnRefrescaUF)))
-                .addGap(41, 41, 41)
+                        .addContainerGap()
+                        .addComponent(jTabbedPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTabbedPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 348, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(230, Short.MAX_VALUE))
+                .addContainerGap(187, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Matrícula", jPanel9);
@@ -1733,7 +2032,7 @@ public class Vista extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1124, Short.MAX_VALUE)
+            .addComponent(jTabbedPane1)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2139,14 +2438,7 @@ public class Vista extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCercaTotesUFActionPerformed
 
     private void btnRefrescaUFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefrescaUFActionPerformed
-        gc.conectar();
-        List<UnitatFormativa> listaUF = gc.ConsultaTots("UnitatFormativa");
-        String col[] = {"ID", "NOM", "HORES", "Nom Curs", "Any Curs", "Modul Nom"};
-        DefaultListModel taulaUFModul = new DefaultListModel();
-        listaUFs.setModel(taulaUFModul);
-        for (UnitatFormativa uf1 : listaUF) {
-            taulaUFModul.add(listaUF.indexOf(uf1), Arrays.toString(new Object[]{uf1.getId(), uf1.getNom(), uf1.getHores(), uf1.getCurs().getCicle().getNom(), uf1.getCurs().getNombreDeCurs(), uf1.getModul().getNom(),}));
-        }
+        actualizarLista();
     }//GEN-LAST:event_btnRefrescaUFActionPerformed
 
     private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
@@ -2170,16 +2462,19 @@ public class Vista extends javax.swing.JFrame {
             Descompte desc = estadoRadioButon();
             matricula = new Matricula(al, date, Modalitat.UFS, desc, new Import(Double.parseDouble(tfImport.getText())));
         }
-        List<String> list = listaUFs.getSelectedValuesList();
-        String[] partes;
-        List<UnitatFormativa> ufs = new ArrayList<UnitatFormativa>();
-        for (String string : list) {
-            string = string.replace("[", "");
-            partes = string.split(",");
-            uf = (UnitatFormativa) gc.Buscar(Long.parseLong(partes[0]), UnitatFormativa.class);
-            ufs.add(uf);
+        String[] ufs = tfTotesUFCerca.getText().split(";");
+        List<UnitatFormativa> ufsMatricula = new ArrayList<>();
+        for (String uf1 : ufs) {
+            System.out.println(uf1);
+            ufsMatricula.add((UnitatFormativa) gc.Buscar(Long.parseLong(uf1), UnitatFormativa.class));
         }
-        matricula.setListaUF(ufs);
+        List<Matricula> matriculass = new ArrayList<>();
+        for (UnitatFormativa unitatFormativa : ufsMatricula) {
+            matriculass.add(matricula);
+            unitatFormativa.setListaMatriculas(matriculass);
+        }
+        matricula.setListaUF(ufsMatricula);
+        System.out.println(em.contains(ufsMatricula.get(0)));
         gc.Insertar(matricula);
         gc.desconectar();
     }//GEN-LAST:event_btnCrearMatriculaActionPerformed
@@ -2201,22 +2496,40 @@ public class Vista extends javax.swing.JFrame {
         } else {
             rbTotal.setSelected(true);
         }
+        btnModificarMatricula.setEnabled(true);
+        btnEliminarMatricula.setEnabled(true);
+        tfTotesUFCerca.setEditable(false);
+        tfIdAlumneMatricula.setEditable(false);
         tfImport.setText(String.valueOf(matricula.getImporte().getImporte()));
         gc.desconectar();
+//        getUfsMatricula(matricula.getId());        
     }//GEN-LAST:event_btnCercaNifMatriculaActionPerformed
 
     private void rbCogAlActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbCogAlActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_rbCogAlActionPerformed
 
+    public void getUfsMatricula(Long id) {
+        gc.conectar();
+        List<UnitatFormativa> ufs = mac.BuscarUFMatricula(id);
+        String col[] = {"ID", "NOM", "CURSID", "MODULID", "HORES"};
+        DefaultTableModel taulaUfs = new DefaultTableModel(col, 0);
+        tableTotesUFMatricula.setModel(taulaUfs);
+        for (UnitatFormativa uf1 : ufs) {
+            taulaUfs.addRow(new Object[]{uf1.getId(), uf1.getNom(), uf1.getCurs().getId(), uf1.getModul().getId(), uf1.getHores()});
+        }
+        gc.desconectar();
+    }
+
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         gc.conectar();
-        List<Alumne> list = mac.BuscarAlumneUF(tfUFNOM.getText());
-        String col[] = {"NOM"};
-        DefaultTableModel taulaUFModuls = new DefaultTableModel();
-        jTable1.setModel(taulaUFModuls);
-        for (Alumne uf1 : list) {
-            taulaUFModuls.addRow(new Object[]{uf1.getNom()});
+        UnitatFormativa uf2 = (UnitatFormativa) gc.Buscar(Long.parseLong(tfUFNOM.getText()), UnitatFormativa.class);
+        List<Alumne> list = mac.BuscarAlumneUF(uf2);
+        String col[] = {"NOM", "COGNOM", "NIF"};
+        DefaultTableModel taulaAlumnesUF = new DefaultTableModel(col, 0);
+        taulaAlumnesUf.setModel(taulaAlumnesUF);
+        for (Alumne alu : list) {
+            taulaAlumnesUF.addRow(new Object[]{alu.getNom(), alu.getCognom(), alu.getNif()});
         }
         gc.desconectar();
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -2225,13 +2538,109 @@ public class Vista extends javax.swing.JFrame {
         gc.conectar();
         List<Matricula> list = gc.ConsultaTots("Matricula");
         String col[] = {"ID", "Alumne NIF", "Data", "Modalitat", "Descompte", "Import"};
-        DefaultTableModel taulaTotesMatricules = new DefaultTableModel();
+        DefaultTableModel taulaTotesMatricules = new DefaultTableModel(col, 0);
         tableTotesMatricules.setModel(taulaTotesMatricules);
         for (Matricula matricula1 : list) {
             taulaTotesMatricules.addRow(new Object[]{matricula1.getId(), matricula1.getAlumneId().getNif(), matricula1.getData(), matricula1.getModalitat(), matricula1.getDescompte(), matricula1.getImporte().getImporte()});
         }
         gc.desconectar();
     }//GEN-LAST:event_btnCercaTotesMatriculesActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        gc.conectar();
+        List<String> list = listaUFs.getSelectedValuesList();
+        String[] partes;
+        List<UnitatFormativa> ufs = new ArrayList<UnitatFormativa>();
+        for (String string : list) {
+            string = string.replace("[", "");
+            partes = string.split(",");
+            uf = (UnitatFormativa) gc.Buscar(Long.parseLong(partes[0]), UnitatFormativa.class);
+            ufs.add(uf);
+        }
+        String cadena = "";
+        int mida = list.size(), contador = 0;
+        for (UnitatFormativa uf1 : ufs) {
+            if (contador == mida - 1) {
+                cadena += String.valueOf(uf1.getId());
+            } else {
+                cadena += String.valueOf(uf1.getId()) + ";";
+            }
+            contador++;
+        }
+        tfTotesUFCerca.setText(cadena);
+        System.out.println(cadena);
+        gc.desconectar();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void btnNetejarMatriculaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNetejarMatriculaActionPerformed
+        BuidarCamps();
+        BuidarTaula();
+    }//GEN-LAST:event_btnNetejarMatriculaActionPerformed
+
+    private void btnEliminarMatriculaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarMatriculaActionPerformed
+        gc.conectar();
+        Matricula mat = (Matricula) gc.Buscar(Long.parseLong(tfIdMatricula.getText()), Matricula.class);
+        List<UnitatFormativa> ufMat = mat.getListaUF();
+
+//        gc.Eliminar(mat);        
+        gc.desconectar();
+    }//GEN-LAST:event_btnEliminarMatriculaActionPerformed
+
+    private void btnModificarMatriculaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarMatriculaActionPerformed
+        gc.conectar();
+        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        Date date = new Date();
+        matricula = (Matricula) gc.Buscar(Long.parseLong(tfIdMatricula.getText()), Matricula.class);
+        if (rbComplet.isSelected()) {
+            Descompte desc = estadoRadioButon();
+            matricula = new Matricula(al, date, Modalitat.COMPLET, desc, new Import(Double.parseDouble(tfImport.getText())));
+            gc.Modificar(matricula);
+        } else {
+            Descompte desc = estadoRadioButon();
+            matricula = new Matricula(al, date, Modalitat.UFS, desc, new Import(Double.parseDouble(tfImport.getText())));
+            gc.Modificar(matricula);
+        }
+        gc.desconectar();
+    }//GEN-LAST:event_btnModificarMatriculaActionPerformed
+
+    private void btnCercaCursAlumnesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCercaCursAlumnesActionPerformed
+        gc.conectar();
+
+        List<Alumne> list = null;//TODO
+        String col[] = {"NOM", "COGNOM", "NIF"};
+        DefaultTableModel taulaCursAlumnes = new DefaultTableModel(col, 0);
+        tableCursAlumne.setModel(taulaCursAlumnes);
+        for (Alumne alu : list) {
+            taulaCursAlumnes.addRow(new Object[]{alu.getNom(), alu.getCognom(), alu.getNif()});
+        }
+
+        gc.desconectar();
+    }//GEN-LAST:event_btnCercaCursAlumnesActionPerformed
+
+    private void btnCercaCicleAlumnesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCercaCicleAlumnesActionPerformed
+        gc.conectar();
+        List<Alumne> list = null;//TODO
+        String col[] = {"NOM", "COGNOM", "NIF"};
+        DefaultTableModel taulaCicleAlumnes = new DefaultTableModel(col, 0);
+        tableCicleAlumne.setModel(taulaCicleAlumnes);
+        for (Alumne alu : list) {
+            taulaCicleAlumnes.addRow(new Object[]{alu.getNom(), alu.getCognom(), alu.getNif()});
+        }
+        gc.desconectar();
+    }//GEN-LAST:event_btnCercaCicleAlumnesActionPerformed
+
+    private void btnCercaFamiliaAlumnesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCercaFamiliaAlumnesActionPerformed
+        gc.conectar();
+        List<Alumne> list = null;//TODO
+        String col[] = {"NOM", "COGNOM", "NIF"};
+        DefaultTableModel taulaFamiliaAlumnes = new DefaultTableModel(col, 0);
+        tableFamiliaAlumne.setModel(taulaFamiliaAlumnes);
+        for (Alumne alu : list) {
+            taulaFamiliaAlumnes.addRow(new Object[]{alu.getNom(), alu.getCognom(), alu.getNif()});
+        }
+        gc.desconectar();
+        
+    }//GEN-LAST:event_btnCercaFamiliaAlumnesActionPerformed
 
     private Descompte estadoRadioButon() {
         if (rbCap.isSelected()) {
@@ -2283,7 +2692,10 @@ public class Vista extends javax.swing.JFrame {
     private javax.swing.ButtonGroup bgModalitat;
     private javax.swing.JButton btnCercaAl;
     private javax.swing.JButton btnCercaCicle;
+    private javax.swing.JButton btnCercaCicleAlumnes;
     private javax.swing.JButton btnCercaCurs;
+    private javax.swing.JButton btnCercaCursAlumnes;
+    private javax.swing.JButton btnCercaFamiliaAlumnes;
     private javax.swing.JButton btnCercaIDUF;
     private javax.swing.JButton btnCercaModul;
     private javax.swing.JButton btnCercaNifMatricula;
@@ -2327,6 +2739,7 @@ public class Vista extends javax.swing.JFrame {
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup grupNomCurs;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -2359,13 +2772,20 @@ public class Vista extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel36;
     private javax.swing.JLabel jLabel37;
     private javax.swing.JLabel jLabel38;
+    private javax.swing.JLabel jLabel39;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel40;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel10;
+    private javax.swing.JPanel jPanel11;
+    private javax.swing.JPanel jPanel12;
+    private javax.swing.JPanel jPanel13;
+    private javax.swing.JPanel jPanel14;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -2379,6 +2799,10 @@ public class Vista extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane11;
     private javax.swing.JScrollPane jScrollPane12;
     private javax.swing.JScrollPane jScrollPane13;
+    private javax.swing.JScrollPane jScrollPane14;
+    private javax.swing.JScrollPane jScrollPane15;
+    private javax.swing.JScrollPane jScrollPane16;
+    private javax.swing.JScrollPane jScrollPane17;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
@@ -2389,7 +2813,7 @@ public class Vista extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTabbedPane jTabbedPane2;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTabbedPane jTabbedPane3;
     private javax.swing.JList<String> listaUFs;
     private java.awt.Menu menu1;
     private java.awt.Menu menu2;
@@ -2417,12 +2841,17 @@ public class Vista extends javax.swing.JFrame {
     private javax.swing.JTable tablaTotesUF;
     private javax.swing.JTable tablaTotsAl;
     private javax.swing.JTable tablaTotsCicles;
+    private javax.swing.JTable tableCicleAlumne;
+    private javax.swing.JTable tableCursAlumne;
     private javax.swing.JTable tableCursos;
+    private javax.swing.JTable tableFamiliaAlumne;
     private javax.swing.JTable tableListaModuls;
     private javax.swing.JTable tableTotesMatricules;
     private javax.swing.JScrollPane tableTotesUF;
+    private javax.swing.JTable tableTotesUFMatricula;
     private javax.swing.JTable tableTotsModuls;
     private javax.swing.JScrollPane tableUFModul;
+    private javax.swing.JTable taulaAlumnesUf;
     private javax.swing.JTable taulaModulCurs;
     private javax.swing.JTable taulaModulUF;
     private javax.swing.JTable taulaTotsCursos;
@@ -2433,8 +2862,11 @@ public class Vista extends javax.swing.JFrame {
     private javax.swing.JTextField tfCercaIDFC;
     private javax.swing.JTextField tfCercaIDUF;
     private javax.swing.JTextField tfCercaNifMatricula;
+    private javax.swing.JTextField tfCicleAlumnes;
     private javax.swing.JTextField tfCognomAl;
     private javax.swing.JTextField tfCorreuAl;
+    private javax.swing.JTextField tfCursAlumnes;
+    private javax.swing.JTextField tfFamiliaAlumnes;
     private javax.swing.JTextField tfGrauCicle;
     private javax.swing.JTextField tfHoresUF;
     private javax.swing.JTextField tfIdAlumneMatricula;
@@ -2459,6 +2891,7 @@ public class Vista extends javax.swing.JFrame {
     private javax.swing.JTextField tfNomModul;
     private javax.swing.JTextField tfNomUF;
     private javax.swing.JTextField tfTlfAl;
+    private javax.swing.JTextField tfTotesUFCerca;
     private javax.swing.JTextField tfUFNOM;
     // End of variables declaration//GEN-END:variables
 }

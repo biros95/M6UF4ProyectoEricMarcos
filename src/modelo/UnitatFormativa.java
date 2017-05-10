@@ -41,7 +41,7 @@ public class UnitatFormativa implements Serializable {
     @Column(name = "hores", nullable = false)
     private int hores;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private List<Matricula> listaMatriculas;
 
     @ManyToOne(cascade = CascadeType.ALL)
