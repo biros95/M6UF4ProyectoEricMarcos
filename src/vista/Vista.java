@@ -358,10 +358,16 @@ public class Vista extends javax.swing.JFrame {
         btnRefrescaUF = new javax.swing.JButton();
         jScrollPane12 = new javax.swing.JScrollPane();
         listaUFs = new javax.swing.JList<>();
-        jScrollPane11 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTabbedPane2 = new javax.swing.JTabbedPane();
+        jPanel2 = new javax.swing.JPanel();
+        jScrollPane13 = new javax.swing.JScrollPane();
+        tableTotesMatricules = new javax.swing.JTable();
+        btnCercaTotesMatricules = new javax.swing.JButton();
+        jPanel4 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         tfUFNOM = new javax.swing.JTextField();
+        jScrollPane11 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
 
         menu1.setLabel("File");
         menuBar1.add(menu1);
@@ -518,7 +524,7 @@ public class Vista extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 785, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(182, Short.MAX_VALUE))
+                .addContainerGap(324, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -560,7 +566,7 @@ public class Vista extends javax.swing.JFrame {
                     .addComponent(btnCercaTotsAl))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(328, Short.MAX_VALUE))
+                .addContainerGap(450, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Alumne", jPanel1);
@@ -650,7 +656,7 @@ public class Vista extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 957, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1099, Short.MAX_VALUE)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(btnTotsFC)
                         .addGap(0, 0, Short.MAX_VALUE))
@@ -715,7 +721,7 @@ public class Vista extends javax.swing.JFrame {
                 .addComponent(btnTotsFC)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(273, Short.MAX_VALUE))
+                .addContainerGap(395, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Familia Cicles", jPanel3);
@@ -876,7 +882,7 @@ public class Vista extends javax.swing.JFrame {
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(btnCercaTotsCicles)))
-                .addContainerGap(57, Short.MAX_VALUE))
+                .addContainerGap(199, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -920,7 +926,7 @@ public class Vista extends javax.swing.JFrame {
                 .addComponent(btnCercaTotsCicles)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(83, Short.MAX_VALUE))
+                .addContainerGap(205, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Cicles", jPanel5);
@@ -1034,7 +1040,7 @@ public class Vista extends javax.swing.JFrame {
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane8, javax.swing.GroupLayout.DEFAULT_SIZE, 957, Short.MAX_VALUE)
+                    .addComponent(jScrollPane8, javax.swing.GroupLayout.DEFAULT_SIZE, 1099, Short.MAX_VALUE)
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 476, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1248,7 +1254,7 @@ public class Vista extends javax.swing.JFrame {
                             .addGroup(jPanel7Layout.createSequentialGroup()
                                 .addContainerGap()
                                 .addComponent(btnCercaTotsModuls)))
-                        .addGap(0, 162, Short.MAX_VALUE)))
+                        .addGap(0, 304, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel7Layout.setVerticalGroup(
@@ -1287,7 +1293,7 @@ public class Vista extends javax.swing.JFrame {
                 .addComponent(btnCercaTotsModuls)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(250, Short.MAX_VALUE))
+                .addContainerGap(372, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Mòdul", jPanel7);
@@ -1406,7 +1412,7 @@ public class Vista extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel8Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(tableTotesUF, javax.swing.GroupLayout.DEFAULT_SIZE, 957, Short.MAX_VALUE)))
+                        .addComponent(tableTotesUF, javax.swing.GroupLayout.DEFAULT_SIZE, 1099, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel8Layout.setVerticalGroup(
@@ -1444,7 +1450,7 @@ public class Vista extends javax.swing.JFrame {
                 .addComponent(btnCercaTotesUF)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(tableTotesUF, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(156, Short.MAX_VALUE))
+                .addContainerGap(278, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Unitat Formativa", jPanel8);
@@ -1522,6 +1528,58 @@ public class Vista extends javax.swing.JFrame {
         listaUFs.setToolTipText("");
         jScrollPane12.setViewportView(listaUFs);
 
+        tableTotesMatricules.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane13.setViewportView(tableTotesMatricules);
+
+        btnCercaTotesMatricules.setText("Cerca totes matricules");
+        btnCercaTotesMatricules.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCercaTotesMatriculesActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane13, javax.swing.GroupLayout.PREFERRED_SIZE, 729, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnCercaTotesMatricules)
+                .addContainerGap(210, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(btnCercaTotesMatricules)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jScrollPane13, javax.swing.GroupLayout.DEFAULT_SIZE, 298, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+
+        jTabbedPane2.addTab("Cerca Totes les Matricules", jPanel2);
+
+        jButton1.setText("jButton1");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -1535,12 +1593,33 @@ public class Vista extends javax.swing.JFrame {
         ));
         jScrollPane11.setViewportView(jTable1);
 
-        jButton1.setText("jButton1");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(tfUFNOM, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton1)
+                .addGap(30, 30, 30))
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, 348, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(51, 51, 51)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jButton1)
+                    .addComponent(tfUFNOM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jTabbedPane2.addTab("tab2", jPanel4);
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
@@ -1592,15 +1671,10 @@ public class Vista extends javax.swing.JFrame {
                         .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnRefrescaUF)
                             .addComponent(jLabel38)
-                            .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel9Layout.createSequentialGroup()
-                        .addGap(21, 21, 21)
-                        .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(tfUFNOM, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton1)))
-                .addContainerGap(326, Short.MAX_VALUE))
+                            .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jTabbedPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 1099, Short.MAX_VALUE))
+                .addContainerGap())
         );
         jPanel9Layout.setVerticalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1650,13 +1724,9 @@ public class Vista extends javax.swing.JFrame {
                         .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnRefrescaUF)))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jButton1)
-                        .addComponent(tfUFNOM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(165, Short.MAX_VALUE))
+                .addGap(41, 41, 41)
+                .addComponent(jTabbedPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 348, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(230, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Matrícula", jPanel9);
@@ -1665,7 +1735,7 @@ public class Vista extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1)
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1124, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2153,6 +2223,18 @@ public class Vista extends javax.swing.JFrame {
         gc.desconectar();
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void btnCercaTotesMatriculesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCercaTotesMatriculesActionPerformed
+        gc.conectar();
+        List<Matricula> list = gc.ConsultaTots("Matricula");
+        String col[] = {"ID", "Alumne NIF", "Data", "Modalitat", "Descompte", "Import"};
+        DefaultTableModel taulaTotesMatricules = new DefaultTableModel();
+        tableTotesMatricules.setModel(taulaTotesMatricules);
+        for (Matricula matricula1 : list) {
+            taulaTotesMatricules.addRow(new Object[]{matricula1.getId(), matricula1.getAlumneId().getNif(), matricula1.getData(), matricula1.getModalitat(), matricula1.getDescompte(), matricula1.getImporte().getImporte()});
+        }
+        gc.desconectar();
+    }//GEN-LAST:event_btnCercaTotesMatriculesActionPerformed
+
     private Descompte estadoRadioButon() {
         if (rbCap.isSelected()) {
             return Descompte.CAP;
@@ -2207,6 +2289,7 @@ public class Vista extends javax.swing.JFrame {
     private javax.swing.JButton btnCercaIDUF;
     private javax.swing.JButton btnCercaModul;
     private javax.swing.JButton btnCercaNifMatricula;
+    private javax.swing.JButton btnCercaTotesMatricules;
     private javax.swing.JButton btnCercaTotesUF;
     private javax.swing.JButton btnCercaTotsAl;
     private javax.swing.JButton btnCercaTotsCicles;
@@ -2285,7 +2368,9 @@ public class Vista extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
@@ -2295,6 +2380,7 @@ public class Vista extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane10;
     private javax.swing.JScrollPane jScrollPane11;
     private javax.swing.JScrollPane jScrollPane12;
+    private javax.swing.JScrollPane jScrollPane13;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
@@ -2304,6 +2390,7 @@ public class Vista extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JTable jTable1;
     private javax.swing.JList<String> listaUFs;
     private java.awt.Menu menu1;
@@ -2334,6 +2421,7 @@ public class Vista extends javax.swing.JFrame {
     private javax.swing.JTable tablaTotsCicles;
     private javax.swing.JTable tableCursos;
     private javax.swing.JTable tableListaModuls;
+    private javax.swing.JTable tableTotesMatricules;
     private javax.swing.JScrollPane tableTotesUF;
     private javax.swing.JTable tableTotsModuls;
     private javax.swing.JScrollPane tableUFModul;
