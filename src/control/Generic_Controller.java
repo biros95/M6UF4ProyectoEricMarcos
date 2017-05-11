@@ -9,22 +9,25 @@ import javax.persistence.Query;
 
 /**
  *
- * @author Eric
+ * @author Eric & Marcos
  */
 public class Generic_Controller<T> {
 
     EntityManager em;
-    //EM_Controller oem = new EM_Controller();
-
+    /**
+     * Constructor que le llega el EntityManager
+     *
+     * @param entityManger
+     */
     public Generic_Controller(EntityManager entityManger) {
         this.em = entityManger;
     }
-
+    /**
+     * Metodo generico que inserta los objetos en la BBDD.
+     * @param p 
+     */
     public void Insertar(T p) {
-        // Recupera el entity manager
 
-        // El persistim a la base de dades
-        //em.getTransaction().begin();
         EntityTransaction etx = em.getTransaction();
 
         System.out.println("begin");
@@ -34,7 +37,6 @@ public class Generic_Controller<T> {
         em.persist(p);
 
         System.out.println("commit");
-        //em.getTransaction().commit();
         etx.commit();
 
         System.out.println("close");
@@ -48,11 +50,7 @@ public class Generic_Controller<T> {
      * @param p
      */
     public void Modificar(T p) {
-        // Recupera el entity manager
-        //EM_Controller oem = new EM_Controller();
 
-        // El persistim a la base de dades
-        //em.getTransaction().begin();
         EntityTransaction etx = em.getTransaction();
 
         System.out.println("begin");
@@ -62,7 +60,6 @@ public class Generic_Controller<T> {
         em.merge(p);
 
         System.out.println("commit");
-        //em.getTransaction().commit();
         etx.commit();
 
         System.out.println("close");
@@ -75,11 +72,7 @@ public class Generic_Controller<T> {
      * @param p
      */
     public void Eliminar(T p) {
-        // Recupera el entity manager
-        //EM_Controller oem = new EM_Controller();
 
-        // El persistim a la base de dades
-        //em.getTransaction().begin();
         EntityTransaction etx = em.getTransaction();
 
         System.out.println("begin");
@@ -89,7 +82,6 @@ public class Generic_Controller<T> {
         em.remove(em.contains(p) ? p : em.merge(p));
 
         System.out.println("commit");
-        //em.getTransaction().commit();
         etx.commit();
 
         System.out.println("close");
@@ -104,7 +96,6 @@ public class Generic_Controller<T> {
      * @return
      */
     public T Buscar(T id, Class<T> classe) {
-        // Recupera el entity manager
         T c = null;
         try{
         System.out.println("busqueda");
@@ -122,9 +113,12 @@ public class Generic_Controller<T> {
                 }
         return c;
     }
-
+    /**
+     * Metodo que busca todos los objetos de T tipo y devuelve una lista.
+     * @param t
+     * @return 
+     */
     public List<T> ConsultaTots(String t) {
-        // Recupera el entity manager     
         List<T> lista = null;
         try {
             System.out.println("Consulta");
@@ -141,11 +135,15 @@ public class Generic_Controller<T> {
         }
         return lista;
     }
-
+    /**
+     * Metodo para cerrar la conexion.
+     */
     public void desconectar() {
         em.close();
     }
-
+    /**
+     * Metodo para abrir la conexion.
+     */
     public void conectar() {
         em = new EM_Controller().getEntityManager();
     }

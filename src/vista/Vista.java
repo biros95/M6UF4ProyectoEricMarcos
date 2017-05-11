@@ -491,6 +491,12 @@ public class Vista extends javax.swing.JFrame {
 
         jLabel6.setText("Telefon");
 
+        tfTlfAl.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                tfTlfAlKeyPressed(evt);
+            }
+        });
+
         btnCrearAlumn.setText("Crear");
         btnCrearAlumn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -704,6 +710,12 @@ public class Vista extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tablaTodasFamilias);
 
+        tfCercaIDFC.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                tfCercaIDFCKeyPressed(evt);
+            }
+        });
+
         btnCercarFamilia.setText("Cercar per ID");
         btnCercarFamilia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -820,6 +832,12 @@ public class Vista extends javax.swing.JFrame {
 
         tfIdCicle.setEditable(false);
 
+        tfIdFamiCicle.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                tfIdFamiCicleKeyPressed(evt);
+            }
+        });
+
         btnCrearCicle.setText("Crear");
         btnCrearCicle.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -847,6 +865,12 @@ public class Vista extends javax.swing.JFrame {
         btnClearCicle.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnClearCicleActionPerformed(evt);
+            }
+        });
+
+        tfCercaCicle.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                tfCercaCicleKeyPressed(evt);
             }
         });
 
@@ -1023,6 +1047,12 @@ public class Vista extends javax.swing.JFrame {
 
         tfIdCurs.setEditable(false);
 
+        tfIdCicleCurs.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                tfIdCicleCursKeyPressed(evt);
+            }
+        });
+
         btnLimpiCurs.setText("Neteja");
         btnLimpiCurs.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1057,6 +1087,12 @@ public class Vista extends javax.swing.JFrame {
         btnCercaCurs.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCercaCursActionPerformed(evt);
+            }
+        });
+
+        tfCercaCurs.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                tfCercaCursKeyPressed(evt);
             }
         });
 
@@ -1211,6 +1247,18 @@ public class Vista extends javax.swing.JFrame {
 
         tfIdModul.setEditable(false);
 
+        tfIdModulCicle.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                tfIdModulCicleKeyPressed(evt);
+            }
+        });
+
+        tfIdCursModul.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                tfIdCursModulKeyPressed(evt);
+            }
+        });
+
         jLabel25.setText("ID");
 
         jLabel26.setText("Nom");
@@ -1253,6 +1301,12 @@ public class Vista extends javax.swing.JFrame {
         btnCercaModul.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCercaModulActionPerformed(evt);
+            }
+        });
+
+        tfIdModulCerca.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                tfIdModulCercaKeyPressed(evt);
             }
         });
 
@@ -1390,6 +1444,18 @@ public class Vista extends javax.swing.JFrame {
 
         jLabel35.setText("Id Curs");
 
+        tfIdCursUF.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                tfIdCursUFKeyPressed(evt);
+            }
+        });
+
+        tfHoresUF.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                tfHoresUFKeyPressed(evt);
+            }
+        });
+
         tfIdUF.setEditable(false);
 
         btnCreaUF.setText("Crear");
@@ -1429,11 +1495,22 @@ public class Vista extends javax.swing.JFrame {
                 tfIdModulUFActionPerformed(evt);
             }
         });
+        tfIdModulUF.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                tfIdModulUFKeyPressed(evt);
+            }
+        });
 
         btnCercaIDUF.setText("Cerca per ID");
         btnCercaIDUF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCercaIDUFActionPerformed(evt);
+            }
+        });
+
+        tfCercaIDUF.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                tfCercaIDUFKeyPressed(evt);
             }
         });
 
@@ -1664,6 +1741,12 @@ public class Vista extends javax.swing.JFrame {
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
+            }
+        });
+
+        tfUFNOM.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                tfUFNOMKeyPressed(evt);
             }
         });
 
@@ -2147,33 +2230,32 @@ public class Vista extends javax.swing.JFrame {
      */
     private void btnCercaAlActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCercaAlActionPerformed
 
-            gc.conectar();
-            if (rbIdAl.isSelected()) {
-                al = (Alumne) gc.Buscar(tfCercaAl.getText(), Alumne.class);
-              
-                tfNomAl.setText(al.getNom());
-                tfNif.setText(al.getNif());
-                tfCognomAl.setText(al.getCognom());
-                tfCorreuAl.setText(al.getCorreu());
-                tfTlfAl.setText(String.valueOf(al.getTelefon()));
-                btnEliminarAl.setEnabled(true);
-                btnModiAl.setEnabled(true);
-            } else if (rbCogAl.isSelected()) {
+        gc.conectar();
+        if (rbIdAl.isSelected()) {
+            al = (Alumne) gc.Buscar(tfCercaAl.getText(), Alumne.class);
 
-                    al = (Alumne) ac.BuscarPerCognom(tfCercaAl.getText());
-                    tfNomAl.setText(al.getNom());
-                    tfNif.setText(al.getNif());
-                    tfCognomAl.setText(al.getCognom());
-                    tfCorreuAl.setText(al.getCorreu());
-                    tfTlfAl.setText(String.valueOf(al.getTelefon()));
-                    btnEliminarAl.setEnabled(true);
-                    btnModiAl.setEnabled(true);
-             
-                
-            }
-            tfNif.setEnabled(false);
-            gc.desconectar();
-       
+            tfNomAl.setText(al.getNom());
+            tfNif.setText(al.getNif());
+            tfCognomAl.setText(al.getCognom());
+            tfCorreuAl.setText(al.getCorreu());
+            tfTlfAl.setText(String.valueOf(al.getTelefon()));
+            btnEliminarAl.setEnabled(true);
+            btnModiAl.setEnabled(true);
+        } else if (rbCogAl.isSelected()) {
+
+            al = (Alumne) ac.BuscarPerCognom(tfCercaAl.getText());
+            tfNomAl.setText(al.getNom());
+            tfNif.setText(al.getNif());
+            tfCognomAl.setText(al.getCognom());
+            tfCorreuAl.setText(al.getCorreu());
+            tfTlfAl.setText(String.valueOf(al.getTelefon()));
+            btnEliminarAl.setEnabled(true);
+            btnModiAl.setEnabled(true);
+
+        }
+        tfNif.setEnabled(false);
+        gc.desconectar();
+
     }//GEN-LAST:event_btnCercaAlActionPerformed
     /**
      * Boton que limpia tablas y campos, asi como deshabilita los botones
@@ -2217,20 +2299,20 @@ public class Vista extends javax.swing.JFrame {
      */
     private void btnCercaTotsAlActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCercaTotsAlActionPerformed
 
-            gc.conectar();
-            //Busca todos los alumnos
-            List<Alumne> listaAlumnes = gc.ConsultaTots("Alumne");
-            if (listaAlumnes.isEmpty()) {
-            }
-            //Introduce los valores de los alumnos en la tabla.
-            String col[] = {"NIF", "NOM", "COGNOMS", "CORREU", "TELEFON"};
-            DefaultTableModel taulaAlumnes = new DefaultTableModel(col, 0);
-            tablaTotsAl.setModel(taulaAlumnes);
-            for (Alumne alumne : listaAlumnes) {
-                taulaAlumnes.addRow(new Object[]{alumne.getNif(), alumne.getNom(), alumne.getCognom(), alumne.getCorreu(), alumne.getTelefon()});
+        gc.conectar();
+        //Busca todos los alumnos
+        List<Alumne> listaAlumnes = gc.ConsultaTots("Alumne");
+        if (listaAlumnes.isEmpty()) {
+        }
+        //Introduce los valores de los alumnos en la tabla.
+        String col[] = {"NIF", "NOM", "COGNOMS", "CORREU", "TELEFON"};
+        DefaultTableModel taulaAlumnes = new DefaultTableModel(col, 0);
+        tablaTotsAl.setModel(taulaAlumnes);
+        for (Alumne alumne : listaAlumnes) {
+            taulaAlumnes.addRow(new Object[]{alumne.getNif(), alumne.getNom(), alumne.getCognom(), alumne.getCorreu(), alumne.getTelefon()});
 
-                gc.desconectar();
-            }
+            gc.desconectar();
+        }
     }//GEN-LAST:event_btnCercaTotsAlActionPerformed
     /**
      * Boton que busca una Familia de ciclos.
@@ -2472,7 +2554,7 @@ public class Vista extends javax.swing.JFrame {
         tfIdCursModul.setText(String.valueOf(mo.getCurs().getId()));
         tfIdModulCicle.setText(String.valueOf(mo.getCicle().getId()));
         //Busca y carga en una tabla todas las UF de este modulo.
-        List<UnitatFormativa> listaUF = mc.BuscarCursosCicle(mo.getId());
+        List<UnitatFormativa> listaUF = mc.BuscarUfModulo(mo.getId());
         String col[] = {"ID", "NOM", "HORES"};
         DefaultTableModel taulaUFModul = new DefaultTableModel(col, 0);
         taulaModulUF.setModel(taulaUFModul);
@@ -2636,45 +2718,41 @@ public class Vista extends javax.swing.JFrame {
      */
     private void btnCrearMatriculaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearMatriculaActionPerformed
         gc.conectar();
-        //Mira que el alumno no tenga una matricula ya.
-        if (mac.BuscarPerNif(tfIdAlumneMatricula.getText()) == null) {
-            //Damos formato a la fecha.
-            DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-            Date date = new Date();
-            //Buscamos el alumno
-            al = (Alumne) gc.Buscar(tfIdAlumneMatricula.getText(), Alumne.class);
-            //Seteamos el RB donde queremos para darle el valor correspondiente con su ENUM.
-            if (rbComplet.isSelected()) {
-                Descompte desc = estadoRadioButon();
-                //Creamos la matricula
-                matricula = new Matricula(al, date, Modalitat.COMPLET, desc, new Import(Double.parseDouble(tfImport.getText())));
-            } else {
-                Descompte desc = estadoRadioButon();
-                matricula = new Matricula(al, date, Modalitat.UFS, desc, new Import(Double.parseDouble(tfImport.getText())));
-            }
-            //Cogemos las UFs del TextField i las metemos en un Array de Strings
-            String[] ufs = tfTotesUFCerca.getText().split(";");
-            //Creamos una Lista de UF
-            List<UnitatFormativa> ufsMatricula = new ArrayList<>();
-            //Recorremos el array i buscamos cada UF por su id, para añadirlo a la lista de UFs.
-            for (String uf1 : ufs) {
-                System.out.println(uf1);
-                ufsMatricula.add((UnitatFormativa) gc.Buscar(Long.parseLong(uf1), UnitatFormativa.class));
-            }
-            //Creamos una lista de matriculas para añadir a cada UF la matricula a la que esta vinculada
-            List<Matricula> matriculass = new ArrayList<>();
-            //Recorremos las UFs i les añadimos sus Matriculas.
-            for (UnitatFormativa unitatFormativa : ufsMatricula) {
-                matriculass.add(matricula);
-                unitatFormativa.setListaMatriculas(matriculass);
-            }
-            //Seteamos la matricula.
-            matricula.setListaUF(ufsMatricula);
-            //Insertamos la matricula
-            gc.Insertar(matricula);
+        //Damos formato a la fecha.
+        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        Date date = new Date();
+
+        //Buscamos el alumno
+        al = (Alumne) gc.Buscar(tfIdAlumneMatricula.getText(), Alumne.class);
+        //Seteamos el RB donde queremos para darle el valor correspondiente con su ENUM.
+        if (rbComplet.isSelected()) {
+            Descompte desc = estadoRadioButon();
+            //Creamos la matricula
+            matricula = new Matricula(al, date, Modalitat.COMPLET, desc, new Import(Double.parseDouble(tfImport.getText())));
         } else {
-            JOptionPane.showMessageDialog(null, "Ja existeix una matricula per aquest alumne!");
+            Descompte desc = estadoRadioButon();
+            matricula = new Matricula(al, date, Modalitat.UFS, desc, new Import(Double.parseDouble(tfImport.getText())));
         }
+        //Cogemos las UFs del TextField i las metemos en un Array de Strings
+        String[] ufs = tfTotesUFCerca.getText().split(";");
+        //Creamos una Lista de UF
+        List<UnitatFormativa> ufsMatricula = new ArrayList<>();
+        //Recorremos el array i buscamos cada UF por su id, para añadirlo a la lista de UFs.
+        for (String uf1 : ufs) {
+            System.out.println(uf1);
+            ufsMatricula.add((UnitatFormativa) gc.Buscar(Long.parseLong(uf1), UnitatFormativa.class));
+        }
+        //Creamos una lista de matriculas para añadir a cada UF la matricula a la que esta vinculada
+        List<Matricula> matriculass = new ArrayList<>();
+        //Recorremos las UFs i les añadimos sus Matriculas.
+        for (UnitatFormativa unitatFormativa : ufsMatricula) {
+            matriculass.add(matricula);
+            unitatFormativa.setListaMatriculas(matriculass);
+        }
+        //Seteamos la matricula.
+        matricula.setListaUF(ufsMatricula);
+        //Insertamos la matricula
+        gc.Insertar(matricula);
         gc.desconectar();
     }//GEN-LAST:event_btnCrearMatriculaActionPerformed
     /**
@@ -2894,6 +2972,203 @@ public class Vista extends javax.swing.JFrame {
         gc.desconectar();
 
     }//GEN-LAST:event_btnCercaFamiliaAlumnesActionPerformed
+    /**
+     * Comprovacion que se realiza para que no hayan letras en campos solo
+     * numericos.
+     *
+     * @param evt
+     */
+    private void tfTlfAlKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfTlfAlKeyPressed
+        char enter = evt.getKeyChar();
+        if (!(Character.isDigit(enter))) {
+            evt.consume();
+            JOptionPane.showMessageDialog(null, "Només s'acceptan numeros!");
+            tfTlfAl.setText("");
+        }
+    }//GEN-LAST:event_tfTlfAlKeyPressed
+    /**
+     * Comprovacion que se realiza para que no hayan letras en campos solo
+     * numericos.
+     *
+     * @param evt
+     */
+    private void tfCercaIDFCKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfCercaIDFCKeyPressed
+        char enter = evt.getKeyChar();
+        if (!(Character.isDigit(enter))) {
+            evt.consume();
+            JOptionPane.showMessageDialog(null, "Només s'acceptan numeros!");
+            tfCercaIDFC.setText("");
+        }
+    }//GEN-LAST:event_tfCercaIDFCKeyPressed
+    /**
+     * Comprovacion que se realiza para que no hayan letras en campos solo
+     * numericos.
+     *
+     * @param evt
+     */
+    private void tfIdFamiCicleKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfIdFamiCicleKeyPressed
+        char enter = evt.getKeyChar();
+        if (!(Character.isDigit(enter))) {
+            evt.consume();
+            JOptionPane.showMessageDialog(null, "Només s'acceptan numeros!");
+            tfIdFamiCicle.setText("");
+        }
+    }//GEN-LAST:event_tfIdFamiCicleKeyPressed
+    /**
+     * Comprovacion que se realiza para que no hayan letras en campos solo
+     * numericos.
+     *
+     * @param evt
+     */
+    private void tfCercaCicleKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfCercaCicleKeyPressed
+        char enter = evt.getKeyChar();
+        if (!(Character.isDigit(enter))) {
+            evt.consume();
+            JOptionPane.showMessageDialog(null, "Només s'acceptan numeros!");
+            tfCercaCicle.setText("");
+        }
+    }//GEN-LAST:event_tfCercaCicleKeyPressed
+    /**
+     * Comprovacion que se realiza para que no hayan letras en campos solo
+     * numericos.
+     *
+     * @param evt
+     */
+    private void tfIdCicleCursKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfIdCicleCursKeyPressed
+        char enter = evt.getKeyChar();
+        if (!(Character.isDigit(enter))) {
+            evt.consume();
+            JOptionPane.showMessageDialog(null, "Només s'acceptan numeros!");
+            tfIdCicleCurs.setText("");
+        }
+    }//GEN-LAST:event_tfIdCicleCursKeyPressed
+    /**
+     * Comprovacion que se realiza para que no hayan letras en campos solo
+     * numericos.
+     *
+     * @param evt
+     */
+    private void tfCercaCursKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfCercaCursKeyPressed
+        char enter = evt.getKeyChar();
+        if (!(Character.isDigit(enter))) {
+            evt.consume();
+            JOptionPane.showMessageDialog(null, "Només s'acceptan numeros!");
+            tfCercaCurs.setText("");
+        }
+    }//GEN-LAST:event_tfCercaCursKeyPressed
+    /**
+     * Comprovacion que se realiza para que no hayan letras en campos solo
+     * numericos.
+     *
+     * @param evt
+     */
+    private void tfIdCursModulKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfIdCursModulKeyPressed
+        char enter = evt.getKeyChar();
+        if (!(Character.isDigit(enter))) {
+            evt.consume();
+            JOptionPane.showMessageDialog(null, "Només s'acceptan numeros!");
+            tfIdCursModul.setText("");
+        }
+    }//GEN-LAST:event_tfIdCursModulKeyPressed
+    /**
+     * Comprovacion que se realiza para que no hayan letras en campos solo
+     * numericos.
+     *
+     * @param evt
+     */
+    private void tfIdModulCicleKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfIdModulCicleKeyPressed
+        char enter = evt.getKeyChar();
+        if (!(Character.isDigit(enter))) {
+            evt.consume();
+            JOptionPane.showMessageDialog(null, "Només s'acceptan numeros!");
+            tfIdModulCicle.setText("");
+        }
+    }//GEN-LAST:event_tfIdModulCicleKeyPressed
+    /**
+     * Comprovacion que se realiza para que no hayan letras en campos solo
+     * numericos.
+     *
+     * @param evt
+     */
+    private void tfIdModulCercaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfIdModulCercaKeyPressed
+        char enter = evt.getKeyChar();
+        if (!(Character.isDigit(enter))) {
+            evt.consume();
+            JOptionPane.showMessageDialog(null, "Només s'acceptan numeros!");
+            tfIdModulCerca.setText("");
+        }
+    }//GEN-LAST:event_tfIdModulCercaKeyPressed
+    /**
+     * Comprovacion que se realiza para que no hayan letras en campos solo
+     * numericos.
+     *
+     * @param evt
+     */
+    private void tfHoresUFKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfHoresUFKeyPressed
+        char enter = evt.getKeyChar();
+        if (!(Character.isDigit(enter))) {
+            evt.consume();
+            JOptionPane.showMessageDialog(null, "Només s'acceptan numeros!");
+            tfHoresUF.setText("");
+        }
+    }//GEN-LAST:event_tfHoresUFKeyPressed
+    /**
+     * Comprovacion que se realiza para que no hayan letras en campos solo
+     * numericos.
+     *
+     * @param evt
+     */
+    private void tfIdCursUFKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfIdCursUFKeyPressed
+        char enter = evt.getKeyChar();
+        if (!(Character.isDigit(enter))) {
+            evt.consume();
+            JOptionPane.showMessageDialog(null, "Només s'acceptan numeros!");
+            tfIdCursUF.setText("");
+        }
+    }//GEN-LAST:event_tfIdCursUFKeyPressed
+    /**
+     * Comprovacion que se realiza para que no hayan letras en campos solo
+     * numericos.
+     *
+     * @param evt
+     */
+    private void tfIdModulUFKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfIdModulUFKeyPressed
+        char enter = evt.getKeyChar();
+        if (!(Character.isDigit(enter))) {
+            evt.consume();
+            JOptionPane.showMessageDialog(null, "Només s'acceptan numeros!");
+            tfIdModulUF.setText("");
+        }
+    }//GEN-LAST:event_tfIdModulUFKeyPressed
+    /**
+     * Comprovacion que se realiza para que no hayan letras en campos solo
+     * numericos.
+     *
+     * @param evt
+     */
+    private void tfCercaIDUFKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfCercaIDUFKeyPressed
+        char enter = evt.getKeyChar();
+        if (!(Character.isDigit(enter))) {
+            evt.consume();
+            JOptionPane.showMessageDialog(null, "Només s'acceptan numeros!");
+            tfCercaIDUF.setText("");
+        }
+    }//GEN-LAST:event_tfCercaIDUFKeyPressed
+    /**
+     * Comprovacion que se realiza para que no hayan letras en campos solo
+     * numericos.
+     *
+     * @param evt
+     */
+    private void tfUFNOMKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfUFNOMKeyPressed
+        char enter = evt.getKeyChar();
+        if (!(Character.isDigit(enter))) {
+            evt.consume();
+            JOptionPane.showMessageDialog(null, "Només s'acceptan numeros!");
+            tfUFNOM.setText("");
+        }
+    }//GEN-LAST:event_tfUFNOMKeyPressed
+
     /**
      * Metodo que nos devuelve el ENUM de Descompte en funcion del estado del
      * RB.

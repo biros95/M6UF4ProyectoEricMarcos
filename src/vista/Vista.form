@@ -264,6 +264,9 @@
             <Component class="javax.swing.JTextField" name="tfCorreuAl">
             </Component>
             <Component class="javax.swing.JTextField" name="tfTlfAl">
+              <Events>
+                <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="tfTlfAlKeyPressed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btnCrearAlumn">
               <Properties>
@@ -543,6 +546,9 @@
               </SubComponents>
             </Container>
             <Component class="javax.swing.JTextField" name="tfCercaIDFC">
+              <Events>
+                <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="tfCercaIDFCKeyPressed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btnCercarFamilia">
               <Properties>
@@ -763,6 +769,9 @@
             <Component class="javax.swing.JTextField" name="tfGrauCicle">
             </Component>
             <Component class="javax.swing.JTextField" name="tfIdFamiCicle">
+              <Events>
+                <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="tfIdFamiCicleKeyPressed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btnCrearCicle">
               <Properties>
@@ -799,6 +808,9 @@
               </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="tfCercaCicle">
+              <Events>
+                <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="tfCercaCicleKeyPressed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btnCercaCicle">
               <Properties>
@@ -1041,6 +1053,9 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="tfIdCicleCurs">
+              <Events>
+                <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="tfIdCicleCursKeyPressed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btnLimpiCurs">
               <Properties>
@@ -1085,6 +1100,9 @@
               </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="tfCercaCurs">
+              <Events>
+                <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="tfCercaCursKeyPressed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JRadioButton" name="rbPrimer">
               <Properties>
@@ -1316,10 +1334,16 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="tfIdModulCicle">
+              <Events>
+                <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="tfIdModulCicleKeyPressed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="tfNomModul">
             </Component>
             <Component class="javax.swing.JTextField" name="tfIdCursModul">
+              <Events>
+                <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="tfIdCursModulKeyPressed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel25">
               <Properties>
@@ -1384,6 +1408,9 @@
               </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="tfIdModulCerca">
+              <Events>
+                <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="tfIdModulCercaKeyPressed"/>
+              </Events>
             </Component>
             <Container class="javax.swing.JScrollPane" name="tableUFModul">
               <AuxValues>
@@ -1573,8 +1600,14 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="tfIdCursUF">
+              <Events>
+                <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="tfIdCursUFKeyPressed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="tfHoresUF">
+              <Events>
+                <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="tfHoresUFKeyPressed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="tfNomUF">
             </Component>
@@ -1625,6 +1658,7 @@
             <Component class="javax.swing.JTextField" name="tfIdModulUF">
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tfIdModulUFActionPerformed"/>
+                <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="tfIdModulUFKeyPressed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btnCercaIDUF">
@@ -1636,6 +1670,9 @@
               </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="tfCercaIDUF">
+              <Events>
+                <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="tfCercaIDUFKeyPressed"/>
+              </Events>
             </Component>
             <Container class="javax.swing.JScrollPane" name="tableTotesUF">
               <AuxValues>
@@ -2072,6 +2109,9 @@
                       </Events>
                     </Component>
                     <Component class="javax.swing.JTextField" name="tfUFNOM">
+                      <Events>
+                        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="tfUFNOMKeyPressed"/>
+                      </Events>
                     </Component>
                     <Container class="javax.swing.JScrollPane" name="jScrollPane11">
                       <AuxValues>

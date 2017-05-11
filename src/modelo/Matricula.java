@@ -38,7 +38,7 @@ import utilitats.Modalitat;
     , //Query que busca una Matricula a partir del NIF de un alumno
 @NamedQuery(name = "alumneUFMatricula", query = "SELECT u.alumneId FROM Matricula u, UnitatFormativa p WHERE p in (:id)")
     , //Query que busca los usuarios matriculados en X UF
-@NamedQuery(name = "ufsMatricula", query = "SELECT u FROM UnitatFormativa u, Matricula m WHERE m.id=:id")}) //Query que busca UF's que pertenecen a una UF.
+@NamedQuery(name = "ufsMatricula", query = "SELECT u FROM UnitatFormativa u, Matricula m WHERE m.id=:id")}) //Query que busca UFs que pertenecen a una Matricula.
 @Table(name = "Matricula")
 public class Matricula implements Serializable {
 
