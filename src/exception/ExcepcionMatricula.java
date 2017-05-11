@@ -18,8 +18,8 @@ public class ExcepcionMatricula extends Exception{
 
     public ExcepcionMatricula(String message) {
             super(message);
-      mensaje  = message.equals("NIF") ? "No s'ha trobat cap alumne amb aquest NIF": (message.equals("COG")) ?
-              "No s'ha trobat cap alumne amb aquest cognom": "No s'han trobat alumnes";
+      mensaje  = message.equals("NIF") ? "No s'ha trobat cap matricula amb aquest NIF": (message.equals("TOTS")) ?
+              "No s'han trobat matricules": "No s'han trobat alumnes";
         
      JOptionPane.showMessageDialog(null, mensaje);
     }

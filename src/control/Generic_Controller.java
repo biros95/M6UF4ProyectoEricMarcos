@@ -1,5 +1,6 @@
 package control;
 
+import exception.ExcepcionMatricula;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
@@ -114,12 +115,21 @@ public class Generic_Controller<T> {
     }
 
     public List<T> ConsultaTots(String t) {
-        // Recupera el entity manager        
-        System.out.println("Consulta");
-        Query q = em.createQuery("FROM " + t);
-        List<T> lista = (List<T>) q.getResultList();
-        System.out.println("close");
+        // Recupera el entity manager     
+        List<T> lista = null;
+        try {
+            System.out.println("Consulta");
+            Query q = em.createQuery("FROM " + t);
+           
+            lista = (List<T>) q.getResultList();
+             if (lista==null || lista.isEmpty()) {
+                throw new ExcepcionMatricula("TOTS");
+            }
+            System.out.println("close");
 
+        } catch (ExcepcionMatricula ex) {
+
+        }
         return lista;
     }
 

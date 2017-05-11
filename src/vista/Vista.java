@@ -14,6 +14,7 @@ import control.Generic_Controller;
 import control.Matricula_Controller;
 import control.Modul_Controller;
 import exception.ExcepcionAlumne;
+import exception.ExcepcionMatricula;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -2187,6 +2188,8 @@ public class Vista extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCrearMatriculaActionPerformed
 
     private void btnCercaNifMatriculaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCercaNifMatriculaActionPerformed
+        
+        
         gc.conectar();
         matricula = mac.BuscarPerNif(tfCercaNifMatricula.getText());
         tfIdMatricula.setText(String.valueOf(matricula.getId()));
@@ -2224,6 +2227,7 @@ public class Vista extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btnCercaTotesMatriculesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCercaTotesMatriculesActionPerformed
+
         gc.conectar();
         List<Matricula> list = gc.ConsultaTots("Matricula");
         String col[] = {"ID", "Alumne NIF", "Data", "Modalitat", "Descompte", "Import"};
@@ -2233,6 +2237,7 @@ public class Vista extends javax.swing.JFrame {
             taulaTotesMatricules.addRow(new Object[]{matricula1.getId(), matricula1.getAlumneId().getNif(), matricula1.getData(), matricula1.getModalitat(), matricula1.getDescompte(), matricula1.getImporte().getImporte()});
         }
         gc.desconectar();
+     
     }//GEN-LAST:event_btnCercaTotesMatriculesActionPerformed
 
     private Descompte estadoRadioButon() {

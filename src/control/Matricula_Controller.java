@@ -5,6 +5,7 @@
  */
 package control;
 
+import exception.ExcepcionMatricula;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
@@ -23,14 +24,22 @@ public class Matricula_Controller extends Generic_Controller{
     }
     
     public Matricula BuscarPerNif(String nif) {
-        // Recupera el entity manager       
+        // Recupera el entity manager    
+        Matricula p = null;
+        try{
         em = new EM_Controller().getEntityManager();
         System.out.println("Busqueda per NIF");
         Query query = em.createNamedQuery("nifMatricula", Matricula.class);
         query.setParameter("nif", nif);
-        Matricula p = (Matricula) query.getSingleResult();
+        p = (Matricula) query.getSingleResult();
+            if (p == null) {
+                throw new ExcepcionMatricula("NIF");
+            }
         System.out.println("close");
         em.close();
+        } catch(ExcepcionMatricula ex){
+            
+        }
         return p;
     }
     
