@@ -22,36 +22,39 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
+ * Clase de Ciclo
  *
- * @author MarcosPortatil
+ * @author Eric & Marcos
  */
 @Entity
 @NamedQueries({
-@NamedQuery(name = "cercaCiclesFamilia", query = "SELECT c FROM Cicle c WHERE c.familia.id=:id"),
-@NamedQuery(name = "cercaCursosCicles", query = "SELECT c FROM Curs c WHERE c.cicle.id=:id"),
+    @NamedQuery(name = "cercaCiclesFamilia", query = "SELECT c FROM Cicle c WHERE c.familia.id=:id")
+    ,
+@NamedQuery(name = "cercaCursosCicles", query = "SELECT c FROM Curs c WHERE c.cicle.id=:id")
+    ,
 @NamedQuery(name = "cercaModulsCicles", query = "SELECT c FROM Modul c WHERE c.cicle.id=:id")})
 @Table(name = "Cicles")
 public class Cicle implements Serializable {
 
     private static final long serialVersionUID = 1L;
-
+    //Id de Ciclo
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "cicleId", nullable = false, unique = true)
     private Long id;
-
+    //Atributos de Ciclo
     @Column(name = "nomCicle", length = 50, nullable = false)
     private String nom;
 
     @Column(name = "grauCicle", length = 50)
     private String grau;
-    
-    @OneToMany(mappedBy="cicle", cascade = CascadeType.ALL)
+    //Relacion OneToMany con Curso, ya que un Ciclo puede tener muchos Cursos, pero un Curso solo puede pertencer a un Ciclo.
+    @OneToMany(mappedBy = "cicle", cascade = CascadeType.ALL)
     private List<Curs> llistaCursos;
-    
-    @OneToMany(mappedBy="cicle" , cascade = CascadeType.ALL)
+    //Relacion OneToMany con Modulo, ya que un Ciclo puede tener muchos Modulos, pero un Modulo solo puede pertenecer a un Ciclo.
+    @OneToMany(mappedBy = "cicle", cascade = CascadeType.ALL)
     private List<Modul> llistaModuls;
-    
+    //Relacion ManyToOne con FamiliaCicles, ya que un Ciclo solo puede pertenecer a una Familia, pero una Familia puede tener varios ciclos.
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "idFamilia")
     private FamiliaCicles familia;
@@ -68,13 +71,9 @@ public class Cicle implements Serializable {
         this.grau = grau;
         this.familia = familia;
     }
-    
-    
 
     public Cicle() {
     }
-
-    
 
     public Long getId() {
         return id;
@@ -140,7 +139,5 @@ public class Cicle implements Serializable {
         }
         return true;
     }
-    
-    
 
 }

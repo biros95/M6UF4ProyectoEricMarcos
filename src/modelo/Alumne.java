@@ -19,21 +19,22 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
+ * Clase de Alumno
  *
- * @author MarcosPortatil
+ * @author Eric & Marocs
  */
 @Entity
 @NamedQueries({
-@NamedQuery(name="alumneCognom", query="SELECT p FROM Alumne p WHERE p.cognom=:cognom")})
+    @NamedQuery(name = "alumneCognom", query = "SELECT p FROM Alumne p WHERE p.cognom=:cognom")})
 @Table(name = "Alumnes")
 public class Alumne implements Serializable {
 
     private static final long serialVersionUID = 1L;
-
+    //Id del Alumno
     @Id
     @Column(name = "alumneNif", unique = true, nullable = false)
     private String nif;
-
+    //Diferentes atributos de alumno
     @Column(name = "nom", length = 20, nullable = false)
     private String nom;
 
@@ -45,7 +46,7 @@ public class Alumne implements Serializable {
 
     @Column(name = "telefon", length = 11)
     private int telefon;
-
+    //Relacion OneToOne con Matricula, ya que un alumno solo podra tener una Matricula en nuestro programa.
     @OneToOne(mappedBy = "alumneId")
     private Matricula matriculaId;
 
@@ -56,9 +57,9 @@ public class Alumne implements Serializable {
         this.correu = correu;
         this.telefon = telefon;
     }
-    
+
     public Alumne() {
-    }   
+    }
 
     public String getNif() {
         return nif;
@@ -133,5 +134,4 @@ public class Alumne implements Serializable {
         return true;
     }
 
-    
 }

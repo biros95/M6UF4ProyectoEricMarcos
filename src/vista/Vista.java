@@ -26,6 +26,7 @@ import java.util.Set;
 import javafx.scene.control.RadioButton;
 import javax.persistence.EntityManager;
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import modelo.Alumne;
 import modelo.Cicle;
@@ -63,7 +64,7 @@ public class Vista extends javax.swing.JFrame {
     EntityManager em;
 
     /**
-     * Creates new form Vista
+     * Constructor de Vista que vacia los campos y inicializa los controladores.
      */
     public Vista() {
         initComponents();
@@ -79,6 +80,9 @@ public class Vista extends javax.swing.JFrame {
         mac = new Matricula_Controller(em);
     }
 
+    /**
+     * Metodo que actualiza la lista de UFs en la Matricula
+     */
     public void actualizarLista() {
         gc.conectar();
         List<UnitatFormativa> listaUF = gc.ConsultaTots("UnitatFormativa");
@@ -91,6 +95,10 @@ public class Vista extends javax.swing.JFrame {
         gc.desconectar();
     }
 
+    /**
+     * Metodo que vacia todos los campos y deshabilitata botones, asi como pone
+     * tambien los Radio Buttons en posiciones iniciales.
+     */
     public void BuidarCamps() {
         //Vaciar campos de texto.
 
@@ -166,6 +174,9 @@ public class Vista extends javax.swing.JFrame {
         rbCap.setSelected(true);
     }
 
+    /**
+     * Vacia las tablas del programa.
+     */
     public void BuidarTaula() {
         String col[] = {"NIF", "NOM", "COGNOMS", "CORREU", "TELEFON"};
         DefaultTableModel taulaAlumnes = new DefaultTableModel(col, 0);
@@ -221,6 +232,9 @@ public class Vista extends javax.swing.JFrame {
         String col18[] = {"NOM", "COGNOM", "NIF"};
         DefaultTableModel taulaFamiliaAlumnes = new DefaultTableModel(col18, 0);
         tableFamiliaAlumne.setModel(taulaFamiliaAlumnes);
+        String col19[] = {"ID", "NOM", "CURSID", "MODULID", "HORES"};
+        DefaultTableModel taulaUfs = new DefaultTableModel(col19, 0);
+        tableTotesUFMatricula.setModel(taulaUfs);
     }
 
     /**
@@ -2045,24 +2059,39 @@ public class Vista extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    /**
+     * Boton que crea un alumno nuevo.
+     *
+     * @param evt
+     */
     private void btnCrearAlumnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearAlumnActionPerformed
         gc.conectar();
         al = new Alumne(tfNif.getText(), tfNomAl.getText(), tfCognomAl.getText(), tfCorreuAl.getText(), Integer.parseInt(tfTlfAl.getText()));
         gc.Insertar(al);
         gc.desconectar();
     }//GEN-LAST:event_btnCrearAlumnActionPerformed
-
+    /**
+     * Boton que crea una familia nueva.
+     *
+     * @param evt
+     */
     private void btnCrearFamiliaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearFamiliaActionPerformed
         gc.conectar();
         fc = new FamiliaCicles(tfNomFamilia.getText());
         gc.Insertar(fc);
         gc.desconectar();
     }//GEN-LAST:event_btnCrearFamiliaActionPerformed
-
+    /**
+     * Boton que crea un curso nuevo. Antes busca un ciclo ya que tienen una
+     * relacion entre Curso y ciclo.
+     *
+     * @param evt
+     */
     private void btnCrearCursActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearCursActionPerformed
         gc.conectar();
+        //Realiza la busqueda de un ciclo
         ci = (Cicle) gc.Buscar(Long.parseLong(tfIdCicleCurs.getText()), Cicle.class);
+        //Setea en funcion del radiobuton una opcion de curso distinta
         if (rbPrimer.isSelected()) {
             cr = new Curs(NombreDeCurs.PRIMER, ci);
         } else {
@@ -2071,17 +2100,25 @@ public class Vista extends javax.swing.JFrame {
         gc.Insertar(cr);
         gc.desconectar();
     }//GEN-LAST:event_btnCrearCursActionPerformed
-
+    /**
+     * Boton que busca un curso por su ID
+     *
+     * @param evt
+     */
     private void btnCercaCursActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCercaCursActionPerformed
         gc.conectar();
+        //Realiza la busqueda del Curso.
         cr = (Curs) gc.Buscar(Long.parseLong(tfCercaCurs.getText()), Curs.class);
+        //Setea la ID del curso.
         tfIdCurs.setText(String.valueOf(cr.getId()));
+        //Setea el radio buton que le toca en fucion del valor que tenga el atributo curso.
         if (cr.getNombreDeCurs() == NombreDeCurs.PRIMER) {
             rbPrimer.setSelected(true);
         } else {
             rbSegon.setSelected(true);
         }
         tfIdCicleCurs.setText(String.valueOf(cr.getCicle().getId()));
+        //Muestra en la tabla la lista de modulos del curso
         List<Modul> listaModul = cc.BuscarModulsCurs(cr.getId());
         String col[] = {"ID", "NOM"};
         DefaultTableModel taulaModulsCicle = new DefaultTableModel(col, 0);
@@ -2089,6 +2126,7 @@ public class Vista extends javax.swing.JFrame {
         for (Modul mo : listaModul) {
             taulaModulsCicle.addRow(new Object[]{mo.getId(), mo.getNom()});
         }
+        //Muestra en la tabla la lista de UF del curso.
         List<UnitatFormativa> listaUF = cc.BuscarUFCurs(cr.getId());
         String col2[] = {"ID", "NOM"};
         DefaultTableModel taulaUFCurs = new DefaultTableModel(col2, 0);
@@ -2097,10 +2135,15 @@ public class Vista extends javax.swing.JFrame {
             taulaUFCurs.addRow(new Object[]{uf.getId(), uf.getNom()});
         }
         gc.desconectar();
+        //Una vez realizada la busqueda, habilita los botones para poder modificar y eliminar
         btnModiCurs.setEnabled(true);
         btnEliminarCurs.setEnabled(true);
     }//GEN-LAST:event_btnCercaCursActionPerformed
-
+    /**
+     * Botone que busca a un alumno por su NIF.
+     *
+     * @param evt
+     */
     private void btnCercaAlActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCercaAlActionPerformed
 
         try {
@@ -2134,18 +2177,34 @@ public class Vista extends javax.swing.JFrame {
 
         }
     }//GEN-LAST:event_btnCercaAlActionPerformed
-
+    /**
+     * Boton que limpia tablas y campos, asi como deshabilita los botones
+     * modificar y eliminar.
+     *
+     * @param evt
+     */
     private void btnClearAlActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearAlActionPerformed
         BuidarCamps();
         BuidarTaula();
     }//GEN-LAST:event_btnClearAlActionPerformed
-
+    /**
+     * Boton que elimina un alumno, el cual se ha buscado anteriormente La
+     * eliminacion la realiza mediante su Nif.
+     *
+     * @param evt
+     */
     private void btnEliminarAlActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarAlActionPerformed
         gc.conectar();
         gc.Eliminar(gc.Buscar(tfNif.getText(), Alumne.class));
         gc.desconectar();
     }//GEN-LAST:event_btnEliminarAlActionPerformed
-
+    /**
+     * Boton que busca un alumno por su nif y setea los nuevos valores
+     * introducidos en los TextFields Esto modifica los valores en la BBDD de
+     * alumno.
+     *
+     * @param evt
+     */
     private void btnModiAlActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModiAlActionPerformed
         gc.conectar();
         al = (Alumne) gc.Buscar(tfNif.getText(), Alumne.class);
@@ -2153,14 +2212,20 @@ public class Vista extends javax.swing.JFrame {
         gc.Modificar(al);
         gc.desconectar();
     }//GEN-LAST:event_btnModiAlActionPerformed
-
+    /**
+     * Boton que busca todos los alumnos existentes.
+     *
+     * @param evt
+     */
     private void btnCercaTotsAlActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCercaTotsAlActionPerformed
         try {
             gc.conectar();
+            //Busca todos los alumnos
             List<Alumne> listaAlumnes = gc.ConsultaTots("Alumne");
             if (listaAlumnes.isEmpty()) {
                 throw new ExcepcionAlumne("TOTS");
             }
+            //Introduce los valores de los alumnos en la tabla.
             String col[] = {"NIF", "NOM", "COGNOMS", "CORREU", "TELEFON"};
             DefaultTableModel taulaAlumnes = new DefaultTableModel(col, 0);
             tablaTotsAl.setModel(taulaAlumnes);
@@ -2173,12 +2238,18 @@ public class Vista extends javax.swing.JFrame {
 
         }
     }//GEN-LAST:event_btnCercaTotsAlActionPerformed
-
+    /**
+     * Boton que busca una Familia de ciclos.
+     *
+     * @param evt
+     */
     private void btnCercarFamiliaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCercarFamiliaActionPerformed
         gc.conectar();
+        //Busca la familia de ciclos y seta sus valores.
         fc = (FamiliaCicles) gc.Buscar(Long.parseLong(tfCercaIDFC.getText()), FamiliaCicles.class);
         tfIdFamilia.setText(String.valueOf(fc.getId()));
         tfNomFamilia.setText(fc.getNom());
+        //Setea los ciclos de la familia en la tabla
         List<Cicle> listaCiclesFamilies = fco.BuscarPerFamilia(fc.getId());
         String col[] = {"ID", "NOM", "GRAU"};
         DefaultTableModel taulaCiclesFamilia = new DefaultTableModel(col, 0);
@@ -2187,21 +2258,34 @@ public class Vista extends javax.swing.JFrame {
             taulaCiclesFamilia.addRow(new Object[]{ci1.getId(), ci1.getNom(), ci1.getGrau()});
         }
         gc.desconectar();
+        //Habilita los botones modificar y eliminar.
         btnModificarFamilia.setEnabled(true);
         btnEliminarFamilia.setEnabled(true);
     }//GEN-LAST:event_btnCercarFamiliaActionPerformed
-
+    /**
+     * Boton que limpia los campos, tablas y deshabilita los botones.
+     *
+     * @param evt
+     */
     private void btnClearFamiliaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearFamiliaActionPerformed
         BuidarCamps();
         BuidarTaula();
     }//GEN-LAST:event_btnClearFamiliaActionPerformed
-
+    /**
+     * Boton que elimina la familia pasada por ID.
+     *
+     * @param evt
+     */
     private void btnEliminarFamiliaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarFamiliaActionPerformed
         gc.conectar();
         gc.Eliminar(gc.Buscar(Long.parseLong(tfCercaIDFC.getText()), FamiliaCicles.class));
         gc.desconectar();
     }//GEN-LAST:event_btnEliminarFamiliaActionPerformed
-
+    /**
+     * Boton que modifica la familia con los nuevos valores, modifica por ID.
+     *
+     * @param evt
+     */
     private void btnModificarFamiliaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarFamiliaActionPerformed
         gc.conectar();
         fc = (FamiliaCicles) gc.Buscar(Long.parseLong(tfCercaIDFC.getText()), FamiliaCicles.class);
@@ -2209,7 +2293,11 @@ public class Vista extends javax.swing.JFrame {
         gc.Modificar(fc);
         gc.desconectar();
     }//GEN-LAST:event_btnModificarFamiliaActionPerformed
-
+    /**
+     * Busca totes les families de cicles.
+     *
+     * @param evt
+     */
     private void btnTotsFCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTotsFCActionPerformed
         gc.conectar();
         List<FamiliaCicles> listaFamilies = gc.ConsultaTots("FamiliaCicles");
@@ -2221,12 +2309,20 @@ public class Vista extends javax.swing.JFrame {
         }
         gc.desconectar();
     }//GEN-LAST:event_btnTotsFCActionPerformed
-
+    /**
+     * Boton que limpia los campos, tablas y deshabilita los botones.
+     *
+     * @param evt
+     */
     private void btnLimpiCursActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiCursActionPerformed
         BuidarCamps();
         BuidarTaula();
     }//GEN-LAST:event_btnLimpiCursActionPerformed
-
+    /**
+     * Boton que busca todos los cursos.
+     *
+     * @param evt
+     */
     private void btnCercaTotsCursosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCercaTotsCursosActionPerformed
         gc.conectar();
         List<Curs> llistaCurs = gc.ConsultaTots("Curs");
@@ -2238,7 +2334,11 @@ public class Vista extends javax.swing.JFrame {
         }
         gc.desconectar();
     }//GEN-LAST:event_btnCercaTotsCursosActionPerformed
-
+    /**
+     * Boton que modifica un curso, identificado por un ID.
+     *
+     * @param evt
+     */
     private void btnModiCursActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModiCursActionPerformed
         gc.conectar();
         cr = (Curs) gc.Buscar(Long.parseLong(tfIdCurs.getText()), Curs.class);
@@ -2252,7 +2352,11 @@ public class Vista extends javax.swing.JFrame {
         gc.Modificar(cr);
         gc.desconectar();
     }//GEN-LAST:event_btnModiCursActionPerformed
-
+    /**
+     * Boton que busca todos los ciclos.
+     *
+     * @param evt
+     */
     private void btnCercaTotsCiclesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCercaTotsCiclesActionPerformed
         gc.conectar();
         List<Cicle> listaCicles = gc.ConsultaTots("Cicle");
@@ -2264,7 +2368,11 @@ public class Vista extends javax.swing.JFrame {
         }
         gc.desconectar();
     }//GEN-LAST:event_btnCercaTotsCiclesActionPerformed
-
+    /**
+     * Boton que busca un ciclo identificado por su ID.
+     *
+     * @param evt
+     */
     private void btnCercaCicleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCercaCicleActionPerformed
         gc.conectar();
         ci = (Cicle) gc.Buscar(Long.parseLong(tfCercaCicle.getText()), Cicle.class);
@@ -2272,6 +2380,7 @@ public class Vista extends javax.swing.JFrame {
         tfNomCicle.setText(ci.getNom());
         tfGrauCicle.setText(ci.getGrau());
         tfIdFamiCicle.setText(String.valueOf(ci.getFamilia().getId()));
+        //Carga en la tabla una lista con todos sus modulos.
         List<Modul> listaModul = cic.BuscarModulsCicle(Long.parseLong(tfIdCicle.getText()));
         String col[] = {"ID", "NOM"};
         DefaultTableModel taulaModuls = new DefaultTableModel(col, 0);
@@ -2279,6 +2388,7 @@ public class Vista extends javax.swing.JFrame {
         for (Modul fc1 : listaModul) {
             taulaModuls.addRow(new Object[]{fc1.getId(), fc1.getNom()});
         }
+        //Carga en la tabla una lista con todos sus cursos.
         List<Curs> listaCurs = cic.BuscarCursosCicle(Long.parseLong(tfIdCicle.getText()));
         String col2[] = {"ID", "NOM"};
         DefaultTableModel taulaCurs = new DefaultTableModel(col2, 0);
@@ -2290,19 +2400,31 @@ public class Vista extends javax.swing.JFrame {
         btnModiCicle.setEnabled(true);
         btnEliminarCicle.setEnabled(true);
     }//GEN-LAST:event_btnCercaCicleActionPerformed
-
+    /**
+     * Boton que limpia los campos, tablas y deshabilita los botones.
+     *
+     * @param evt
+     */
     private void btnClearCicleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearCicleActionPerformed
         BuidarCamps();
         BuidarTaula();
     }//GEN-LAST:event_btnClearCicleActionPerformed
-
+    /**
+     * Boton que elimina un ciclo por su ID.
+     *
+     * @param evt
+     */
     private void btnEliminarCicleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarCicleActionPerformed
         gc.conectar();
         ci = (Cicle) gc.Buscar(Long.parseLong(tfIdCicle.getText()), Cicle.class);
         gc.Eliminar(ci);
         gc.desconectar();
     }//GEN-LAST:event_btnEliminarCicleActionPerformed
-
+    /**
+     * Boton que modifica un ciclo por su ID.
+     *
+     * @param evt
+     */
     private void btnModiCicleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModiCicleActionPerformed
         gc.conectar();
         ci = (Cicle) gc.Buscar(Long.parseLong(tfCercaCicle.getText()), Cicle.class);
@@ -2310,29 +2432,44 @@ public class Vista extends javax.swing.JFrame {
         gc.Modificar(ci);
         gc.desconectar();
     }//GEN-LAST:event_btnModiCicleActionPerformed
-
+    /**
+     * Boton que crea un ciclo y tambien le asigna su Familia.
+     *
+     * @param evt
+     */
     private void btnCrearCicleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearCicleActionPerformed
         gc.conectar();
         ci = new Cicle(tfNomCicle.getText(), tfGrauCicle.getText(), (FamiliaCicles) gc.Buscar(Long.parseLong(tfIdFamiCicle.getText()), FamiliaCicles.class));
         gc.Insertar(ci);
         gc.desconectar();
     }//GEN-LAST:event_btnCrearCicleActionPerformed
-
-
+    /**
+     * Boton que elimina un curso por su ID.
+     *
+     * @param evt
+     */
     private void btnEliminarCursActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarCursActionPerformed
         gc.conectar();
         cr = (Curs) gc.Buscar(Long.parseLong(tfIdCurs.getText()), Curs.class);
         gc.Eliminar(cr);
         gc.desconectar();
     }//GEN-LAST:event_btnEliminarCursActionPerformed
-
+    /**
+     * Boton que crea un Modulo, tambien le asigna su curso y su ciclo.
+     *
+     * @param evt
+     */
     private void btnCrearModulActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearModulActionPerformed
         gc.conectar();
         mo = new Modul(tfNomModul.getText(), (Curs) gc.Buscar(Long.parseLong(tfIdCursModul.getText()), Curs.class), (Cicle) gc.Buscar(Long.parseLong(tfIdModulCicle.getText()), Cicle.class));
         gc.Insertar(mo);
         gc.desconectar();
     }//GEN-LAST:event_btnCrearModulActionPerformed
-
+    /**
+     * Boton que busca un modulo por su ID.
+     *
+     * @param evt
+     */
     private void btnCercaModulActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCercaModulActionPerformed
         gc.conectar();
         mo = (Modul) gc.Buscar(Long.parseLong(tfIdModulCerca.getText()), Modul.class);
@@ -2340,6 +2477,7 @@ public class Vista extends javax.swing.JFrame {
         tfNomModul.setText(mo.getNom());
         tfIdCursModul.setText(String.valueOf(mo.getCurs().getId()));
         tfIdModulCicle.setText(String.valueOf(mo.getCicle().getId()));
+        //Busca y carga en una tabla todas las UF de este modulo.
         List<UnitatFormativa> listaUF = mc.BuscarCursosCicle(mo.getId());
         String col[] = {"ID", "NOM", "HORES"};
         DefaultTableModel taulaUFModul = new DefaultTableModel(col, 0);
@@ -2351,12 +2489,20 @@ public class Vista extends javax.swing.JFrame {
         btnModificarModul.setEnabled(true);
         btnEliminarModul.setEnabled(true);
     }//GEN-LAST:event_btnCercaModulActionPerformed
-
+    /**
+     * Boton que limpia los campos, tablas y deshabilita los botones.
+     *
+     * @param evt
+     */
     private void btnNetejaModulActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNetejaModulActionPerformed
         BuidarCamps();
         BuidarTaula();
     }//GEN-LAST:event_btnNetejaModulActionPerformed
-
+    /**
+     * Boton que busca todos los modulos que existen.
+     *
+     * @param evt
+     */
     private void btnCercaTotsModulsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCercaTotsModulsActionPerformed
         gc.conectar();
         List<Modul> listaModul = gc.ConsultaTots("Modul");
@@ -2368,7 +2514,11 @@ public class Vista extends javax.swing.JFrame {
         }
         gc.desconectar();
     }//GEN-LAST:event_btnCercaTotsModulsActionPerformed
-
+    /**
+     * Boton que modifica un modulo por su ID.
+     *
+     * @param evt
+     */
     private void btnModificarModulActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarModulActionPerformed
         gc.conectar();
         mo = (Modul) gc.Buscar(Long.parseLong(tfIdModul.getText()), Modul.class);
@@ -2376,14 +2526,22 @@ public class Vista extends javax.swing.JFrame {
         gc.Modificar(mo);
         gc.desconectar();
     }//GEN-LAST:event_btnModificarModulActionPerformed
-
+    /**
+     * Boton que elimina un modulo por su ID.
+     *
+     * @param evt
+     */
     private void btnEliminarModulActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarModulActionPerformed
         gc.conectar();
         mo = (Modul) gc.Buscar(Long.parseLong(tfIdModul.getText()), Modul.class);
         gc.Eliminar(mo);
         gc.desconectar();
     }//GEN-LAST:event_btnEliminarModulActionPerformed
-
+    /**
+     * Boton que busca una UF por su ID.
+     *
+     * @param evt
+     */
     private void btnCercaIDUFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCercaIDUFActionPerformed
         gc.conectar();
         uf = (UnitatFormativa) gc.Buscar(Long.parseLong(tfCercaIDUF.getText()), UnitatFormativa.class);
@@ -2398,23 +2556,35 @@ public class Vista extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCercaIDUFActionPerformed
 
     private void tfIdModulUFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfIdModulUFActionPerformed
-        // TODO add your handling code here:
+        // Esto esta pero no podemos quitarlo
     }//GEN-LAST:event_tfIdModulUFActionPerformed
-
+    /**
+     * Boton que elimina una UF por su id.
+     *
+     * @param evt
+     */
     private void btnEliUFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliUFActionPerformed
         gc.conectar();
         uf = (UnitatFormativa) gc.Buscar(Long.parseLong(tfIdUF.getText()), UnitatFormativa.class);
         gc.Eliminar(uf);
         gc.desconectar();
     }//GEN-LAST:event_btnEliUFActionPerformed
-
+    /**
+     * Boton que crea una UF y le asigna su curso y su modulo.
+     *
+     * @param evt
+     */
     private void btnCreaUFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreaUFActionPerformed
         gc.conectar();
         uf = new UnitatFormativa(tfNomUF.getText(), Integer.parseInt(tfHoresUF.getText()), (Curs) gc.Buscar(Long.parseLong(tfIdCursUF.getText()), Curs.class), (Modul) gc.Buscar(Long.parseLong(tfIdModulUF.getText()), Modul.class));
         gc.Insertar(uf);
         gc.desconectar();
     }//GEN-LAST:event_btnCreaUFActionPerformed
-
+    /**
+     * Boton que modifica una UF por su ID.
+     *
+     * @param evt
+     */
     private void btnModiUFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModiUFActionPerformed
         gc.conectar();
         uf = (UnitatFormativa) gc.Buscar(Long.parseLong(tfIdUF.getText()), UnitatFormativa.class);
@@ -2423,12 +2593,20 @@ public class Vista extends javax.swing.JFrame {
         gc.desconectar();
 
     }//GEN-LAST:event_btnModiUFActionPerformed
-
+    /**
+     * Boton que limpia los campos, tablas y deshabilita los botones.
+     *
+     * @param evt
+     */
     private void btnNetejaUFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNetejaUFActionPerformed
         BuidarCamps();
         BuidarTaula();
     }//GEN-LAST:event_btnNetejaUFActionPerformed
-
+    /**
+     * Boton que busca todas las UF existentes.
+     *
+     * @param evt
+     */
     private void btnCercaTotesUFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCercaTotesUFActionPerformed
         gc.conectar();
         List<UnitatFormativa> listaUF = gc.ConsultaTots("UnitatFormativa");
@@ -2440,53 +2618,80 @@ public class Vista extends javax.swing.JFrame {
         }
         gc.desconectar();
     }//GEN-LAST:event_btnCercaTotesUFActionPerformed
-
+    /**
+     * Boton que actualiza la lista de UFs en matricula.
+     *
+     * @param evt
+     */
     private void btnRefrescaUFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefrescaUFActionPerformed
         actualizarLista();
     }//GEN-LAST:event_btnRefrescaUFActionPerformed
 
     private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
-        // TODO add your handling code here:
+        // Esto no deberia estar aqui pero no podemos eliminarlo
     }//GEN-LAST:event_jRadioButton2ActionPerformed
 
     private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
-        // TODO add your handling code here:
+        // Esto no deberia estar aqui pero no podemos eliminarlo
     }//GEN-LAST:event_jRadioButton1ActionPerformed
 
+    /**
+     * Boton que crea una matricula.
+     *
+     * @param evt
+     */
     private void btnCrearMatriculaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearMatriculaActionPerformed
         gc.conectar();
-        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-        Date date = new Date();
-        al = (Alumne) gc.Buscar(tfIdAlumneMatricula.getText(), Alumne.class);
-        List<String> llistaUF = null;
-        if (rbComplet.isSelected()) {
-            Descompte desc = estadoRadioButon();
-            matricula = new Matricula(al, date, Modalitat.COMPLET, desc, new Import(Double.parseDouble(tfImport.getText())));
+        //Mira que el alumno no tenga una matricula ya.
+        if (mac.BuscarPerNif(tfIdAlumneMatricula.getText()) == null) {
+            //Damos formato a la fecha.
+            DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+            Date date = new Date();
+            //Buscamos el alumno
+            al = (Alumne) gc.Buscar(tfIdAlumneMatricula.getText(), Alumne.class);
+            //Seteamos el RB donde queremos para darle el valor correspondiente con su ENUM.
+            if (rbComplet.isSelected()) {
+                Descompte desc = estadoRadioButon();
+                //Creamos la matricula
+                matricula = new Matricula(al, date, Modalitat.COMPLET, desc, new Import(Double.parseDouble(tfImport.getText())));
+            } else {
+                Descompte desc = estadoRadioButon();
+                matricula = new Matricula(al, date, Modalitat.UFS, desc, new Import(Double.parseDouble(tfImport.getText())));
+            }
+            //Cogemos las UFs del TextField i las metemos en un Array de Strings
+            String[] ufs = tfTotesUFCerca.getText().split(";");
+            //Creamos una Lista de UF
+            List<UnitatFormativa> ufsMatricula = new ArrayList<>();
+            //Recorremos el array i buscamos cada UF por su id, para añadirlo a la lista de UFs.
+            for (String uf1 : ufs) {
+                System.out.println(uf1);
+                ufsMatricula.add((UnitatFormativa) gc.Buscar(Long.parseLong(uf1), UnitatFormativa.class));
+            }
+            //Creamos una lista de matriculas para añadir a cada UF la matricula a la que esta vinculada
+            List<Matricula> matriculass = new ArrayList<>();
+            //Recorremos las UFs i les añadimos sus Matriculas.
+            for (UnitatFormativa unitatFormativa : ufsMatricula) {
+                matriculass.add(matricula);
+                unitatFormativa.setListaMatriculas(matriculass);
+            }
+            //Seteamos la matricula.
+            matricula.setListaUF(ufsMatricula);
+            //Insertamos la matricula
+            gc.Insertar(matricula);
         } else {
-            Descompte desc = estadoRadioButon();
-            matricula = new Matricula(al, date, Modalitat.UFS, desc, new Import(Double.parseDouble(tfImport.getText())));
+            JOptionPane.showMessageDialog(null, "Ja existeix una matricula per aquest alumne!");
         }
-        String[] ufs = tfTotesUFCerca.getText().split(";");
-        List<UnitatFormativa> ufsMatricula = new ArrayList<>();
-        for (String uf1 : ufs) {
-            System.out.println(uf1);
-            ufsMatricula.add((UnitatFormativa) gc.Buscar(Long.parseLong(uf1), UnitatFormativa.class));
-        }
-        List<Matricula> matriculass = new ArrayList<>();
-        for (UnitatFormativa unitatFormativa : ufsMatricula) {
-            matriculass.add(matricula);
-            unitatFormativa.setListaMatriculas(matriculass);
-        }
-        matricula.setListaUF(ufsMatricula);
-        System.out.println(em.contains(ufsMatricula.get(0)));
-        gc.Insertar(matricula);
         gc.desconectar();
     }//GEN-LAST:event_btnCrearMatriculaActionPerformed
-
+    /**
+     * Boton para buscar por Nif de alumno la Matricula.
+     *
+     * @param evt
+     */
     private void btnCercaNifMatriculaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCercaNifMatriculaActionPerformed
-        
-        
+
         gc.conectar();
+        //Buscamos por nif y seteamos los valores.
         matricula = mac.BuscarPerNif(tfCercaNifMatricula.getText());
         tfIdMatricula.setText(String.valueOf(matricula.getId()));
         tfIdAlumneMatricula.setText(matricula.getAlumneId().getNif());
@@ -2502,19 +2707,26 @@ public class Vista extends javax.swing.JFrame {
         } else {
             rbTotal.setSelected(true);
         }
+        //Ponemos que se puedan utilizar los botones modificar y eliminar.
         btnModificarMatricula.setEnabled(true);
         btnEliminarMatricula.setEnabled(true);
+        //Ponemos que el TextField de UFs i de Alumno no se puedan modificar para evitar modificaciones posteriores.
         tfTotesUFCerca.setEditable(false);
         tfIdAlumneMatricula.setEditable(false);
         tfImport.setText(String.valueOf(matricula.getImporte().getImporte()));
         gc.desconectar();
-//        getUfsMatricula(matricula.getId());        
+        //Faltaria poder mostrar las UF de la matricula pero no nos funciona la Query
     }//GEN-LAST:event_btnCercaNifMatriculaActionPerformed
 
     private void rbCogAlActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbCogAlActionPerformed
-        // TODO add your handling code here:
+        // Esto no deberia estar aqui pero no podemos eliminarlo.
     }//GEN-LAST:event_rbCogAlActionPerformed
-
+    /**
+     * Metodo que nos permite buscar las UFs de la matricula de un Alumno. La
+     * query esta hecha, pero no nos funciona por un error de closed.
+     *
+     * @param id
+     */
     public void getUfsMatricula(Long id) {
         gc.conectar();
         List<UnitatFormativa> ufs = mac.BuscarUFMatricula(id);
@@ -2527,6 +2739,11 @@ public class Vista extends javax.swing.JFrame {
         gc.desconectar();
     }
 
+    /**
+     * Boton que nos permite buscar matriculas por la ID de una UF.
+     *
+     * @param evt
+     */
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         gc.conectar();
         UnitatFormativa uf2 = (UnitatFormativa) gc.Buscar(Long.parseLong(tfUFNOM.getText()), UnitatFormativa.class);
@@ -2539,7 +2756,11 @@ public class Vista extends javax.swing.JFrame {
         }
         gc.desconectar();
     }//GEN-LAST:event_jButton1ActionPerformed
-
+    /**
+     * Boton que nos busca todas las matriculas existentes.
+     *
+     * @param evt
+     */
     private void btnCercaTotesMatriculesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCercaTotesMatriculesActionPerformed
 
         gc.conectar();
@@ -2551,7 +2772,7 @@ public class Vista extends javax.swing.JFrame {
             taulaTotesMatricules.addRow(new Object[]{matricula1.getId(), matricula1.getAlumneId().getNif(), matricula1.getData(), matricula1.getModalitat(), matricula1.getDescompte(), matricula1.getImporte().getImporte()});
         }
         gc.desconectar();
-     
+
     }//GEN-LAST:event_btnCercaTotesMatriculesActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -2579,12 +2800,21 @@ public class Vista extends javax.swing.JFrame {
         System.out.println(cadena);
         gc.desconectar();
     }//GEN-LAST:event_jButton2ActionPerformed
-
+    /**
+     * Boton que limpia todos los campos.
+     *
+     * @param evt
+     */
     private void btnNetejarMatriculaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNetejarMatriculaActionPerformed
         BuidarCamps();
         BuidarTaula();
     }//GEN-LAST:event_btnNetejarMatriculaActionPerformed
-
+    /**
+     * No podemos eliminar ya que no nos funciona la query para eliminarlas de
+     * la tabla intermedia.
+     *
+     * @param evt
+     */
     private void btnEliminarMatriculaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarMatriculaActionPerformed
         gc.conectar();
         Matricula mat = (Matricula) gc.Buscar(Long.parseLong(tfIdMatricula.getText()), Matricula.class);
@@ -2593,7 +2823,13 @@ public class Vista extends javax.swing.JFrame {
 //        gc.Eliminar(mat);        
         gc.desconectar();
     }//GEN-LAST:event_btnEliminarMatriculaActionPerformed
-
+    /**
+     * El boton modificar no funciona correctamente. Esto es debido a que, al no
+     * poder recuperar la lista de UF's detecta que es una Matricula distinta y
+     * la "modifica" pero creando una nueva.
+     *
+     * @param evt
+     */
     private void btnModificarMatriculaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarMatriculaActionPerformed
         gc.conectar();
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
@@ -2610,7 +2846,12 @@ public class Vista extends javax.swing.JFrame {
         }
         gc.desconectar();
     }//GEN-LAST:event_btnModificarMatriculaActionPerformed
-
+    /**
+     * Boton que nos permite buscar matriculas por la ID de un curso. No
+     * funciona.
+     *
+     * @param evt
+     */
     private void btnCercaCursAlumnesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCercaCursAlumnesActionPerformed
         gc.conectar();
 
@@ -2624,7 +2865,12 @@ public class Vista extends javax.swing.JFrame {
 
         gc.desconectar();
     }//GEN-LAST:event_btnCercaCursAlumnesActionPerformed
-
+    /**
+     * Boton que nos permite buscar matriculas por la ID de un ciclo. No
+     * funciona.
+     *
+     * @param evt
+     */
     private void btnCercaCicleAlumnesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCercaCicleAlumnesActionPerformed
         gc.conectar();
         List<Alumne> list = null;//TODO
@@ -2636,7 +2882,12 @@ public class Vista extends javax.swing.JFrame {
         }
         gc.desconectar();
     }//GEN-LAST:event_btnCercaCicleAlumnesActionPerformed
-
+    /**
+     * Boton que nos permite buscar matriculas por la ID de una familia. No
+     * funciona.
+     *
+     * @param evt
+     */
     private void btnCercaFamiliaAlumnesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCercaFamiliaAlumnesActionPerformed
         gc.conectar();
         List<Alumne> list = null;//TODO
@@ -2647,9 +2898,14 @@ public class Vista extends javax.swing.JFrame {
             taulaFamiliaAlumnes.addRow(new Object[]{alu.getNom(), alu.getCognom(), alu.getNif()});
         }
         gc.desconectar();
-        
-    }//GEN-LAST:event_btnCercaFamiliaAlumnesActionPerformed
 
+    }//GEN-LAST:event_btnCercaFamiliaAlumnesActionPerformed
+    /**
+     * Metodo que nos devuelve el ENUM de Descompte en funcion del estado del
+     * RB.
+     *
+     * @return
+     */
     private Descompte estadoRadioButon() {
         if (rbCap.isSelected()) {
             return Descompte.CAP;
