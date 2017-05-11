@@ -23,34 +23,36 @@ import javax.persistence.Table;
 import utilitats.NombreDeCurs;
 
 /**
+ * Clase de Curso
  *
- * @author Eric
+ * @author Eric & Marcos
  */
 @Entity
 @NamedQueries({
-@NamedQuery(name = "cercaModulCurs", query = "SELECT c FROM Modul c WHERE c.curs.id=:id"),
-@NamedQuery(name = "cercaUFCurs", query = "SELECT c FROM UnitatFormativa c WHERE c.curs.id=:id")})
+    @NamedQuery(name = "cercaModulCurs", query = "SELECT c FROM Modul c WHERE c.curs.id=:id")//Query que busca los Modulos que tiene un curso
+    ,
+@NamedQuery(name = "cercaUFCurs", query = "SELECT c FROM UnitatFormativa c WHERE c.curs.id=:id")})//Query que busca las UFs que tiene un curso
 @Table(name = "Curs")
-public class Curs implements Serializable{
+public class Curs implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    
+    //Ide de Curso
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "cursId", unique = true, nullable = false)
     private Long id;
-    
+    //Atributos de curso
     @Column(name = "nombreDeCurs")
     private NombreDeCurs nombreDeCurs;
-    
+    //Relacion OneToMany con UF ya que un Curso puede tener muchas UF, y una UF puede pertencer solo a un curso.
     @OneToMany(mappedBy = "curs")
     private List<UnitatFormativa> listaUF;
-    
+    //Relacion ManyToOne con Ciclo ya que un Curso puede pertenecer solo a un Ciclo y un Ciclo puede tener muchos cursos.
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "idCicle")
     private Cicle cicle;
-    
-    @OneToMany (mappedBy = "curs", cascade = CascadeType.ALL)
+    //Relacion OneToMany con Modulo ya que un Curso puede tener muchos Modulos y un modulo solo puede pertenecer a un Curso.
+    @OneToMany(mappedBy = "curs", cascade = CascadeType.ALL)
     private List<Modul> llistaModuls;
 
     public Curs() {
@@ -131,7 +133,5 @@ public class Curs implements Serializable{
         }
         return true;
     }
-    
-    
 
 }

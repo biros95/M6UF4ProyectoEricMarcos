@@ -21,33 +21,34 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
+ * Clase para UnitatFormativa
  *
- * @author Eric
+ * @author Eric & Marcos
  */
 @Entity
 @Table(name = "UnitatFormativa")
 public class UnitatFormativa implements Serializable {
 
     private static final long serialVersionUID = 1L;
-
+    //Id de UnitatFormativa
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "unitatId", unique = true, nullable = false)
     private Long id;
-
+    //Atributos de UnitatFormativa
     @Column(name = "nom", nullable = false)
     private String nom;
 
     @Column(name = "hores", nullable = false)
     private int hores;
-
+    //Relacion ManyToMany con Matricula, ya que una UF puede estar en muchas matriculas y viceversa
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private List<Matricula> listaMatriculas;
-
+    //Relacion ManyToOne ya que una UF puede estar en un Curso, pero un Curso puede tener muchas UF.
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "idCurs")
     private Curs curs;
-
+    //Relacion ManyToOne con Modulo, ya que una UF puede estar en un Modulo pero un Modulo puede tener muchas UF.
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "idModul")
     private Modul modul;
@@ -147,8 +148,5 @@ public class UnitatFormativa implements Serializable {
     public String toString() {
         return "UnitatFormativa{" + "id=" + id + ", nom=" + nom + ", hores=" + hores + ", curs=" + curs + ", modul=" + modul + '}';
     }
-    
-    
 
-    
 }

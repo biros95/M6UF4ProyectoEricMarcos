@@ -23,30 +23,31 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
+ * Clase de Modulo.
  *
- * @author Eric
+ * @author Eric & Marcos
  */
 @Entity
 @Table(name = "Modul")
 public class Modul implements Serializable {
 
     private static final long serialVersionUID = 1L;
-
+    //Id de Modulo
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "modulId", unique = true, nullable = false)
     private Long id;
-
+    //Atributos de Modulo.
     @Column(name = "modulNom", length = 50, nullable = false)
     private String nom;
-
+    //Relacion OneToMany ya que un Modulo puede tener muchas UF y una UF pertenece a un Modulo
     @OneToMany(mappedBy = "modul", cascade = CascadeType.ALL)
     private List<UnitatFormativa> llistaUF;
-
+    //Relacion ManyToOne ya que un Curs puede tener muchos Modulos, pero un Modulo pertenece a un Curso.
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "idCurs")
     private Curs curs;
-
+    //Relacion ManyToOne ya que un Ciclo puede tener muchos Modulos, pero Ciclo pertenece a un Curso.
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "idCicle")
     private Cicle cicle;
@@ -132,5 +133,4 @@ public class Modul implements Serializable {
         return true;
     }
 
-    
 }

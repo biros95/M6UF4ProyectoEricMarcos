@@ -21,23 +21,24 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
+ * Clase FamiliaCicles
  *
- * @author MarcosPortatil
+ * @author Eric & Marcos
  */
 @Entity
 @Table(name = "FamiliaCicles")
-public class FamiliaCicles implements Serializable{
+public class FamiliaCicles implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    
+    //Id de FamiliaCicles
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "familiaId", unique = true, nullable = false)
     private Long id;
-
+    //Atributos de FamiliaCicles
     @Column(name = "nom", nullable = false, length = 20)
     private String nom;
-    
+    //Relacion OneToMnay ya que una Familia puede tener muchos ciclos, pero un ciclo solo puede pertenecer a una familia.
     @OneToMany(mappedBy = "familia", cascade = CascadeType.ALL)
     private List<Cicle> llistaCicles;
 
@@ -46,12 +47,12 @@ public class FamiliaCicles implements Serializable{
 
     public FamiliaCicles(String nom) {
         this.nom = nom;
-    }   
+    }
 
     public FamiliaCicles(Long id, String nom) {
         this.id = id;
         this.nom = nom;
-    }   
+    }
 
     public Long getId() {
         return id;

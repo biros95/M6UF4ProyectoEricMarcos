@@ -18,8 +18,9 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
+ * Clase Importe
  *
- * @author Eric
+ * @author Eric & Marcos
  */
 @Embeddable
 @Table(name = "Import")
@@ -35,7 +36,7 @@ public class Import implements Serializable {
 
     public Import(double importe) {
         this.importe = importe;
-    }   
+    }
 
     public double getImporte() {
         return importe;
