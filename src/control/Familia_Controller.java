@@ -5,6 +5,7 @@
  */
 package control;
 
+import exception.ExcepcionGenerica;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
@@ -17,24 +18,29 @@ import modelo.FamiliaCicles;
  * @author Eric
  */
 public class Familia_Controller extends Generic_Controller {
-    
+
     public Familia_Controller(EntityManager entityManger) {
         super(entityManger);
     }
-    
-    public List<Cicle> BuscarPerFamilia(Long id) {      
-        System.out.println("Busqueda per id");
-        Query query = em.createNamedQuery("cercaCiclesFamilia", Cicle.class);
-        query.setParameter("id", id);
-        List<Cicle> p = (List<Cicle>) query.getResultList();
-        System.out.println(p.size());
-        System.out.println("close sunormah");        
-        return p;
-    }
-    
-    
 
-    
-    
-    
+    public List<Cicle> BuscarPerFamilia(Long id) {
+        System.out.println("Busqueda per id");
+        List<Cicle> p = null;
+        try {
+
+            Query query = em.createNamedQuery("cercaCiclesFamilia", Cicle.class);
+            query.setParameter("id", id);
+             p= (List<Cicle>) query.getResultList();
+            if (p.isEmpty() || p == null) {
+                throw new ExcepcionGenerica("ID", Cicle.class.getSimpleName());
+            }
+            System.out.println(p.size());
+            System.out.println("close");
+        } catch (ExcepcionGenerica ex) {
+
+        }
+       
+return p;
+    }
+     
 }

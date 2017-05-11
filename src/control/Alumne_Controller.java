@@ -5,7 +5,7 @@
  */
 package control;
 
-import exception.ExcepcionAlumne;
+import exception.ExcepcionGenerica;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
@@ -21,7 +21,7 @@ public class Alumne_Controller extends Generic_Controller<Alumne> {
         super(entityManger);
     }
 
-    public Alumne BuscarPerCognom(String cognom) throws ExcepcionAlumne{
+    public Alumne BuscarPerCognom(String cognom){
        Alumne p= null;
                // Recupera el entity manager       
         try{
@@ -30,11 +30,14 @@ public class Alumne_Controller extends Generic_Controller<Alumne> {
         Query query = em.createNamedQuery("alumneCognom", Alumne.class);
         query.setParameter("cognom", cognom);
        p = (Alumne) query.getSingleResult();
+            if (p == null) {
+                throw new ExcepcionGenerica("COG");
+            }
         System.out.println("close");
         em.close();
         
-        }catch(Exception ex) {
-                throw new ExcepcionAlumne("COG");
+        }catch(ExcepcionGenerica ex) {
+              
                 }
         return p;
     }

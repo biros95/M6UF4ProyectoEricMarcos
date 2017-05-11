@@ -5,7 +5,7 @@
  */
 package control;
 
-import exception.ExcepcionMatricula;
+import exception.ExcepcionGenerica;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
@@ -33,53 +33,92 @@ public class Matricula_Controller extends Generic_Controller{
         query.setParameter("nif", nif);
         p = (Matricula) query.getSingleResult();
             if (p == null) {
-                throw new ExcepcionMatricula("NIF");
+                throw new ExcepcionGenerica("ID", "Matricula");
             }
         System.out.println("close");
         em.close();
-        } catch(ExcepcionMatricula ex){
+        } catch(ExcepcionGenerica ex){
             
         }
         return p;
     }
     
     public List<Alumne> BuscarAlumneUF(UnitatFormativa id) {
-        // Recupera el entity manager       
+        // Recupera el entity manager    
+        List<Alumne> p =null;
+        try{
+            
+        
         System.out.println("Busqueda per id");        
         Query query = em.createNamedQuery("alumneUFMatricula", Alumne.class);
         query.setParameter("id", id);
         System.out.println(query.getResultList().size());
-        List<Alumne> p = (List<Alumne>) query.getResultList();
+        p = (List<Alumne>) query.getResultList();
+            if (p.isEmpty() || p ==null) {
+            throw new ExcepcionGenerica("ID","Alumno");
+            }
+        }catch(ExcepcionGenerica ex){
+            
+        }
+        
         return p;
     }
     
     public List<UnitatFormativa> BuscarUFMatricula(Long id) {
-        // Recupera el entity manager       
+        // Recupera el entity manager      
+        List<UnitatFormativa> p = null;
+        try{
         System.out.println("Busqueda per matricula");        
         Query query = em.createNamedQuery("ufsMatricula", UnitatFormativa.class);
         query.setParameter("id", id);
         System.out.println(query.getResultList().size());
-        List<UnitatFormativa> p = (List<UnitatFormativa>) query.getResultList();
+        p = (List<UnitatFormativa>) query.getResultList();
+           if (p == null) {
+                throw new ExcepcionGenerica("ID", "UF");
+            }
+        System.out.println("close");
+        em.close();
+        } catch(ExcepcionGenerica ex){
+            
+        }
         return p;
     }
     
     public List<Alumne> BuscarAlumneCurs(Long id) {
-        // Recupera el entity manager       
+        // Recupera el entity manager
+        List<Alumne> p = null;
+        try{
         System.out.println("Busqueda per id");        
         Query query = em.createNamedQuery("alumnePerCurs", Alumne.class);
         query.setParameter("id", id);
         System.out.println(query.getResultList().size());
-        List<Alumne> p = (List<Alumne>) query.getResultList();
+        p = (List<Alumne>) query.getResultList();
+           if (p == null) {
+                throw new ExcepcionGenerica("ID", "alumno");
+            }
+        System.out.println("close");
+        em.close();
+        } catch(ExcepcionGenerica ex){
+            
+        }
         return p;
     }
     
     public List<Alumne> BuscarAlumneFamilia(Long id) {
-        // Recupera el entity manager       
+        // Recupera el entity manager      
+        List<Alumne> p = null;
+        try{
         System.out.println("Busqueda per id");        
         Query query = em.createNamedQuery("alumnePerFamilia", Alumne.class);
         query.setParameter("id", id);
         System.out.println(query.getResultList().size());
-        List<Alumne> p = (List<Alumne>) query.getResultList();
+       p = (List<Alumne>) query.getResultList();
+        if (p == null) {
+            throw new ExcepcionGenerica("ID", "Alumno");
+        }
+        }catch(ExcepcionGenerica ex){
+            
+        }
         return p;
     }
     

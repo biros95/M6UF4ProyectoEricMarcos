@@ -5,6 +5,7 @@
  */
 package control;
 
+import exception.ExcepcionGenerica;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
@@ -22,19 +23,36 @@ public class Cicle_Controller extends Generic_Controller {
     }
 
     public List<Curs> BuscarCursosCicle(Long id) {
+        List<Curs> p = null;
+        try{
         System.out.println("Busqueda per id");
         Query query = em.createNamedQuery("cercaCursosCicles", Curs.class);
         query.setParameter("id", id);
-        List<Curs> p = (List<Curs>) query.getResultList();
+        p = (List<Curs>) query.getResultList();
+        if(p.isEmpty() || p==null){
+            throw new ExcepcionGenerica("ID", "curs");
+        }
         System.out.println(p.size());
+        }catch(ExcepcionGenerica ex){
+            
+        }
         return p;
     }
 
     public List<Modul> BuscarModulsCicle(Long id) {
+        List<Modul> p=null;
+        try{
         System.out.println("Busqueda per id");
         Query query = em.createNamedQuery("cercaModulsCicles", Modul.class);
         query.setParameter("id", id);
-        List<Modul> p = (List<Modul>) query.getResultList();
+        p = (List<Modul>) query.getResultList();
+        if(p.isEmpty() || p==null){
+            throw new ExcepcionGenerica("ID", "curs");
+        }
+        System.out.println(p.size());
+        }catch(ExcepcionGenerica ex){
+            
+        }
         System.out.println(p.size());
         return p;
     }

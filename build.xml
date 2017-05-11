@@ -10,6 +10,21 @@
 <project name="M6UF4ProyectoEricMarcos" default="default" basedir=".">
     <description>Builds, tests, and runs the project M6UF4ProyectoEricMarcos.</description>
     <import file="nbproject/build-impl.xml"/>
+    <!-- Directorio del código fuente -->
+    <property name="src.dir" location="./src" />
+    
+     <!-- Directorio de clases compiladas -->
+    <property name="build.dir" location="mi_build" />
+    
+     <!-- Subdirectorio de las clases compiladas del proyecto -->
+    <property name="build.classes.dir" location="\${build.dir}/classes" />
+     <!-- Subdirectorio de la documentacion del proyecto -->
+    <property name="build.classes.dir" location="\${build.dir}/doc" />
+     <!-- Subdirectorio para los jar del proyecto -->
+    <property name="build.classes.dir" location="\${build.dir}/jar" />
+    
+    
+    
     <!--
 
     There exist several targets which are by default empty and which can be 

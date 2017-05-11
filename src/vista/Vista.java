@@ -13,8 +13,7 @@ import control.Familia_Controller;
 import control.Generic_Controller;
 import control.Matricula_Controller;
 import control.Modul_Controller;
-import exception.ExcepcionAlumne;
-import exception.ExcepcionMatricula;
+import exception.ExcepcionGenerica;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -23,6 +22,8 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.scene.control.RadioButton;
 import javax.persistence.EntityManager;
 import javax.swing.DefaultListModel;
@@ -2103,13 +2104,10 @@ public class Vista extends javax.swing.JFrame {
 
     private void btnCercaAlActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCercaAlActionPerformed
 
-        try {
             gc.conectar();
             if (rbIdAl.isSelected()) {
                 al = (Alumne) gc.Buscar(tfCercaAl.getText(), Alumne.class);
-                if (al == null) {
-                    throw new ExcepcionAlumne("NIF");
-                }
+              
                 tfNomAl.setText(al.getNom());
                 tfNif.setText(al.getNif());
                 tfCognomAl.setText(al.getCognom());
@@ -2119,20 +2117,20 @@ public class Vista extends javax.swing.JFrame {
                 btnModiAl.setEnabled(true);
             } else if (rbCogAl.isSelected()) {
 
-                al = (Alumne) ac.BuscarPerCognom(tfCercaAl.getText());
-                tfNomAl.setText(al.getNom());
-                tfNif.setText(al.getNif());
-                tfCognomAl.setText(al.getCognom());
-                tfCorreuAl.setText(al.getCorreu());
-                tfTlfAl.setText(String.valueOf(al.getTelefon()));
-                btnEliminarAl.setEnabled(true);
-                btnModiAl.setEnabled(true);
+                    al = (Alumne) ac.BuscarPerCognom(tfCercaAl.getText());
+                    tfNomAl.setText(al.getNom());
+                    tfNif.setText(al.getNif());
+                    tfCognomAl.setText(al.getCognom());
+                    tfCorreuAl.setText(al.getCorreu());
+                    tfTlfAl.setText(String.valueOf(al.getTelefon()));
+                    btnEliminarAl.setEnabled(true);
+                    btnModiAl.setEnabled(true);
+             
+                
             }
             tfNif.setEnabled(false);
             gc.desconectar();
-        } catch (ExcepcionAlumne ex) {
-
-        }
+       
     }//GEN-LAST:event_btnCercaAlActionPerformed
 
     private void btnClearAlActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearAlActionPerformed
@@ -2155,11 +2153,10 @@ public class Vista extends javax.swing.JFrame {
     }//GEN-LAST:event_btnModiAlActionPerformed
 
     private void btnCercaTotsAlActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCercaTotsAlActionPerformed
-        try {
+
             gc.conectar();
             List<Alumne> listaAlumnes = gc.ConsultaTots("Alumne");
             if (listaAlumnes.isEmpty()) {
-                throw new ExcepcionAlumne("TOTS");
             }
             String col[] = {"NIF", "NOM", "COGNOMS", "CORREU", "TELEFON"};
             DefaultTableModel taulaAlumnes = new DefaultTableModel(col, 0);
@@ -2169,9 +2166,6 @@ public class Vista extends javax.swing.JFrame {
 
                 gc.desconectar();
             }
-        } catch (ExcepcionAlumne ex) {
-
-        }
     }//GEN-LAST:event_btnCercaTotsAlActionPerformed
 
     private void btnCercarFamiliaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCercarFamiliaActionPerformed
