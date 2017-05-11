@@ -34,7 +34,8 @@ import utilitats.Modalitat;
 @Entity
 @NamedQueries({
 @NamedQuery(name="nifMatricula", query="SELECT p FROM Matricula p WHERE p.alumneId.nif=:nif"),
-@NamedQuery(name="alumneUFMatricula", query="SELECT p.alumneId FROM Matricula p WHERE p.listaUF IN (id)")})
+@NamedQuery(name="alumneUFMatricula", query="SELECT u.alumneId FROM Matricula u, UnitatFormativa p WHERE p in (:id)")
+/*@NamedQuery(name="ufsMatricula", query="SELECT u FROM UnitatFormativa u, Matricula m WHERE m.id=:id")*/})
 @Table(name = "Matricula")
 public class Matricula implements Serializable{
 
@@ -60,7 +61,7 @@ public class Matricula implements Serializable{
     @Embedded
     private Import importe;
     
-    @ManyToMany(mappedBy = "listaMatriculas", cascade = CascadeType.ALL)
+    @ManyToMany(mappedBy = "listaMatriculas",  cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private List<UnitatFormativa> listaUF;
 
     public Matricula() {

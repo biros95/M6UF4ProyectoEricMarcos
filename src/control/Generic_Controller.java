@@ -9,11 +9,11 @@ import javax.persistence.Query;
 /**
  *
  * @author Eric
+ * @param <T>
  */
 public class Generic_Controller<T> {
 
     EntityManager em;
-    //EM_Controller oem = new EM_Controller();
 
     public Generic_Controller(EntityManager entityManger) {
         this.em = entityManger;
@@ -23,7 +23,6 @@ public class Generic_Controller<T> {
         // Recupera el entity manager
 
         // El persistim a la base de dades
-        //em.getTransaction().begin();
         EntityTransaction etx = em.getTransaction();
 
         System.out.println("begin");
@@ -33,7 +32,6 @@ public class Generic_Controller<T> {
         em.persist(p);
 
         System.out.println("commit");
-        //em.getTransaction().commit();
         etx.commit();
 
         System.out.println("close");
@@ -47,11 +45,7 @@ public class Generic_Controller<T> {
      * @param p
      */
     public void Modificar(T p) {
-        // Recupera el entity manager
-        //EM_Controller oem = new EM_Controller();
 
-        // El persistim a la base de dades
-        //em.getTransaction().begin();
         EntityTransaction etx = em.getTransaction();
 
         System.out.println("begin");
@@ -61,7 +55,6 @@ public class Generic_Controller<T> {
         em.merge(p);
 
         System.out.println("commit");
-        //em.getTransaction().commit();
         etx.commit();
 
         System.out.println("close");
@@ -74,11 +67,7 @@ public class Generic_Controller<T> {
      * @param p
      */
     public void Eliminar(T p) {
-        // Recupera el entity manager
-        //EM_Controller oem = new EM_Controller();
-
-        // El persistim a la base de dades
-        //em.getTransaction().begin();
+  
         EntityTransaction etx = em.getTransaction();
 
         System.out.println("begin");
@@ -88,7 +77,6 @@ public class Generic_Controller<T> {
         em.remove(em.contains(p) ? p : em.merge(p));
 
         System.out.println("commit");
-        //em.getTransaction().commit();
         etx.commit();
 
         System.out.println("close");
@@ -103,7 +91,6 @@ public class Generic_Controller<T> {
      * @return
      */
     public T Buscar(T id, Class<T> classe) {
-        // Recupera el entity manager
 
         System.out.println("busqueda");
 
@@ -115,6 +102,7 @@ public class Generic_Controller<T> {
     }
 
     public List<T> ConsultaTots(String t) {
+
         // Recupera el entity manager     
         List<T> lista = null;
         try {
@@ -130,6 +118,12 @@ public class Generic_Controller<T> {
         } catch (ExcepcionMatricula ex) {
 
         }
+
+        System.out.println("Consulta");
+        Query q = em.createQuery("FROM " + t);
+        lista = (List<T>) q.getResultList();
+        System.out.println("close");
+
         return lista;
     }
 
@@ -138,7 +132,7 @@ public class Generic_Controller<T> {
     }
 
     public void conectar() {
-        em = new EM_Controller().getEntityManager();
+        em = EM_Controller.getEntityManager();
     }
 
 }

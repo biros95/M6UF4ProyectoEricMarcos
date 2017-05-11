@@ -43,12 +43,42 @@ public class Matricula_Controller extends Generic_Controller{
         return p;
     }
     
-    public List<Alumne> BuscarAlumneUF(String id) {
+    public List<Alumne> BuscarAlumneUF(UnitatFormativa id) {
         // Recupera el entity manager       
         System.out.println("Busqueda per id");        
-        UnitatFormativa uf = (UnitatFormativa) super.Buscar(Long.parseLong(id), UnitatFormativa.class);
         Query query = em.createNamedQuery("alumneUFMatricula", Alumne.class);
-        query.setParameter("id", uf);
+        query.setParameter("id", id);
+        System.out.println(query.getResultList().size());
+        List<Alumne> p = (List<Alumne>) query.getResultList();
+        return p;
+    }
+    
+    public List<UnitatFormativa> BuscarUFMatricula(Long id) {
+        // Recupera el entity manager       
+        System.out.println("Busqueda per matricula");        
+        Query query = em.createNamedQuery("ufsMatricula", UnitatFormativa.class);
+        query.setParameter("id", id);
+        System.out.println(query.getResultList().size());
+        List<UnitatFormativa> p = (List<UnitatFormativa>) query.getResultList();
+        return p;
+    }
+    
+    public List<Alumne> BuscarAlumneCurs(Long id) {
+        // Recupera el entity manager       
+        System.out.println("Busqueda per id");        
+        Query query = em.createNamedQuery("alumnePerCurs", Alumne.class);
+        query.setParameter("id", id);
+        System.out.println(query.getResultList().size());
+        List<Alumne> p = (List<Alumne>) query.getResultList();
+        return p;
+    }
+    
+    public List<Alumne> BuscarAlumneFamilia(Long id) {
+        // Recupera el entity manager       
+        System.out.println("Busqueda per id");        
+        Query query = em.createNamedQuery("alumnePerFamilia", Alumne.class);
+        query.setParameter("id", id);
+        System.out.println(query.getResultList().size());
         List<Alumne> p = (List<Alumne>) query.getResultList();
         return p;
     }
