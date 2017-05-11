@@ -29,9 +29,9 @@ import utilitats.NombreDeCurs;
  */
 @Entity
 @NamedQueries({
-    @NamedQuery(name = "cercaModulCurs", query = "SELECT c FROM Modul c WHERE c.curs.id=:id")
+    @NamedQuery(name = "cercaModulCurs", query = "SELECT c FROM Modul c WHERE c.curs.id=:id")//Query que busca los Modulos que tiene un curso
     ,
-@NamedQuery(name = "cercaUFCurs", query = "SELECT c FROM UnitatFormativa c WHERE c.curs.id=:id")})
+@NamedQuery(name = "cercaUFCurs", query = "SELECT c FROM UnitatFormativa c WHERE c.curs.id=:id")})//Query que busca las UFs que tiene un curso
 @Table(name = "Curs")
 public class Curs implements Serializable {
 

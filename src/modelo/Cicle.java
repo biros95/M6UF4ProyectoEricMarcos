@@ -28,11 +28,11 @@ import javax.persistence.Table;
  */
 @Entity
 @NamedQueries({
-    @NamedQuery(name = "cercaCiclesFamilia", query = "SELECT c FROM Cicle c WHERE c.familia.id=:id")
+    @NamedQuery(name = "cercaCiclesFamilia", query = "SELECT c FROM Cicle c WHERE c.familia.id=:id")//Query que busca los ciclos que tiene una Familia
     ,
-@NamedQuery(name = "cercaCursosCicles", query = "SELECT c FROM Curs c WHERE c.cicle.id=:id")
+@NamedQuery(name = "cercaCursosCicles", query = "SELECT c FROM Curs c WHERE c.cicle.id=:id")//Query que busca los cursos de un Ciclo.
     ,
-@NamedQuery(name = "cercaModulsCicles", query = "SELECT c FROM Modul c WHERE c.cicle.id=:id")})
+@NamedQuery(name = "cercaModulsCicles", query = "SELECT c FROM Modul c WHERE c.cicle.id=:id")})//Query que busca los modulos de un ciclo.
 @Table(name = "Cicles")
 public class Cicle implements Serializable {
 

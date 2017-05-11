@@ -25,7 +25,7 @@ import javax.persistence.Table;
  */
 @Entity
 @NamedQueries({
-    @NamedQuery(name = "alumneCognom", query = "SELECT p FROM Alumne p WHERE p.cognom=:cognom")})
+    @NamedQuery(name = "alumneCognom", query = "SELECT p FROM Alumne p WHERE p.cognom=:cognom")})//Query que recupera un alumno a partir de la busqueda de su apellido.
 @Table(name = "Alumnes")
 public class Alumne implements Serializable {
 
