@@ -363,10 +363,7 @@ public class Vista extends javax.swing.JFrame {
         jLabel27 = new javax.swing.JLabel();
         jLabel28 = new javax.swing.JLabel();
         btnCrearModul = new javax.swing.JButton();
-        btnModificarModul = new javax.swing.JButton();
-        btnEliminarModul = new javax.swing.JButton();
         btnNetejaModul = new javax.swing.JButton();
-        btnCercaModul = new javax.swing.JButton();
         tfIdModulCerca = new javax.swing.JTextField();
         tableUFModul = new javax.swing.JScrollPane();
         taulaModulUF = new javax.swing.JTable();
@@ -374,6 +371,9 @@ public class Vista extends javax.swing.JFrame {
         jScrollPane10 = new javax.swing.JScrollPane();
         tableTotsModuls = new javax.swing.JTable();
         btnCercaTotsModuls = new javax.swing.JButton();
+        btnModificarModul = new javax.swing.JButton();
+        btnEliminarModul = new javax.swing.JButton();
+        btnCercaModulID = new javax.swing.JButton();
         jPanel8 = new javax.swing.JPanel();
         jLabel32 = new javax.swing.JLabel();
         jLabel33 = new javax.swing.JLabel();
@@ -1274,33 +1274,10 @@ public class Vista extends javax.swing.JFrame {
             }
         });
 
-        btnModificarModul.setText("Modificar");
-        btnModificarModul.setEnabled(false);
-        btnModificarModul.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnModificarModulActionPerformed(evt);
-            }
-        });
-
-        btnEliminarModul.setText("Eliminar");
-        btnEliminarModul.setEnabled(false);
-        btnEliminarModul.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEliminarModulActionPerformed(evt);
-            }
-        });
-
         btnNetejaModul.setText("Netejar");
         btnNetejaModul.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnNetejaModulActionPerformed(evt);
-            }
-        });
-
-        btnCercaModul.setText("Cerca per ID");
-        btnCercaModul.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCercaModulActionPerformed(evt);
             }
         });
 
@@ -1345,6 +1322,29 @@ public class Vista extends javax.swing.JFrame {
             }
         });
 
+        btnModificarModul.setText("Modificar");
+        btnModificarModul.setEnabled(false);
+        btnModificarModul.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModificarModulActionPerformed(evt);
+            }
+        });
+
+        btnEliminarModul.setText("Eliminar");
+        btnEliminarModul.setEnabled(false);
+        btnEliminarModul.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarModulActionPerformed(evt);
+            }
+        });
+
+        btnCercaModulID.setText("Cerca per ID");
+        btnCercaModulID.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCercaModulIDActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
@@ -1368,23 +1368,23 @@ public class Vista extends javax.swing.JFrame {
                                     .addGroup(jPanel7Layout.createSequentialGroup()
                                         .addComponent(tfIdCursModul, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(btnEliminarModul, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jPanel7Layout.createSequentialGroup()
-                                        .addComponent(tfIdModul, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(btnCrearModul, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addComponent(btnEliminarModul, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                     .addGroup(jPanel7Layout.createSequentialGroup()
                                         .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                             .addComponent(tfIdModulCicle, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(tfIdModulCerca, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(btnCercaModul, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(btnNetejaModul, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(btnNetejaModul, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(btnCercaModulID, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                                     .addGroup(jPanel7Layout.createSequentialGroup()
-                                        .addComponent(tfNomModul, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(tfIdModul, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(tfNomModul, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(btnModificarModul, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(btnCrearModul, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(btnModificarModul, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel18)
@@ -1424,8 +1424,8 @@ public class Vista extends javax.swing.JFrame {
                             .addComponent(btnNetejaModul))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnCercaModul)
-                            .addComponent(tfIdModulCerca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(tfIdModulCerca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnCercaModulID)))
                     .addComponent(tableUFModul, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addGap(36, 36, 36)
                 .addComponent(btnCercaTotsModuls)
@@ -2541,30 +2541,7 @@ public class Vista extends javax.swing.JFrame {
         gc.Insertar(mo);
         gc.desconectar();
     }//GEN-LAST:event_btnCrearModulActionPerformed
-    /**
-     * Boton que busca un modulo por su ID.
-     *
-     * @param evt
-     */
-    private void btnCercaModulActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCercaModulActionPerformed
-        gc.conectar();
-        mo = (Modul) gc.Buscar(Long.parseLong(tfIdModulCerca.getText()), Modul.class);
-        tfIdModul.setText(String.valueOf(mo.getId()));
-        tfNomModul.setText(mo.getNom());
-        tfIdCursModul.setText(String.valueOf(mo.getCurs().getId()));
-        tfIdModulCicle.setText(String.valueOf(mo.getCicle().getId()));
-        //Busca y carga en una tabla todas las UF de este modulo.
-        List<UnitatFormativa> listaUF = mc.BuscarUfModulo(mo.getId());
-        String col[] = {"ID", "NOM", "HORES"};
-        DefaultTableModel taulaUFModul = new DefaultTableModel(col, 0);
-        taulaModulUF.setModel(taulaUFModul);
-        for (UnitatFormativa uf1 : listaUF) {
-            taulaUFModul.addRow(new Object[]{uf1.getId(), uf1.getNom(), uf1.getHores()});
-        }
-        gc.desconectar();
-        btnModificarModul.setEnabled(true);
-        btnEliminarModul.setEnabled(true);
-    }//GEN-LAST:event_btnCercaModulActionPerformed
+
     /**
      * Boton que limpia los campos, tablas y deshabilita los botones.
      *
@@ -2590,29 +2567,7 @@ public class Vista extends javax.swing.JFrame {
         }
         gc.desconectar();
     }//GEN-LAST:event_btnCercaTotsModulsActionPerformed
-    /**
-     * Boton que modifica un modulo por su ID.
-     *
-     * @param evt
-     */
-    private void btnModificarModulActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarModulActionPerformed
-        gc.conectar();
-        mo = (Modul) gc.Buscar(Long.parseLong(tfIdModul.getText()), Modul.class);
-        mo = new Modul(mo.getId(), tfNomModul.getText(), (Curs) gc.Buscar(Long.parseLong(tfIdCursModul.getText()), Curs.class), (Cicle) gc.Buscar(Long.parseLong(tfIdModulCicle.getText()), Cicle.class));
-        gc.Modificar(mo);
-        gc.desconectar();
-    }//GEN-LAST:event_btnModificarModulActionPerformed
-    /**
-     * Boton que elimina un modulo por su ID.
-     *
-     * @param evt
-     */
-    private void btnEliminarModulActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarModulActionPerformed
-        gc.conectar();
-        mo = (Modul) gc.Buscar(Long.parseLong(tfIdModul.getText()), Modul.class);
-        gc.Eliminar(mo);
-        gc.desconectar();
-    }//GEN-LAST:event_btnEliminarModulActionPerformed
+
     /**
      * Boton que busca una UF por su ID.
      *
@@ -3169,6 +3124,41 @@ public class Vista extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_tfUFNOMKeyPressed
 
+    private void btnModificarModulActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarModulActionPerformed
+        gc.conectar();
+        mo = (Modul) gc.Buscar(Long.parseLong(tfIdModul.getText()), Modul.class);
+        mo = new Modul(mo.getId(), tfNomModul.getText(), (Curs) gc.Buscar(Long.parseLong(tfIdCursModul.getText()), Curs.class), (Cicle) gc.Buscar(Long.parseLong(tfIdModulCicle.getText()), Cicle.class));
+        gc.Modificar(mo);
+        gc.desconectar();
+    }//GEN-LAST:event_btnModificarModulActionPerformed
+
+    private void btnEliminarModulActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarModulActionPerformed
+        gc.conectar();
+        mo = (Modul) gc.Buscar(Long.parseLong(tfIdModul.getText()), Modul.class);
+        gc.Eliminar(mo);
+        gc.desconectar();
+    }//GEN-LAST:event_btnEliminarModulActionPerformed
+
+    private void btnCercaModulIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCercaModulIDActionPerformed
+        btnModificarModul.setEnabled(true);
+        btnEliminarModul.setEnabled(true);
+        gc.conectar();
+        mo = (Modul) gc.Buscar(Long.parseLong(tfIdModulCerca.getText()), Modul.class);
+        tfIdModul.setText(String.valueOf(mo.getId()));
+        tfNomModul.setText(mo.getNom());
+        tfIdCursModul.setText(String.valueOf(mo.getCurs().getId()));
+        tfIdModulCicle.setText(String.valueOf(mo.getCicle().getId()));
+        //Busca y carga en una tabla todas las UF de este modulo.
+        List<UnitatFormativa> listaUF = mc.BuscarUfModulo(mo.getId());
+        String col[] = {"ID", "NOM", "HORES"};
+        DefaultTableModel taulaUFModul = new DefaultTableModel(col, 0);
+        taulaModulUF.setModel(taulaUFModul);
+        for (UnitatFormativa uf1 : listaUF) {
+            taulaUFModul.addRow(new Object[]{uf1.getId(), uf1.getNom(), uf1.getHores()});
+        }
+        gc.desconectar();
+    }//GEN-LAST:event_btnCercaModulIDActionPerformed
+
     /**
      * Metodo que nos devuelve el ENUM de Descompte en funcion del estado del
      * RB.
@@ -3230,7 +3220,7 @@ public class Vista extends javax.swing.JFrame {
     private javax.swing.JButton btnCercaCursAlumnes;
     private javax.swing.JButton btnCercaFamiliaAlumnes;
     private javax.swing.JButton btnCercaIDUF;
-    private javax.swing.JButton btnCercaModul;
+    private javax.swing.JButton btnCercaModulID;
     private javax.swing.JButton btnCercaNifMatricula;
     private javax.swing.JButton btnCercaTotesMatricules;
     private javax.swing.JButton btnCercaTotesUF;
