@@ -16,73 +16,97 @@
      <!-- Directorio de clases compiladas -->
     <property name="build.dir" location="mi_build" />
     
-     <!-- Subdirectorio de las clases compiladas del proyecto -->
+    
+
+    <!-- Subdirectorio de las clases compiladas del proyecto -->
     <property name="build.classes.dir" location="\${build.dir}/classes" />
-     <!-- Subdirectorio de la documentacion del proyecto -->
-    <property name="build.classes.dir" location="\${build.dir}/doc" />
-     <!-- Subdirectorio para los jar del proyecto -->
-    <property name="build.classes.dir" location="\${build.dir}/jar" />
+
+  
+    <!-- Directorio de las bibliotecas del proyecto -->
+    <property name="libHib" location="lib" />
+    <property name="lib" location="C:\Program Files\NetBeans 8.1\platform\modules\ext" />
+    <property name="jdbc" location="C:\Users\ALUMNEDAM\Documents\NetBeansProjects"/>
+    <property name="libOptional" location="C:\Users\ALUMNEDAM\Documents\NetBeansProjects\hibernate-search-5.6.0.Final\dist\lib\optional\jpa"/>
     
+    <!-- Directorio de informes -->
+    <property name="documentacio.dir" location="./documentacio" />
+
+    <!-- Directorio de la documentación -->
+    <property name="documentacio.javadoc" location="${documentacio.dir}/javadoc" />
+
+    <!-- Directorio para config -->
+    <property name="config.dir" location="./config" />
+
+    <!-- Directorio para lib -->
+    <property name="lib.dir" location="lib" />
+
+    <!-- Directorio para el fichero empaquetado -->
+    <property name="dist.dir" location="dist" />
+
+    <!-- Directorio del fichero empaquetado -->
+    <property name="dist.name" value="ProyectoM06.jar" />
+
+    <path id="test.compile.classpath">
+        <fileset dir="${lib}">
+            <include name="*.jar" />
+        </fileset>
+        <pathelement location="\${build.classes.dir}" />
+    </path>
+
+    <path id="test.classpath">
+        <path refid="test.compile.classpath" />
+        <pathelement path="${test.classes.dir}" />
+    </path>
+
+    <target name="compila" description="Compila el proyecto">
+        <mkdir dir="${build.classes.dir}" />
+        <javac destdir="${build.classes.dir}" includeantruntime="false">
+            <src path="${src.dir}"/>
+            <classpath refid="test.classpath"/>
+        </javac>
+    </target>
+
+    <target name="documentacion" depends="compila" description="Genera la documentación del proyecto.">
+        <javadoc sourcepath="${src.dir}" destdir="${documentacio.javadoc}" author="true" version="true" use="true" access="private" linksource="true" encoding="ISO-8859-1" windowtitle="${ant.project.name}">
+            <classpath>
+                <pathelement path="${build.classes.dir}" />
+            </classpath>
+        </javadoc>
+    </target>
+
+    <target name="empaqueta" depends="documentacion" description="Genera el fichero jar">
+        <mkdir dir="${dist.dir}" />
+        <jar destfile="${dist.dir}/\${dist.name}">
+            <fileset dir="${build.classes.dir}" />
+            <manifest>
+                <attribute name="Main-Class" value="vista.Vista" />
+            </manifest>
+        </jar>
+    </target>
+
+    <target name="ejecuta" depends="empaqueta" description="Ejecuta la aplicación.">
+        <java jar="${dist.dir}/${dist.name}" fork="true" />
+    </target>
     
+ 
     
-    <!--
+    <target name="comprimir" depends="empaqueta" description="Comprime en un ZIP los archivos indicados">
+        <zip destfile="ArchivoZIP.zip">
+            <fileset dir="${src.dir}">
+                <include name="/*" />
+            </fileset>
+            <fileset dir="${lib.dir}">
+                <include name="/*" />
+            </fileset>
+            <fileset dir="${documentacio.dir}">
+                <include name="/*" />
+            </fileset>
+            <fileset dir="${dist.dir}">
+                <include name="/*" />
+            </fileset>
+        </zip>
+    </target>
 
-    There exist several targets which are by default empty and which can be 
-    used for execution of your tasks. These targets are usually executed 
-    before and after some main targets. They are: 
-
-      -pre-init:                 called before initialization of project properties
-      -post-init:                called after initialization of project properties
-      -pre-compile:              called before javac compilation
-      -post-compile:             called after javac compilation
-      -pre-compile-single:       called before javac compilation of single file
-      -post-compile-single:      called after javac compilation of single file
-      -pre-compile-test:         called before javac compilation of JUnit tests
-      -post-compile-test:        called after javac compilation of JUnit tests
-      -pre-compile-test-single:  called before javac compilation of single JUnit test
-      -post-compile-test-single: called after javac compilation of single JUunit test
-      -pre-jar:                  called before JAR building
-      -post-jar:                 called after JAR building
-      -post-clean:               called after cleaning build products
-
-    (Targets beginning with '-' are not intended to be called on their own.)
-
-    Example of inserting an obfuscator after compilation could look like this:
-
-        <target name="-post-compile">
-            <obfuscate>
-                <fileset dir="${build.classes.dir}"/>
-            </obfuscate>
-        </target>
-
-    For list of available properties check the imported 
-    nbproject/build-impl.xml file. 
-
-
-    Another way to customize the build is by overriding existing main targets.
-    The targets of interest are: 
-
-      -init-macrodef-javac:     defines macro for javac compilation
-      -init-macrodef-junit:     defines macro for junit execution
-      -init-macrodef-debug:     defines macro for class debugging
-      -init-macrodef-java:      defines macro for class execution
-      -do-jar:                  JAR building
-      run:                      execution of project 
-      -javadoc-build:           Javadoc generation
-      test-report:              JUnit report generation
-
-    An example of overriding the target for project execution could look like this:
-
-        <target name="run" depends="M6UF4ProyectoEricMarcos-impl.jar">
-            <exec dir="bin" executable="launcher.exe">
-                <arg file="${dist.jar}"/>
-            </exec>
-        </target>
-
-    Notice that the overridden target depends on the jar target and not only on 
-    the compile target as the regular run target does. Again, for a list of available 
-    properties which you can use, check the target you are overriding in the
-    nbproject/build-impl.xml file. 
-
-    -->
 </project>
+    
+   
